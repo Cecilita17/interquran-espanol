@@ -15,29 +15,39 @@ async function reciters(){try{let all=await get(API+'/edition/format/audio');let
 async function openChapter(n,first=0){stop();state.chapter=n;state.i=first;view(true);$('chapterName').textContent=state.chapters.find(c=>c.number===n)?.englishName||'Sura '+n;$('verses').innerHTML='<p class="muted">Cargando versículos…</p>';const [a,t,w,r]=await Promise.allSettled([get(API+'/surah/'+n+'/quran-uthmani'),get(API+'/surah/'+n+'/es.cortes'),wordByWord(n),get(API+'/surah/'+n+'/'+state.reciter)]);if(a.status!=='fulfilled'){$('verses').innerHTML='<p class="error">No se pudo obtener el texto árabe.</p>';return}state.verses=a.value.ayahs.map((v,i)=>({ar:v.text,es:t.status==='fulfilled'?t.value.ayahs[i]?.text||'':'',words:[]}));if(w.status==='fulfilled')for(const v of w.value){let dest=state.verses[v.verse_number-1];if(!dest)continue;let ws=(v.words||[]).filter(x=>x.char_type_name==='word'),aw=alignedArabic(dest,ws);if(aw)dest.words=ws.map((x,j)=>({ar:aw[j],tr:trES(x.transliteration?.text),en:strip(x.translation?.text||''),es:null}))}state.audio=r.status==='fulfilled'?r.value.ayahs.map(x=>x.audio||''):[];render();setPos(first,false);translateGlosses(state.chapter)}
 
 async function translateGlosses(chapter){
- const cacheKey='interquran-es-glosses-v1';let cached={};
+ // Nueva versión de caché: no reutiliza significados incorrectos anteriores.
+ const cacheKey='interquran-es-glosses-v2';let cached={};
  try{cached=JSON.parse(localStorage.getItem(cacheKey)||'{}')}catch(e){}
- const terms=[...new Set(state.verses.flatMap(v=>v.words.map(w=>w.en).filter(Boolean)))];
- function apply(english,spanish){
+ const words=state.verses.flatMap(v=>v.words);
+ const entries=[...new Map(words.filter(w=>w.en).map(w=>[w.ar+'|'+w.en,{ar:w.ar,en:w.en}])).values()];
+ function apply(item,spanish){
   if(state.chapter!==chapter)return;
   state.verses.forEach((verse,i)=>verse.words.forEach((word,j)=>{
-   if(word.en!==english)return;word.es=spanish;
+   if(word.ar!==item.ar||word.en!==item.en)return;
+   word.es=spanish;
    const node=document.querySelector('[data-gloss="'+i+'-'+j+'"]');
-   if(node)node.textContent=spanish||'Significado no disponible';
+   if(node)node.textContent=spanish||'Ver traducción de la aleya';
   }));
  }
- for(const term of terms)if(cached[term])apply(term,cached[term]);
- const missing=terms.filter(t=>!cached[t]);
- for(let offset=0;offset<missing.length;offset+=35){
+ for(const item of entries){const key=item.ar+'|'+item.en;if(cached[key])apply(item,cached[key])}
+ const missing=entries.filter(item=>!cached[item.ar+'|'+item.en]);
+ for(let offset=0;offset<missing.length;offset+=30){
   if(state.chapter!==chapter)break;
-  const batch=missing.slice(offset,offset+35);
+  const batch=missing.slice(offset,offset+30);
   try{
-   const response=await fetch('/api/gloss',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phrases:batch})});
-   if(!response.ok)throw Error('Glosario español no disponible');
+   const response=await fetch('/api/gloss',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({words:batch})});
+   if(!response.ok)throw Error('Glosario no disponible');
    const data=await response.json();
-   batch.forEach((term,i)=>{const es=data.glosses?.[i];if(es){cached[term]=es;apply(term,es)}else apply(term,null)});
+   batch.forEach((item,i)=>{
+    const es=data.glosses?.[i]||null;
+    if(es){cached[item.ar+'|'+item.en]=es}
+    apply(item,es);
+   });
    try{const entries=Object.entries(cached);localStorage.setItem(cacheKey,JSON.stringify(Object.fromEntries(entries.slice(-2500))))}catch(e){}
-  }catch(e){batch.forEach(term=>apply(term,null));$('status').textContent='Algunas glosas no están disponibles en español. Reintentá más tarde.'}
+  }catch(e){
+   batch.forEach(item=>apply(item,null));
+   $('status').textContent='Algunas glosas no están disponibles. Consultá la traducción completa de la aleya.';
+  }
  }
 }
 
