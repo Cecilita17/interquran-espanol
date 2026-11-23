@@ -16,21 +16,40 @@ async function openChapter(n,first=0){stop();state.chapter=n;state.i=first;view(
 
 async function translateGlosses(chapter){
  // Nueva versión de caché: no reutiliza significados incorrectos anteriores.
- const cacheKey='interquran-es-glosses-v2';let cached={};
+ const cacheKey='interquran-es-glosses-v3';let cached={};
  try{cached=JSON.parse(localStorage.getItem(cacheKey)||'{}')}catch(e){}
  const words=state.verses.flatMap(v=>v.words);
  const entries=[...new Map(words.filter(w=>w.en).map(w=>[w.ar+'|'+w.en,{ar:w.ar,en:w.en}])).values()];
+ // Revisión contextual por versículo: sin traducir frases inglesas aisladas.
+ const reviewed={
+  '1:1':['en el nombre','de Alá','el Compasivo','el Misericordioso'],
+  '2:2':['ese','el Libro','no','duda','en él','guía','para los piadosos'],
+  '2:5':['aquellos','siguen','una guía','de','su Señor','y aquellos','son','los que prosperan']
+ };
+ function applyReviewed(){
+  state.verses.forEach((verse,i)=>{
+   const values=reviewed[chapter+':'+(i+1)];
+   if(!values||values.length!==verse.words.length)return;
+   verse.words.forEach((w,j)=>{
+    w.es=values[j];
+    const el=document.querySelector('[data-gloss="'+i+'-'+j+'"]');
+    if(el)el.textContent=values[j];
+   });
+  });
+ }
  function apply(item,spanish){
   if(state.chapter!==chapter)return;
   state.verses.forEach((verse,i)=>verse.words.forEach((word,j)=>{
    if(word.ar!==item.ar||word.en!==item.en)return;
+   const reviewedWords=reviewed[chapter+':'+(i+1)];if(reviewedWords&&reviewedWords.length===verse.words.length)return;
    word.es=spanish;
    const node=document.querySelector('[data-gloss="'+i+'-'+j+'"]');
-   if(node)node.textContent=spanish||'Ver traducción de la aleya';
+   if(node)node.textContent=spanish||'—';
   }));
  }
+ applyReviewed();
  for(const item of entries){const key=item.ar+'|'+item.en;if(cached[key])apply(item,cached[key])}
- const missing=entries.filter(item=>!cached[item.ar+'|'+item.en]);
+ const missing=entries.filter(item=>!cached[item.ar+'|'+item.en]&&!state.verses.every((v,i)=>{const a=reviewed[chapter+':'+(i+1)];return a&&a.length===v.words.length||!v.words.some(w=>w.ar===item.ar&&w.en===item.en)}));
  for(let offset=0;offset<missing.length;offset+=30){
   if(state.chapter!==chapter)break;
   const batch=missing.slice(offset,offset+30);
