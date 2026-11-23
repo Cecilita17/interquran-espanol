@@ -1,0 +1,397 @@
+{
+  "chapter": 2,
+  "edition": "es-manual-v1",
+  "reviewedVerses": 10,
+  "totalVerses": 286,
+  "source": "Glosas originales en español elaboradas por el asistente, segmentación cotejada con Quran.com; glosas pedagógicas no sustituyen tafsir",
+  "verses": {
+    "1": [
+      {
+        "ar": "الٓمٓ",
+        "es": "Álif, Lam, Mim (letras aisladas)"
+      }
+    ],
+    "2": [
+      {
+        "ar": "ذَٰلِكَ",
+        "es": "ese"
+      },
+      {
+        "ar": "ٱلۡكِتَٰبُ",
+        "es": "el Libro"
+      },
+      {
+        "ar": "لَا",
+        "es": "no"
+      },
+      {
+        "ar": "رَيۡبَۛ",
+        "es": "duda"
+      },
+      {
+        "ar": "فِيهِۛ",
+        "es": "en él"
+      },
+      {
+        "ar": "هُدٗى",
+        "es": "guía"
+      },
+      {
+        "ar": "لِّلۡمُتَّقِينَ",
+        "es": "para quienes temen a Alá"
+      }
+    ],
+    "3": [
+      {
+        "ar": "ٱلَّذِينَ",
+        "es": "quienes"
+      },
+      {
+        "ar": "يُؤۡمِنُونَ",
+        "es": "creen"
+      },
+      {
+        "ar": "بِٱلۡغَيۡبِ",
+        "es": "en lo invisible"
+      },
+      {
+        "ar": "وَيُقِيمُونَ",
+        "es": "y cumplen"
+      },
+      {
+        "ar": "ٱلصَّلَوٰةَ",
+        "es": "la oración"
+      },
+      {
+        "ar": "وَمِمَّا",
+        "es": "y de lo que"
+      },
+      {
+        "ar": "رَزَقۡنَٰهُمۡ",
+        "es": "les hemos provisto"
+      },
+      {
+        "ar": "يُنفِقُونَ",
+        "es": "dan"
+      }
+    ],
+    "4": [
+      {
+        "ar": "وَٱلَّذِينَ",
+        "es": "y quienes"
+      },
+      {
+        "ar": "يُؤۡمِنُونَ",
+        "es": "creen"
+      },
+      {
+        "ar": "بِمَآ",
+        "es": "en lo que"
+      },
+      {
+        "ar": "أُنزِلَ",
+        "es": "fue revelado"
+      },
+      {
+        "ar": "إِلَيۡكَ",
+        "es": "a ti"
+      },
+      {
+        "ar": "وَمَآ",
+        "es": "y lo que"
+      },
+      {
+        "ar": "أُنزِلَ",
+        "es": "fue revelado"
+      },
+      {
+        "ar": "مِن",
+        "es": "antes de"
+      },
+      {
+        "ar": "قَبۡلِكَ",
+        "es": "ti"
+      },
+      {
+        "ar": "وَبِٱلۡأٓخِرَةِ",
+        "es": "y en la otra vida"
+      },
+      {
+        "ar": "هُمۡ",
+        "es": "ellos"
+      },
+      {
+        "ar": "يُوقِنُونَ",
+        "es": "tienen certeza"
+      }
+    ],
+    "5": [
+      {
+        "ar": "أُوْلَٰٓئِكَ",
+        "es": "aquellos"
+      },
+      {
+        "ar": "عَلَىٰ",
+        "es": "siguen"
+      },
+      {
+        "ar": "هُدٗى",
+        "es": "una guía"
+      },
+      {
+        "ar": "مِّن",
+        "es": "de"
+      },
+      {
+        "ar": "رَّبِّهِمۡۖ",
+        "es": "su Señor"
+      },
+      {
+        "ar": "وَأُوْلَٰٓئِكَ",
+        "es": "y aquellos"
+      },
+      {
+        "ar": "هُمُ",
+        "es": "son"
+      },
+      {
+        "ar": "ٱلۡمُفۡلِحُونَ",
+        "es": "los que prosperan"
+      }
+    ],
+    "6": [
+      {
+        "ar": "إِنَّ",
+        "es": "ciertamente"
+      },
+      {
+        "ar": "ٱلَّذِينَ",
+        "es": "quienes"
+      },
+      {
+        "ar": "كَفَرُواْ",
+        "es": "rechazaron la fe"
+      },
+      {
+        "ar": "سَوَآءٌ",
+        "es": "es igual"
+      },
+      {
+        "ar": "عَلَيۡهِمۡ",
+        "es": "para ellos"
+      },
+      {
+        "ar": "ءَأَنذَرۡتَهُمۡ",
+        "es": "que los adviertas"
+      },
+      {
+        "ar": "أَمۡ",
+        "es": "o"
+      },
+      {
+        "ar": "لَمۡ",
+        "es": "no"
+      },
+      {
+        "ar": "تُنذِرۡهُمۡ",
+        "es": "los adviertas"
+      },
+      {
+        "ar": "لَا",
+        "es": "no"
+      },
+      {
+        "ar": "يُؤۡمِنُونَ",
+        "es": "creerán"
+      }
+    ],
+    "7": [
+      {
+        "ar": "خَتَمَ",
+        "es": "ha sellado"
+      },
+      {
+        "ar": "ٱللَّهُ",
+        "es": "Alá"
+      },
+      {
+        "ar": "عَلَىٰ",
+        "es": "sobre"
+      },
+      {
+        "ar": "قُلُوبِهِمۡ",
+        "es": "sus corazones"
+      },
+      {
+        "ar": "وَعَلَىٰ",
+        "es": "y sobre"
+      },
+      {
+        "ar": "سَمۡعِهِمۡۖ",
+        "es": "su oído"
+      },
+      {
+        "ar": "وَعَلَىٰٓ",
+        "es": "y sobre"
+      },
+      {
+        "ar": "أَبۡصَٰرِهِمۡ",
+        "es": "sus ojos"
+      },
+      {
+        "ar": "غِشَٰوَةٞۖ",
+        "es": "un velo"
+      },
+      {
+        "ar": "وَلَهُمۡ",
+        "es": "y para ellos"
+      },
+      {
+        "ar": "عَذَابٌ",
+        "es": "un castigo"
+      },
+      {
+        "ar": "عَظِيمٞ",
+        "es": "enorme"
+      }
+    ],
+    "8": [
+      {
+        "ar": "وَمِنَ",
+        "es": "y entre"
+      },
+      {
+        "ar": "ٱلنَّاسِ",
+        "es": "la gente"
+      },
+      {
+        "ar": "مَن",
+        "es": "hay quienes"
+      },
+      {
+        "ar": "يَقُولُ",
+        "es": "dicen"
+      },
+      {
+        "ar": "ءَامَنَّا",
+        "es": "creemos"
+      },
+      {
+        "ar": "بِٱللَّهِ",
+        "es": "en Alá"
+      },
+      {
+        "ar": "وَبِٱلۡيَوۡمِ",
+        "es": "y en el Día"
+      },
+      {
+        "ar": "ٱلۡأٓخِرِ",
+        "es": "Último"
+      },
+      {
+        "ar": "وَمَا",
+        "es": "pero no"
+      },
+      {
+        "ar": "هُم",
+        "es": "son"
+      },
+      {
+        "ar": "بِمُؤۡمِنِينَ",
+        "es": "creyentes"
+      }
+    ],
+    "9": [
+      {
+        "ar": "يُخَٰدِعُونَ",
+        "es": "intentan engañar"
+      },
+      {
+        "ar": "ٱللَّهَ",
+        "es": "a Alá"
+      },
+      {
+        "ar": "وَٱلَّذِينَ",
+        "es": "y a quienes"
+      },
+      {
+        "ar": "ءَامَنُواْ",
+        "es": "creen"
+      },
+      {
+        "ar": "وَمَا",
+        "es": "pero no"
+      },
+      {
+        "ar": "يَخۡدَعُونَ",
+        "es": "engañan"
+      },
+      {
+        "ar": "إِلَّآ",
+        "es": "sino"
+      },
+      {
+        "ar": "أَنفُسَهُمۡ",
+        "es": "a sí mismos"
+      },
+      {
+        "ar": "وَمَا",
+        "es": "y no"
+      },
+      {
+        "ar": "يَشۡعُرُونَ",
+        "es": "se dan cuenta"
+      }
+    ],
+    "10": [
+      {
+        "ar": "فِي",
+        "es": "en"
+      },
+      {
+        "ar": "قُلُوبِهِم",
+        "es": "sus corazones"
+      },
+      {
+        "ar": "مَّرَضٞ",
+        "es": "hay una enfermedad"
+      },
+      {
+        "ar": "فَزَادَهُمُ",
+        "es": "y les aumentó"
+      },
+      {
+        "ar": "ٱللَّهُ",
+        "es": "Alá"
+      },
+      {
+        "ar": "مَرَضٗاۖ",
+        "es": "la enfermedad"
+      },
+      {
+        "ar": "وَلَهُمۡ",
+        "es": "y para ellos"
+      },
+      {
+        "ar": "عَذَابٌ",
+        "es": "hay un castigo"
+      },
+      {
+        "ar": "أَلِيمُۢ",
+        "es": "doloroso"
+      },
+      {
+        "ar": "بِمَا",
+        "es": "por lo que"
+      },
+      {
+        "ar": "كَانُواْ",
+        "es": "solían"
+      },
+      {
+        "ar": "يَكۡذِبُونَ",
+        "es": "mentir"
+      }
+    ]
+  }
+}
