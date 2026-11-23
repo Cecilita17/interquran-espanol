@@ -1,64 +1,96 @@
-// Traducción de glosas al español. Nunca devuelve el texto original inglés como glosa española.
-const cache = new Map();
-const dictionary = {
-"the name":"el nombre","in the name":"en el nombre","of allah":"de Alá","allah":"Alá",
-"the most gracious":"el Compasivo","the most merciful":"el Misericordioso","all praise":"toda alabanza",
-"to allah":"a Alá","lord":"Señor","of the worlds":"de los mundos","master":"Soberano",
-"day":"día","judgement":"Juicio","we worship":"adoramos","you alone":"solo a Ti",
-"we ask for help":"pedimos ayuda","guide us":"guíanos","the straight path":"el camino recto",
-"those":"aquellos","who":"que","upon them":"sobre ellos","you have bestowed favor":"has favorecido",
-"not":"no","nor":"ni","the wrongdoers":"los injustos","the misguided":"los extraviados",
-"that":"ese","this":"este","the book":"el Libro","book":"Libro","no doubt":"sin duda",
-"there is no doubt":"no hay duda","in it":"en él","guidance":"guía","for":"para",
-"the god-conscious":"los piadosos","those who":"quienes","believe":"creen",
-"in the unseen":"en lo invisible","and establish":"y establecen","the prayer":"la oración",
-"and from what":"y de lo que","we have provided them":"les hemos proveído",
-"they spend":"gastan","and":"y","or":"o","in":"en","from":"de","with":"con",
-"upon":"sobre","to":"a","he":"él","she":"ella","they":"ellos","we":"nosotros",
-"you":"tú","i":"yo","a":"un","an":"un","the":"el","is":"es","are":"son",
-"said":"dijo","say":"di","he said":"él dijo","they said":"dijeron",
-"people":"gente","the people":"la gente","believers":"creyentes",
-"your lord":"tu Señor","their lord":"su Señor","our lord":"nuestro Señor",
-"mercy":"misericordia","truth":"verdad","the truth":"la verdad",
-"fear":"temor","a punishment":"un castigo","punishment":"castigo",
-"heaven":"cielo","earth":"tierra","the earth":"la tierra",
-"created":"creó","he created":"Él creó","will":"será","shall":"será",
-"you are":"eres","they are":"son","we are":"somos",
-"indeed":"ciertamente","verily":"en verdad","surely":"sin duda",
-"if":"si","when":"cuando","then":"entonces","but":"pero",
-"good":"bien","evil":"mal","fire":"fuego","the fire":"el fuego",
-"water":"agua","life":"vida","death":"muerte","knowledge":"conocimiento",
-"one":"uno","two":"dos","all":"todos","every":"cada"
+// Glosas coránicas en español: equivalencias contextuales priorizadas.
+const lexicon={
+'بسم':'en el nombre','الله':'Alá','الرحمن':'el Compasivo','الرحيم':'el Misericordioso',
+'الحمد':'la alabanza','لله':'a Alá','رب':'Señor','ربى':'mi Señor','ربك':'tu Señor',
+'العلمين':'los mundos','العالمين':'los mundos','ملك':'Soberano','مالك':'Dueño',
+'يوم':'día','الدين':'el Juicio','إياك':'solo a Ti','نعبد':'adoramos',
+'نستعين':'pedimos ayuda','اهدنا':'guíanos','الصراط':'el camino',
+'المستقيم':'recto','صراط':'camino','الذين':'quienes','أنعمت':'favoreciste',
+'عليهم':'a ellos','غير':'no el de','المغضوب':'quienes recibieron la ira',
+'ولا':'ni','الضالين':'los extraviados','الم':'Álif, Lam, Mim',
+'ذلك':'ese','الكتب':'el Libro','الكتاب':'el Libro','لا':'no',
+'ريب':'duda','فيه':'en él','هدى':'guía','للمتقين':'para los piadosos',
+'يؤمنون':'creen','بالغيب':'en lo invisible','ويقيمون':'y establecen',
+'الصلوة':'la oración','الصلاة':'la oración','ومما':'y de lo que',
+'رزقنهم':'les proveímos','رزقناهم':'les proveímos','ينفقون':'gastan',
+'و':'y','فى':'en','في':'en','من':'de','إلى':'hacia','على':'sobre',
+'إن':'ciertamente','إنما':'solamente','أن':'que','كان':'era',
+'قال':'dijo','قالوا':'dijeron','قل':'di','هو':'él','هم':'ellos',
+'هذا':'este','هذه':'esta','ذلكم':'eso','ثم':'luego','قد':'ya',
+'يا':'oh','أيها':'ustedes','الناس':'la gente','الحق':'la verdad',
+'آمنوا':'creyeron','ربنا':'Señor nuestro','ربهم':'su Señor',
+'أولئك':'aquellos','أولئكهم':'aquellos son','والله':'y Alá',
+'بالله':'en Alá','لله':'a Alá'
 };
-function clean(s){return String(s||'').replace(/<[^>]*>/g,'').trim();}
-function local(s){return dictionary[clean(s).toLowerCase()]||null;}
-async function translate(s){
- const known=local(s);if(known)return known;
- if(cache.has(s))return cache.get(s);
- let out=null;
+const english={
+'in the name':'en el nombre','the name':'el nombre','of allah':'de Alá',
+'allah':'Alá','(of) allah':'de Alá','the most gracious':'el Compasivo',
+'the most merciful':'el Misericordioso','the entirely merciful':'el Compasivo',
+'the especially merciful':'el Misericordioso','all praise':'toda alabanza',
+'praise':'alabanza','the praise':'la alabanza','lord':'Señor','the lord':'el Señor',
+'of the worlds':'de los mundos','the worlds':'los mundos',
+'master':'Soberano','owner':'Dueño','the day':'el día','day':'día',
+'of judgment':'del Juicio','of recompense':'de la Retribución',
+'you alone':'solo a Ti','we worship':'adoramos','we ask for help':'pedimos ayuda',
+'guide us':'guíanos','the straight path':'el camino recto',
+'the path':'el camino','those who':'quienes','upon them':'sobre ellos',
+'not':'no','nor':'ni','the misguided':'los extraviados',
+'the book':'el Libro','book':'Libro','that':'ese','this':'este',
+'no doubt':'sin duda','doubt':'duda','in it':'en él','a guidance':'una guía',
+'guidance':'guía','for the god-conscious':'para los piadosos',
+'the god-conscious':'los piadosos','those':'aquellos','who':'que',
+'believe':'creen','and establish':'y establecen','in the unseen':'en lo invisible',
+'the prayer':'la oración','prayer':'oración','and from what':'y de lo que',
+'we have provided them':'les hemos proveído','they spend':'gastan',
+'the most':'el más','and':'y','or':'o','in':'en','from':'de',
+'with':'con','upon':'sobre','to':'a','for':'para','he':'él',
+'she':'ella','they':'ellos','we':'nosotros','you':'tú',
+'said':'dijo','say':'di','the people':'la gente','people':'gente',
+'your lord':'tu Señor','their lord':'su Señor','our lord':'nuestro Señor',
+'mercy':'misericordia','truth':'verdad','the truth':'la verdad',
+'punishment':'castigo','the earth':'la tierra','earth':'tierra',
+'heaven':'cielo','created':'creó','he created':'Él creó',
+'indeed':'ciertamente','verily':'en verdad','surely':'sin duda',
+'if':'si','when':'cuando','then':'entonces','but':'pero',
+'good':'bien','evil':'mal','fire':'fuego','water':'agua',
+'life':'vida','death':'muerte','knowledge':'conocimiento',
+'one':'uno','two':'dos','all':'todos','every':'cada'
+};
+function normalizeArabic(s){return String(s||'').normalize('NFKC')
+.replace(/[\u064B-\u065F\u0670\u06D6-\u06ED\u0640]/g,'')
+.replace(/[إأآٱ]/g,'ا').replace(/ى/g,'ي').replace(/ؤ/g,'و')
+.replace(/ئ/g,'ي').replace(/ة/g,'ه').replace(/[^\u0621-\u064A]/g,'')}
+function clean(s){return String(s||'').replace(/<[^>]*>/g,'').trim()}
+function safe(s){if(typeof s!=='string')return null;const v=s.trim();
+if(!v||v.length>85||/[0-9<>()[\]{}]/.test(v)||/\b(translation|translated|allah \d|error|rate limit|limit exceeded|warning|quota|significado de|temor de allah)\b/i.test(v))return null;
+if(/[一-龥\u0600-\u06FF]/u.test(v))return null;
+return v}
+const cache=new Map();
+async function translateOne(item){
+ const ar=normalizeArabic(item.ar);const en=clean(item.en).toLowerCase();
+ if(lexicon[ar])return lexicon[ar];
+ if(english[en])return english[en];
+ if(!en)return null;
+ const cacheKey=ar+'|'+en;if(cache.has(cacheKey))return cache.get(cacheKey);
+ // Una sola fuente de traducción; no recurrir a MyMemory, que devolvía
+ // entradas de memoria de traducción no relacionadas con el Corán.
+ let result=null;
  try{
-  const url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=es&dt=t&q='+encodeURIComponent(s);
-  const response=await fetch(url,{headers:{'Accept':'application/json'},signal:AbortSignal.timeout(6000)});
-  if(response.ok){const data=await response.json();out=(data[0]||[]).map(p=>p[0]||'').join('').trim()||null;}
+  const url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=es&dt=t&q='+encodeURIComponent(item.en);
+  const response=await fetch(url,{signal:AbortSignal.timeout(5000)});
+  if(response.ok){const json=await response.json();const candidate=safe((json[0]||[]).map(row=>row[0]||'').join(''));if(candidate && candidate.toLowerCase()!==en)result=candidate}
  }catch(e){}
- if(!out||out.toLowerCase()===s.toLowerCase()){
-   try{
-    const url='https://api.mymemory.translated.net/get?q='+encodeURIComponent(s)+'&langpair=en%7Ces';
-    const response=await fetch(url,{signal:AbortSignal.timeout(5000)});
-    if(response.ok){const data=await response.json();out=data.responseData?.translatedText?.trim()||null;}
-   }catch(e){}
- }
- if(out&&out.toLowerCase()!==s.toLowerCase())cache.set(s,out);
- return out&&out.toLowerCase()!==s.toLowerCase()?out:null;
+ if(result)cache.set(cacheKey,result);
+ return result;
 }
 export default async function handler(req,res){
  if(req.method!=='POST')return res.status(405).json({error:'Método no permitido'});
- const items=req.body?.phrases;
- if(!Array.isArray(items)||items.length>120||items.some(s=>typeof s!=='string'||s.length>140))return res.status(400).json({error:'Solicitud inválida'});
- const unique=[...new Set(items.map(clean))];
- const values={};let next=0;
- async function worker(){while(next<unique.length){const phrase=unique[next++];values[phrase]=await translate(phrase);}}
- await Promise.all(Array.from({length:Math.min(10,unique.length)},worker));
+ const items=req.body?.words;
+ if(!Array.isArray(items)||items.length>100||items.some(x=>!x||typeof x.ar!=='string'||typeof x.en!=='string'||x.ar.length>100||x.en.length>140))
+  return res.status(400).json({error:'Solicitud inválida'});
+ let next=0;const result=Array(items.length);
+ async function worker(){while(next<items.length){const i=next++;result[i]=await translateOne(items[i])}}
+ await Promise.all(Array.from({length:Math.min(8,items.length)},worker));
  res.setHeader('Cache-Control','private, max-age=60');
- return res.status(200).json({glosses:items.map(s=>values[clean(s)]??null)});
+ return res.status(200).json({glosses:result});
 }
