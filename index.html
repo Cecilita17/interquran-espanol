@@ -12,7 +12,33 @@ function stop(){state.token++;state.playing=false;state.track?.pause();state.tra
 function view(read){$('library').classList.toggle('hide',read);$('reader').classList.toggle('hide',!read);$('player').classList.toggle('hide',!read);scrollTo(0,0)}
 async function chapters(){try{state.chapters=await get(API+'/surah');$('surahs').innerHTML=state.chapters.map(c=>'<button class="card surah" data-ch="'+c.number+'"><span class="number">'+c.number+'</span><span><b>'+esc(c.englishName)+'</b><br><span class="muted">'+esc(c.englishNameTranslation)+' · '+c.numberOfAyahs+' aleyas</span></span><span class="title-ar" lang="ar">'+esc(c.name)+'</span></button>').join('');document.querySelectorAll('[data-ch]').forEach(b=>b.onclick=()=>openChapter(+b.dataset.ch))}catch(e){$('surahs').innerHTML='<p class="error">No se pudo cargar el índice. Verificá Internet.</p>'}}
 async function reciters(){try{let all=await get(API+'/edition/format/audio');let a=all.find(e=>/alafasy|afasy|afassi/i.test(e.englishName+' '+e.identifier)),s=all.find(e=>/shuraim|shuraym/i.test(e.englishName+' '+e.identifier));$('reciter').options[0].value=a?.identifier||'ar.alafasy';$('reciter').options[1].value=s?.identifier||'ar.shuraym';if(![...$('reciter').options].some(o=>o.value===state.reciter))state.reciter=$('reciter').options[0].value;$('reciter').value=state.reciter}catch(e){$('reciter').value=state.reciter}}
-async function openChapter(n,first=0){stop();state.chapter=n;state.i=first;view(true);$('chapterName').textContent=state.chapters.find(c=>c.number===n)?.englishName||'Sura '+n;$('verses').innerHTML='<p class="muted">Cargando versículos…</p>';const [a,t,w,r]=await Promise.allSettled([get(API+'/surah/'+n+'/quran-uthmani'),get(API+'/surah/'+n+'/es.cortes'),wordByWord(n),get(API+'/surah/'+n+'/'+state.reciter)]);if(a.status!=='fulfilled'){$('verses').innerHTML='<p class="error">No se pudo obtener el texto árabe.</p>';return}state.verses=a.value.ayahs.map((v,i)=>({ar:v.text,es:t.status==='fulfilled'?t.value.ayahs[i]?.text||'':'',words:[]}));if(w.status==='fulfilled')for(const v of w.value){let dest=state.verses[v.verse_number-1];if(!dest)continue;let ws=(v.words||[]).filter(x=>x.char_type_name==='word'),aw=alignedArabic(dest,ws);if(aw)dest.words=ws.map((x,j)=>({ar:aw[j],tr:trES(x.transliteration?.text),en:strip(x.translation?.text||''),es:null}))}state.audio=r.status==='fulfilled'?r.value.ayahs.map(x=>x.audio||''):[];state.timings={};state.timedAudio={};render();setPos(first,false);translateGlosses(state.chapter);loadWordTimings(n)}
+async function openChapter(n,first=0){stop();state.chapter=n;state.i=first;view(true);$('chapterName').textContent=state.chapters.find(c=>c.number===n)?.englishName||'Sura '+n;$('verses').innerHTML='<p class="muted">Cargando versículos…</p>';const [a,t,w,r]=await Promise.allSettled([get(API+'/surah/'+n+'/quran-uthmani'),get(API+'/surah/'+n+'/es.cortes'),wordByWord(n),get(API+'/surah/'+n+'/'+state.reciter)]);if(a.status!=='fulfilled'){$('verses').innerHTML='<p class="error">No se pudo obtener el texto árabe.</p>';return}state.verses=a.value.ayahs.map((v,i)=>({ar:v.text,es:t.status==='fulfilled'?t.value.ayahs[i]?.text||'':'',words:[]}));if(w.status==='fulfilled')for(const v of w.value){let dest=state.verses[v.verse_number-1];if(!dest)continue;let ws=(v.words||[]).filter(x=>x.char_type_name==='word'),aw=alignedArabic(dest,ws);if(aw)dest.words=ws.map((x,j)=>({ar:aw[j],tr:trES(x.transliteration?.text),en:strip(x.translation?.text||''),es:null}))}state.audio=r.status==='fulfilled'?r.value.ayahs.map(x=>x.audio||''):[];state.timings={};state.timedAudio={};await applyFixedGlosses(n);render();setPos(first,false);if(n!==2)translateGlosses(state.chapter);loadWordTimings(n)}
+
+
+async function applyFixedGlosses(chapter){
+ if(chapter!==2)return;
+ try{
+  const response=await fetch('/data/al-baqarah-es.json',{cache:'no-store'});
+  if(!response.ok)throw new Error('Glosario fijo no disponible');
+  const book=await response.json();
+  for(const [verseNumber,entries] of Object.entries(book.verses||{})){
+   const verse=state.verses[Number(verseNumber)-1];
+   if(!verse||!Array.isArray(entries))continue;
+   // No mezclar glosas y transcripciones de distintas posiciones.
+   // Si los datos remotos cambian, el árabe y el español manuales permanecen juntos.
+   const previous=verse.words||[];
+   verse.words=entries.map((entry,i)=>({
+    ar:entry.ar,es:entry.es,
+    tr:previous.length===entries.length?previous[i].tr:''
+   }));
+  }
+  $('status').textContent='Al-Baqarah: glosas manuales en español, guardadas en la aplicación (2:1–10)';
+ }catch(e){
+  $('status').textContent='No se pudo cargar el glosario fijo. Revisá la conexión.';
+ }
+ // No presentar una traducción automática como si fuera una glosa revisada.
+ state.verses.forEach(v=>v.words.forEach(w=>{if(!w.es)w.es='—'}));
+}
 
 async function translateGlosses(chapter){
  // Nueva versión de caché: no reutiliza significados incorrectos anteriores.
