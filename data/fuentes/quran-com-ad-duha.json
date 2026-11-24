@@ -1,0 +1,11 @@
+{"fuente":"Quran.com API v4 (api.quran.com/api/v4/verses/by_chapter/93?words=true), campo text_uthmani; tokens char_type_name=word","descargado":"2026-11-24","capitulo":93,"aleyas":{"1":[{"pos":1,"ar":"وَٱلضُّحَىٰ","translit":"wal-ḍuḥā"}],
+"2":[{"pos":1,"ar":"وَٱلَّيْلِ","translit":"wa-al-layli"},{"pos":2,"ar":"إِذَا","translit":"idhā"},{"pos":3,"ar":"سَجَىٰ","translit":"sajā"}],
+"3":[{"pos":1,"ar":"مَا","translit":"mā"},{"pos":2,"ar":"وَدَّعَكَ","translit":"waddaʿaka"},{"pos":3,"ar":"رَبُّكَ","translit":"rabbuka"},{"pos":4,"ar":"وَمَا","translit":"wamā"},{"pos":5,"ar":"قَلَىٰ","translit":"qalā"}],
+"4":[{"pos":1,"ar":"وَلَلْـَٔاخِرَةُ","translit":"walalākhiratu"},{"pos":2,"ar":"خَيْرٌۭ","translit":"khayrun"},{"pos":3,"ar":"لَّكَ","translit":"laka"},{"pos":4,"ar":"مِنَ","translit":"mina"},{"pos":5,"ar":"ٱلْأُولَىٰ","translit":"l-ūlā"}],
+"5":[{"pos":1,"ar":"وَلَسَوْفَ","translit":"walasawfa"},{"pos":2,"ar":"يُعْطِيكَ","translit":"yuʿ'ṭīka"},{"pos":3,"ar":"رَبُّكَ","translit":"rabbuka"},{"pos":4,"ar":"فَتَرْضَىٰٓ","translit":"fatarḍā"}],
+"6":[{"pos":1,"ar":"أَلَمْ","translit":"alam"},{"pos":2,"ar":"يَجِدْكَ","translit":"yajid'ka"},{"pos":3,"ar":"يَتِيمًۭا","translit":"yatīman"},{"pos":4,"ar":"فَـَٔاوَىٰ","translit":"faāwā"}],
+"7":[{"pos":1,"ar":"وَوَجَدَكَ","translit":"wawajadaka"},{"pos":2,"ar":"ضَآلًّۭا","translit":"ḍāllan"},{"pos":3,"ar":"فَهَدَىٰ","translit":"fahadā"}],
+"8":[{"pos":1,"ar":"وَوَجَدَكَ","translit":"wawajadaka"},{"pos":2,"ar":"عَآئِلًۭا","translit":"ʿāilan"},{"pos":3,"ar":"فَأَغْنَىٰ","translit":"fa-aghnā"}],
+"9":[{"pos":1,"ar":"فَأَمَّا","translit":"fa-ammā"},{"pos":2,"ar":"ٱلْيَتِيمَ","translit":"l-yatīma"},{"pos":3,"ar":"فَلَا","translit":"falā"},{"pos":4,"ar":"تَقْهَرْ","translit":"taqhar"}],
+"10":[{"pos":1,"ar":"وَأَمَّا","translit":"wa-ammā"},{"pos":2,"ar":"ٱلسَّآئِلَ","translit":"l-sāila"},{"pos":3,"ar":"فَلَا","translit":"falā"},{"pos":4,"ar":"تَنْهَرْ","translit":"tanhar"}],
+"11":[{"pos":1,"ar":"وَأَمَّا","translit":"wa-ammā"},{"pos":2,"ar":"بِنِعْمَةِ","translit":"biniʿ'mati"},{"pos":3,"ar":"رَبِّكَ","translit":"rabbika"},{"pos":4,"ar":"فَحَدِّثْ","translit":"faḥaddith"}]}}

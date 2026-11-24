@@ -1,0 +1,94 @@
+{
+ "capitulo": 91,
+ "sura": "Ash-Shams",
+ "bloque": "1-15",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-ash-shams.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/91-001-015.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"وَٱلشَّمْسِ","tr":"wal·shamsi","es":"¡por el sol","estado":"propuesta"},
+  {"pos":2,"ar":"وَضُحَىٰهَا","tr":"waduhaha","es":"y su resplandor!","estado":"propuesta"}
+ ],
+ "2": [
+  {"pos":1,"ar":"وَٱلْقَمَرِ","tr":"wal·qamari","es":"y por la luna","estado":"propuesta"},
+  {"pos":2,"ar":"إِذَا","tr":"ida","es":"cuando","estado":"propuesta"},
+  {"pos":3,"ar":"تَلَىٰهَا","tr":"talaha","es":"lo sigue","estado":"propuesta"}
+ ],
+ "3": [
+  {"pos":1,"ar":"وَٱلنَّهَارِ","tr":"wal·nahari","es":"y por el día","estado":"propuesta"},
+  {"pos":2,"ar":"إِذَا","tr":"ida","es":"cuando","estado":"propuesta"},
+  {"pos":3,"ar":"جَلَّىٰهَا","tr":"jallaha","es":"lo muestra con claridad","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"وَٱلَّيْلِ","tr":"wa·al·layli","es":"y por la noche","estado":"propuesta"},
+  {"pos":2,"ar":"إِذَا","tr":"ida","es":"cuando","estado":"propuesta"},
+  {"pos":3,"ar":"يَغْشَىٰهَا","tr":"yagshaha","es":"lo cubre","estado":"propuesta"}
+ ],
+ "5": [
+  {"pos":1,"ar":"وَٱلسَّمَآءِ","tr":"wal·samai","es":"y por el cielo","estado":"propuesta"},
+  {"pos":2,"ar":"وَمَا","tr":"wama","es":"y por Aquel que","estado":"propuesta","revisar":"wa-mā banāhā: «y por Aquel que lo edificó» / «por lo que lo edificó»; el valor de mā es discutido"},
+  {"pos":3,"ar":"بَنَىٰهَا","tr":"banaha","es":"lo edificó","estado":"propuesta"}
+ ],
+ "6": [
+  {"pos":1,"ar":"وَٱلْأَرْضِ","tr":"wal·ardi","es":"y por la tierra","estado":"propuesta"},
+  {"pos":2,"ar":"وَمَا","tr":"wama","es":"y por Aquel que","estado":"propuesta"},
+  {"pos":3,"ar":"طَحَىٰهَا","tr":"tahaha","es":"la extendió","estado":"propuesta"}
+ ],
+ "7": [
+  {"pos":1,"ar":"وَنَفْسٍۢ","tr":"wanafsin","es":"y por el alma","estado":"propuesta"},
+  {"pos":2,"ar":"وَمَا","tr":"wama","es":"y por Aquel que","estado":"propuesta"},
+  {"pos":3,"ar":"سَوَّىٰهَا","tr":"sawwaha","es":"la formó","estado":"propuesta"}
+ ],
+ "8": [
+  {"pos":1,"ar":"فَأَلْهَمَهَا","tr":"fa·alhamaha","es":"y le inspiró","estado":"propuesta"},
+  {"pos":2,"ar":"فُجُورَهَا","tr":"fujuraha","es":"su perversidad","estado":"propuesta"},
+  {"pos":3,"ar":"وَتَقْوَىٰهَا","tr":"wataqwaha","es":"y su piedad","estado":"propuesta"}
+ ],
+ "9": [
+  {"pos":1,"ar":"قَدْ","tr":"qad","es":"ciertamente","estado":"propuesta"},
+  {"pos":2,"ar":"أَفْلَحَ","tr":"aflaha","es":"triunfó","estado":"propuesta"},
+  {"pos":3,"ar":"مَن","tr":"man","es":"quien","estado":"propuesta"},
+  {"pos":4,"ar":"زَكَّىٰهَا","tr":"zakkaha","es":"la purificó","estado":"propuesta"}
+ ],
+ "10": [
+  {"pos":1,"ar":"وَقَدْ","tr":"waqad","es":"y ciertamente","estado":"propuesta"},
+  {"pos":2,"ar":"خَابَ","tr":"jaba","es":"fracasó","estado":"propuesta"},
+  {"pos":3,"ar":"مَن","tr":"man","es":"quien","estado":"propuesta"},
+  {"pos":4,"ar":"دَسَّىٰهَا","tr":"dassaha","es":"la corrompió","estado":"propuesta","revisar":"dassāhā: «la corrompió / la enterró / la ocultó»; según los exegetas"}
+ ],
+ "11": [
+  {"pos":1,"ar":"كَذَّبَتْ","tr":"kadabat","es":"desmintió","estado":"propuesta"},
+  {"pos":2,"ar":"ثَمُودُ","tr":"zamudu","es":"Zamud","estado":"propuesta"},
+  {"pos":3,"ar":"بِطَغْوَىٰهَآ","tr":"bitagwaha","es":"por su rebeldía","estado":"propuesta"}
+ ],
+ "12": [
+  {"pos":1,"ar":"إِذِ","tr":"idi","es":"cuando","estado":"propuesta"},
+  {"pos":2,"ar":"ٱنۢبَعَثَ","tr":"inba'aza","es":"se levantó","estado":"propuesta"},
+  {"pos":3,"ar":"أَشْقَىٰهَا","tr":"ashqaha","es":"el más desdichado de ellos","estado":"propuesta"}
+ ],
+ "13": [
+  {"pos":1,"ar":"فَقَالَ","tr":"faqala","es":"y les dijo","estado":"propuesta"},
+  {"pos":2,"ar":"لَهُمْ","tr":"lahum","es":"a ellos","estado":"propuesta"},
+  {"pos":3,"ar":"رَسُولُ","tr":"rasulu","es":"el mensajero","estado":"propuesta"},
+  {"pos":4,"ar":"ٱللَّهِ","tr":"l·lahi","es":"de Alá","estado":"propuesta"},
+  {"pos":5,"ar":"نَاقَةَ","tr":"naqata","es":"la camella","estado":"propuesta"},
+  {"pos":6,"ar":"ٱللَّهِ","tr":"l·lahi","es":"de Alá","estado":"propuesta"},
+  {"pos":7,"ar":"وَسُقْيَـٰهَا","tr":"wasuq'yaha","es":"y su bebida","estado":"propuesta"}
+ ],
+ "14": [
+  {"pos":1,"ar":"فَكَذَّبُوهُ","tr":"fakadabuhu","es":"pero lo desmintieron","estado":"propuesta"},
+  {"pos":2,"ar":"فَعَقَرُوهَا","tr":"fa'aqaruha","es":"y la desjarretaron","estado":"propuesta"},
+  {"pos":3,"ar":"فَدَمْدَمَ","tr":"fadamdama","es":"así que arrasó","estado":"propuesta"},
+  {"pos":4,"ar":"عَلَيْهِمْ","tr":"'alayhim","es":"sobre ellos","estado":"propuesta"},
+  {"pos":5,"ar":"رَبُّهُم","tr":"rabbuhum","es":"su Señor","estado":"propuesta"},
+  {"pos":6,"ar":"بِذَنۢبِهِمْ","tr":"bidanbihim","es":"por su pecado","estado":"propuesta"},
+  {"pos":7,"ar":"فَسَوَّىٰهَا","tr":"fasawwaha","es":"y los igualó","estado":"propuesta"}
+ ],
+ "15": [
+  {"pos":1,"ar":"وَلَا","tr":"wala","es":"y no","estado":"propuesta"},
+  {"pos":2,"ar":"يَخَافُ","tr":"yajafu","es":"teme","estado":"propuesta"},
+  {"pos":3,"ar":"عُقْبَـٰهَا","tr":"'uq'baha","es":"sus consecuencias","estado":"propuesta"}
+ ]
+ }
+}

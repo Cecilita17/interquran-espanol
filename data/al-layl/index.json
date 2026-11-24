@@ -1,0 +1,15 @@
+{
+ "capitulo": 92,
+ "sura": "Al-Layl",
+ "totalAleyas": 21,
+ "aleyasConGlosas": 21,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "92-001-021.json",
+   "desde": 1,
+   "hasta": 21
+  }
+ ]
+}

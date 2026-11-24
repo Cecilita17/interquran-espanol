@@ -16,7 +16,7 @@ async function openChapter(n,first=0){stop();state.chapter=n;state.i=first;if(hi
 
 
 // Suras con glosario fijo en español (data/<carpeta>/index.json): no usan traducción automática.
-const FIXED_GLOSSES={2:'al-baqarah',3:'al-imran',4:'an-nisa',5:'al-maida',6:'al-anam',95:'at-tin',96:'al-alaq',97:'al-qadr',98:'al-bayyina',99:'az-zalzala',100:'al-adiyat',101:'al-qaria',102:'at-takathur',103:'al-asr',104:'al-humaza',105:'al-fil',106:'quraysh',107:'al-maun',108:'al-kawthar',109:'al-kafirun',110:'an-nasr',111:'al-masad',112:'al-ikhlas',113:'al-falaq',114:'an-nas'};
+const FIXED_GLOSSES={2:'al-baqarah',3:'al-imran',4:'an-nisa',5:'al-maida',6:'al-anam',85:'al-buruj',86:'at-tariq',87:'al-ala',88:'al-ghashiya',89:'al-fajr',90:'al-balad',91:'ash-shams',92:'al-layl',93:'ad-duha',94:'ash-sharh',95:'at-tin',96:'al-alaq',97:'al-qadr',98:'al-bayyina',99:'az-zalzala',100:'al-adiyat',101:'al-qaria',102:'at-takathur',103:'al-asr',104:'al-humaza',105:'al-fil',106:'quraysh',107:'al-maun',108:'al-kawthar',109:'al-kafirun',110:'an-nasr',111:'al-masad',112:'al-ikhlas',113:'al-falaq',114:'an-nas'};
 async function applyFixedGlosses(chapter){
  const dir=FIXED_GLOSSES[chapter];if(!dir)return;
  const normalize=s=>String(s||'').normalize('NFKC')

@@ -1,0 +1,105 @@
+{
+ "capitulo": 86,
+ "sura": "At-Tariq",
+ "bloque": "1-17",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-at-tariq.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/86-001-017.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"وَٱلسَّمَآءِ","tr":"wal·samai","es":"¡por el cielo","estado":"propuesta"},
+  {"pos":2,"ar":"وَٱلطَّارِقِ","tr":"wal·tariqi","es":"y por el que llega de noche!","estado":"propuesta"}
+ ],
+ "2": [
+  {"pos":1,"ar":"وَمَآ","tr":"wama","es":"¿y qué","estado":"propuesta"},
+  {"pos":2,"ar":"أَدْرَىٰكَ","tr":"adraka","es":"te hará saber","estado":"propuesta"},
+  {"pos":3,"ar":"مَا","tr":"ma","es":"qué es","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلطَّارِقُ","tr":"l·tariqu","es":"el que llega de noche?","estado":"propuesta"}
+ ],
+ "3": [
+  {"pos":1,"ar":"ٱلنَّجْمُ","tr":"al·najmu","es":"la estrella","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلثَّاقِبُ","tr":"l·zaqibu","es":"penetrante","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"إِن","tr":"in","es":"no","estado":"propuesta"},
+  {"pos":2,"ar":"كُلُّ","tr":"kullu","es":"hay","estado":"propuesta"},
+  {"pos":3,"ar":"نَفْسٍۢ","tr":"nafsin","es":"alma","estado":"propuesta"},
+  {"pos":4,"ar":"لَّمَّا","tr":"lamma","es":"sin que","estado":"propuesta"},
+  {"pos":5,"ar":"عَلَيْهَا","tr":"'alayha","es":"sobre ella","estado":"propuesta"},
+  {"pos":6,"ar":"حَافِظٌۭ","tr":"hafizun","es":"haya un guardián","estado":"propuesta"}
+ ],
+ "5": [
+  {"pos":1,"ar":"فَلْيَنظُرِ","tr":"falyanzuri","es":"que mire pues","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلْإِنسَـٰنُ","tr":"l·insanu","es":"el ser humano","estado":"propuesta"},
+  {"pos":3,"ar":"مِمَّ","tr":"mimma","es":"de qué","estado":"propuesta"},
+  {"pos":4,"ar":"خُلِقَ","tr":"juliqa","es":"fue creado","estado":"propuesta"}
+ ],
+ "6": [
+  {"pos":1,"ar":"خُلِقَ","tr":"juliqa","es":"fue creado","estado":"propuesta"},
+  {"pos":2,"ar":"مِن","tr":"min","es":"de","estado":"propuesta"},
+  {"pos":3,"ar":"مَّآءٍۢ","tr":"main","es":"agua","estado":"propuesta"},
+  {"pos":4,"ar":"دَافِقٍۢ","tr":"dafiqin","es":"que brota","estado":"propuesta"}
+ ],
+ "7": [
+  {"pos":1,"ar":"يَخْرُجُ","tr":"yajruju","es":"sale","estado":"propuesta"},
+  {"pos":2,"ar":"مِنۢ","tr":"min","es":"de","estado":"propuesta"},
+  {"pos":3,"ar":"بَيْنِ","tr":"bayni","es":"entre","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلصُّلْبِ","tr":"l·sul'bi","es":"la espina dorsal","estado":"propuesta"},
+  {"pos":5,"ar":"وَٱلتَّرَآئِبِ","tr":"wal·taraibi","es":"y las costillas","estado":"propuesta","revisar":"bayna l-ṣulbi wa-l-tarāʾib: «entre la espina dorsal y las costillas»; su sentido anatómico es discutido"}
+ ],
+ "8": [
+  {"pos":1,"ar":"إِنَّهُۥ","tr":"innahu","es":"ciertamente Él","estado":"propuesta"},
+  {"pos":2,"ar":"عَلَىٰ","tr":"'ala","es":"para","estado":"propuesta"},
+  {"pos":3,"ar":"رَجْعِهِۦ","tr":"raj'ihi","es":"devolverlo","estado":"propuesta"},
+  {"pos":4,"ar":"لَقَادِرٌۭ","tr":"laqadirun","es":"es sin duda capaz","estado":"propuesta"}
+ ],
+ "9": [
+  {"pos":1,"ar":"يَوْمَ","tr":"yawma","es":"el día","estado":"propuesta"},
+  {"pos":2,"ar":"تُبْلَى","tr":"tub'la","es":"en que sean examinados","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلسَّرَآئِرُ","tr":"l·sarairu","es":"los secretos","estado":"propuesta"}
+ ],
+ "10": [
+  {"pos":1,"ar":"فَمَا","tr":"fama","es":"así que no","estado":"propuesta"},
+  {"pos":2,"ar":"لَهُۥ","tr":"lahu","es":"tendrá","estado":"propuesta"},
+  {"pos":3,"ar":"مِن","tr":"min","es":"de","estado":"propuesta"},
+  {"pos":4,"ar":"قُوَّةٍۢ","tr":"quwwatin","es":"fuerza alguna","estado":"propuesta"},
+  {"pos":5,"ar":"وَلَا","tr":"wala","es":"ni","estado":"propuesta"},
+  {"pos":6,"ar":"نَاصِرٍۢ","tr":"nasirin","es":"auxiliador","estado":"propuesta"}
+ ],
+ "11": [
+  {"pos":1,"ar":"وَٱلسَّمَآءِ","tr":"wal·samai","es":"¡por el cielo","estado":"propuesta"},
+  {"pos":2,"ar":"ذَاتِ","tr":"dati","es":"dotado","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلرَّجْعِ","tr":"l·raj'i","es":"de retorno!","estado":"propuesta","revisar":"ḏāt al-rajʿ: «el que devuelve / de retorno», entendido como la lluvia o el ciclo de los astros"}
+ ],
+ "12": [
+  {"pos":1,"ar":"وَٱلْأَرْضِ","tr":"wal·ardi","es":"¡y por la tierra","estado":"propuesta"},
+  {"pos":2,"ar":"ذَاتِ","tr":"dati","es":"dotada","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلصَّدْعِ","tr":"l·sad'i","es":"de grietas!","estado":"propuesta"}
+ ],
+ "13": [
+  {"pos":1,"ar":"إِنَّهُۥ","tr":"innahu","es":"ciertamente él","estado":"propuesta"},
+  {"pos":2,"ar":"لَقَوْلٌۭ","tr":"laqawlun","es":"es sin duda una palabra","estado":"propuesta"},
+  {"pos":3,"ar":"فَصْلٌۭ","tr":"faslun","es":"decisiva","estado":"propuesta"}
+ ],
+ "14": [
+  {"pos":1,"ar":"وَمَا","tr":"wama","es":"y no","estado":"propuesta"},
+  {"pos":2,"ar":"هُوَ","tr":"huwa","es":"es él","estado":"propuesta"},
+  {"pos":3,"ar":"بِٱلْهَزْلِ","tr":"bil·hazli","es":"una broma","estado":"propuesta"}
+ ],
+ "15": [
+  {"pos":1,"ar":"إِنَّهُمْ","tr":"innahum","es":"ciertamente ellos","estado":"propuesta"},
+  {"pos":2,"ar":"يَكِيدُونَ","tr":"yakiduna","es":"traman","estado":"propuesta"},
+  {"pos":3,"ar":"كَيْدًۭا","tr":"kaydan","es":"una trama","estado":"propuesta"}
+ ],
+ "16": [
+  {"pos":1,"ar":"وَأَكِيدُ","tr":"wa·akidu","es":"y Yo tramo","estado":"propuesta","revisar":"akīdu kaydan: «tramo una trama», sentido de contrarrestar su plan; ver 3:54"},
+  {"pos":2,"ar":"كَيْدًۭا","tr":"kaydan","es":"una trama","estado":"propuesta"}
+ ],
+ "17": [
+  {"pos":1,"ar":"فَمَهِّلِ","tr":"famahhili","es":"así que da un respiro","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلْكَـٰفِرِينَ","tr":"l·kafirina","es":"a los que rechazan la fe","estado":"propuesta"},
+  {"pos":3,"ar":"أَمْهِلْهُمْ","tr":"amhil'hum","es":"dales un respiro","estado":"propuesta"},
+  {"pos":4,"ar":"رُوَيْدًۢا","tr":"ruwaydan","es":"un poco","estado":"propuesta"}
+ ]
+ }
+}

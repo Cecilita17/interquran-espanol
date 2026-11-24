@@ -1,0 +1,72 @@
+{
+ "capitulo": 93,
+ "sura": "Ad-Duha",
+ "bloque": "1-11",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-ad-duha.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/93-001-011.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"وَٱلضُّحَىٰ","tr":"wal·duha","es":"¡por la mañana radiante!","estado":"propuesta"}
+ ],
+ "2": [
+  {"pos":1,"ar":"وَٱلَّيْلِ","tr":"wa·al·layli","es":"y por la noche","estado":"propuesta"},
+  {"pos":2,"ar":"إِذَا","tr":"ida","es":"cuando","estado":"propuesta"},
+  {"pos":3,"ar":"سَجَىٰ","tr":"saja","es":"se serena","estado":"propuesta","revisar":"sajā: «se serena / se cubre de oscuridad / se aquieta»"}
+ ],
+ "3": [
+  {"pos":1,"ar":"مَا","tr":"ma","es":"no","estado":"propuesta"},
+  {"pos":2,"ar":"وَدَّعَكَ","tr":"wadda'aka","es":"te ha abandonado","estado":"propuesta"},
+  {"pos":3,"ar":"رَبُّكَ","tr":"rabbuka","es":"tu Señor","estado":"propuesta"},
+  {"pos":4,"ar":"وَمَا","tr":"wama","es":"ni","estado":"propuesta"},
+  {"pos":5,"ar":"قَلَىٰ","tr":"qala","es":"te ha aborrecido","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"وَلَلْـَٔاخِرَةُ","tr":"walalajiratu","es":"y sin duda la otra vida","estado":"propuesta"},
+  {"pos":2,"ar":"خَيْرٌۭ","tr":"jayrun","es":"es mejor","estado":"propuesta"},
+  {"pos":3,"ar":"لَّكَ","tr":"laka","es":"para ti","estado":"propuesta"},
+  {"pos":4,"ar":"مِنَ","tr":"mina","es":"que","estado":"propuesta"},
+  {"pos":5,"ar":"ٱلْأُولَىٰ","tr":"l·ula","es":"la primera","estado":"propuesta"}
+ ],
+ "5": [
+  {"pos":1,"ar":"وَلَسَوْفَ","tr":"walasawfa","es":"y pronto","estado":"propuesta"},
+  {"pos":2,"ar":"يُعْطِيكَ","tr":"yu''tika","es":"te dará","estado":"propuesta"},
+  {"pos":3,"ar":"رَبُّكَ","tr":"rabbuka","es":"tu Señor","estado":"propuesta"},
+  {"pos":4,"ar":"فَتَرْضَىٰٓ","tr":"fatarda","es":"y quedarás satisfecho","estado":"propuesta"}
+ ],
+ "6": [
+  {"pos":1,"ar":"أَلَمْ","tr":"alam","es":"¿acaso no","estado":"propuesta"},
+  {"pos":2,"ar":"يَجِدْكَ","tr":"yajid'ka","es":"te encontró","estado":"propuesta"},
+  {"pos":3,"ar":"يَتِيمًۭا","tr":"yatiman","es":"huérfano","estado":"propuesta"},
+  {"pos":4,"ar":"فَـَٔاوَىٰ","tr":"faawa","es":"y te dio refugio?","estado":"propuesta"}
+ ],
+ "7": [
+  {"pos":1,"ar":"وَوَجَدَكَ","tr":"wawajadaka","es":"y te encontró","estado":"propuesta"},
+  {"pos":2,"ar":"ضَآلًّۭا","tr":"dallan","es":"extraviado","estado":"propuesta","revisar":"ḍāllan: «extraviado / desorientado / sin conocer la revelación»; el matiz es discutido"},
+  {"pos":3,"ar":"فَهَدَىٰ","tr":"fahada","es":"y te guió","estado":"propuesta"}
+ ],
+ "8": [
+  {"pos":1,"ar":"وَوَجَدَكَ","tr":"wawajadaka","es":"y te encontró","estado":"propuesta"},
+  {"pos":2,"ar":"عَآئِلًۭا","tr":"'ailan","es":"pobre","estado":"propuesta"},
+  {"pos":3,"ar":"فَأَغْنَىٰ","tr":"fa·agna","es":"y te enriqueció","estado":"propuesta"}
+ ],
+ "9": [
+  {"pos":1,"ar":"فَأَمَّا","tr":"fa·amma","es":"así que en cuanto","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلْيَتِيمَ","tr":"l·yatima","es":"al huérfano","estado":"propuesta"},
+  {"pos":3,"ar":"فَلَا","tr":"fala","es":"entonces no","estado":"propuesta"},
+  {"pos":4,"ar":"تَقْهَرْ","tr":"taqhar","es":"lo oprimas","estado":"propuesta"}
+ ],
+ "10": [
+  {"pos":1,"ar":"وَأَمَّا","tr":"wa·amma","es":"y en cuanto","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلسَّآئِلَ","tr":"l·saila","es":"al mendigo","estado":"propuesta"},
+  {"pos":3,"ar":"فَلَا","tr":"fala","es":"entonces no","estado":"propuesta"},
+  {"pos":4,"ar":"تَنْهَرْ","tr":"tanhar","es":"lo rechaces","estado":"propuesta"}
+ ],
+ "11": [
+  {"pos":1,"ar":"وَأَمَّا","tr":"wa·amma","es":"y en cuanto","estado":"propuesta"},
+  {"pos":2,"ar":"بِنِعْمَةِ","tr":"bini''mati","es":"al favor","estado":"propuesta"},
+  {"pos":3,"ar":"رَبِّكَ","tr":"rabbika","es":"de tu Señor","estado":"propuesta"},
+  {"pos":4,"ar":"فَحَدِّثْ","tr":"fahaddiz","es":"entonces proclámalo","estado":"propuesta"}
+ ]
+ }
+}

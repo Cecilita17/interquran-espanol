@@ -1,0 +1,8 @@
+{"fuente":"Quran.com API v4 (api.quran.com/api/v4/verses/by_chapter/94?words=true), campo text_uthmani; tokens char_type_name=word","descargado":"2026-11-24","capitulo":94,"aleyas":{"1":[{"pos":1,"ar":"أَلَمْ","translit":"alam"},{"pos":2,"ar":"نَشْرَحْ","translit":"nashraḥ"},{"pos":3,"ar":"لَكَ","translit":"laka"},{"pos":4,"ar":"صَدْرَكَ","translit":"ṣadraka"}],
+"2":[{"pos":1,"ar":"وَوَضَعْنَا","translit":"wawaḍaʿnā"},{"pos":2,"ar":"عَنكَ","translit":"ʿanka"},{"pos":3,"ar":"وِزْرَكَ","translit":"wiz'raka"}],
+"3":[{"pos":1,"ar":"ٱلَّذِىٓ","translit":"alladhī"},{"pos":2,"ar":"أَنقَضَ","translit":"anqaḍa"},{"pos":3,"ar":"ظَهْرَكَ","translit":"ẓahraka"}],
+"4":[{"pos":1,"ar":"وَرَفَعْنَا","translit":"warafaʿnā"},{"pos":2,"ar":"لَكَ","translit":"laka"},{"pos":3,"ar":"ذِكْرَكَ","translit":"dhik'raka"}],
+"5":[{"pos":1,"ar":"فَإِنَّ","translit":"fa-inna"},{"pos":2,"ar":"مَعَ","translit":"maʿa"},{"pos":3,"ar":"ٱلْعُسْرِ","translit":"l-ʿus'ri"},{"pos":4,"ar":"يُسْرًا","translit":"yus'ran"}],
+"6":[{"pos":1,"ar":"إِنَّ","translit":"inna"},{"pos":2,"ar":"مَعَ","translit":"maʿa"},{"pos":3,"ar":"ٱلْعُسْرِ","translit":"l-ʿus'ri"},{"pos":4,"ar":"يُسْرًۭا","translit":"yus'ran"}],
+"7":[{"pos":1,"ar":"فَإِذَا","translit":"fa-idhā"},{"pos":2,"ar":"فَرَغْتَ","translit":"faraghta"},{"pos":3,"ar":"فَٱنصَبْ","translit":"fa-inṣab"}],
+"8":[{"pos":1,"ar":"وَإِلَىٰ","translit":"wa-ilā"},{"pos":2,"ar":"رَبِّكَ","translit":"rabbika"},{"pos":3,"ar":"فَٱرْغَب","translit":"fa-ir'ghab"}]}}

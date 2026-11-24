@@ -1,0 +1,15 @@
+{
+ "capitulo": 86,
+ "sura": "At-Tariq",
+ "totalAleyas": 17,
+ "aleyasConGlosas": 17,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "86-001-017.json",
+   "desde": 1,
+   "hasta": 17
+  }
+ ]
+}

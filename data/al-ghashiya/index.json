@@ -1,0 +1,15 @@
+{
+ "capitulo": 88,
+ "sura": "Al-Ghashiya",
+ "totalAleyas": 26,
+ "aleyasConGlosas": 26,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "88-001-026.json",
+   "desde": 1,
+   "hasta": 26
+  }
+ ]
+}

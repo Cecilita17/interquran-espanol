@@ -1,0 +1,15 @@
+{
+ "capitulo": 85,
+ "sura": "Al-Buruj",
+ "totalAleyas": 22,
+ "aleyasConGlosas": 22,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "85-001-022.json",
+   "desde": 1,
+   "hasta": 22
+  }
+ ]
+}
