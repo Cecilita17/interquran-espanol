@@ -1,0 +1,15 @@
+{
+ "capitulo": 73,
+ "sura": "Al-Muzzammil",
+ "totalAleyas": 20,
+ "aleyasConGlosas": 20,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "73-001-020.json",
+   "desde": 1,
+   "hasta": 20
+  }
+ ]
+}

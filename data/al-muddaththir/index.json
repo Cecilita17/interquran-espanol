@@ -1,0 +1,15 @@
+{
+ "capitulo": 74,
+ "sura": "Al-Muddaththir",
+ "totalAleyas": 56,
+ "aleyasConGlosas": 56,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "74-001-056.json",
+   "desde": 1,
+   "hasta": 56
+  }
+ ]
+}

@@ -1,0 +1,372 @@
+{
+ "capitulo": 69,
+ "sura": "Al-Haqqa",
+ "bloque": "1-52",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-al-haqqa.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/69-001-052.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"ٱلْحَآقَّةُ","tr":"al·haqatu","es":"la Verdad inevitable","estado":"propuesta"}
+ ],
+ "2": [
+  {"pos":1,"ar":"مَا","tr":"ma","es":"¿qué","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلْحَآقَّةُ","tr":"l·haqatu","es":"es la Verdad inevitable?","estado":"propuesta"}
+ ],
+ "3": [
+  {"pos":1,"ar":"وَمَآ","tr":"wama","es":"¿y qué","estado":"propuesta"},
+  {"pos":2,"ar":"أَدْرَىٰكَ","tr":"adraka","es":"te hará saber","estado":"propuesta"},
+  {"pos":3,"ar":"مَا","tr":"ma","es":"qué es","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلْحَآقَّةُ","tr":"l·haqatu","es":"la Verdad inevitable?","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"كَذَّبَتْ","tr":"kadabat","es":"desmintieron","estado":"propuesta"},
+  {"pos":2,"ar":"ثَمُودُ","tr":"zamudu","es":"Zamud","estado":"propuesta"},
+  {"pos":3,"ar":"وَعَادٌۢ","tr":"wa'adun","es":"y 'Ad","estado":"propuesta"},
+  {"pos":4,"ar":"بِٱلْقَارِعَةِ","tr":"bil·qari'ati","es":"a la Calamidad","estado":"propuesta"}
+ ],
+ "5": [
+  {"pos":1,"ar":"فَأَمَّا","tr":"fa·amma","es":"pues en cuanto a","estado":"propuesta"},
+  {"pos":2,"ar":"ثَمُودُ","tr":"zamudu","es":"Zamud","estado":"propuesta"},
+  {"pos":3,"ar":"فَأُهْلِكُوا۟","tr":"fa·uh'liku","es":"fueron aniquilados","estado":"propuesta"},
+  {"pos":4,"ar":"بِٱلطَّاغِيَةِ","tr":"bil·tagiyati","es":"por el grito desmesurado","estado":"propuesta"}
+ ],
+ "6": [
+  {"pos":1,"ar":"وَأَمَّا","tr":"wa·amma","es":"y en cuanto a","estado":"propuesta"},
+  {"pos":2,"ar":"عَادٌۭ","tr":"'adun","es":"'Ad","estado":"propuesta"},
+  {"pos":3,"ar":"فَأُهْلِكُوا۟","tr":"fa·uh'liku","es":"fueron aniquilados","estado":"propuesta"},
+  {"pos":4,"ar":"بِرِيحٍۢ","tr":"birihin","es":"con un viento","estado":"propuesta"},
+  {"pos":5,"ar":"صَرْصَرٍ","tr":"sarsarin","es":"helado","estado":"propuesta"},
+  {"pos":6,"ar":"عَاتِيَةٍۢ","tr":"'atiyatin","es":"impetuoso","estado":"propuesta"}
+ ],
+ "7": [
+  {"pos":1,"ar":"سَخَّرَهَا","tr":"sajaraha","es":"que Él desató","estado":"propuesta"},
+  {"pos":2,"ar":"عَلَيْهِمْ","tr":"'alayhim","es":"sobre ellos","estado":"propuesta"},
+  {"pos":3,"ar":"سَبْعَ","tr":"sab'a","es":"siete","estado":"propuesta"},
+  {"pos":4,"ar":"لَيَالٍۢ","tr":"layalin","es":"noches","estado":"propuesta"},
+  {"pos":5,"ar":"وَثَمَـٰنِيَةَ","tr":"wazamaniyata","es":"y ocho","estado":"propuesta"},
+  {"pos":6,"ar":"أَيَّامٍ","tr":"ayyamin","es":"días","estado":"propuesta"},
+  {"pos":7,"ar":"حُسُومًۭا","tr":"husuman","es":"seguidos","estado":"propuesta"},
+  {"pos":8,"ar":"فَتَرَى","tr":"fatara","es":"y verías","estado":"propuesta"},
+  {"pos":9,"ar":"ٱلْقَوْمَ","tr":"l·qawma","es":"al pueblo","estado":"propuesta"},
+  {"pos":10,"ar":"فِيهَا","tr":"fiha","es":"en ella","estado":"propuesta"},
+  {"pos":11,"ar":"صَرْعَىٰ","tr":"sar'a","es":"caídos","estado":"propuesta"},
+  {"pos":12,"ar":"كَأَنَّهُمْ","tr":"ka·annahum","es":"como si ellos","estado":"propuesta"},
+  {"pos":13,"ar":"أَعْجَازُ","tr":"a'jazu","es":"troncos de","estado":"propuesta"},
+  {"pos":14,"ar":"نَخْلٍ","tr":"najlin","es":"palmeras","estado":"propuesta"},
+  {"pos":15,"ar":"خَاوِيَةٍۢ","tr":"jawiyatin","es":"huecos","estado":"propuesta"}
+ ],
+ "8": [
+  {"pos":1,"ar":"فَهَلْ","tr":"fahal","es":"¿acaso","estado":"propuesta"},
+  {"pos":2,"ar":"تَرَىٰ","tr":"tara","es":"ves","estado":"propuesta"},
+  {"pos":3,"ar":"لَهُم","tr":"lahum","es":"de ellos","estado":"propuesta"},
+  {"pos":4,"ar":"مِّنۢ","tr":"min","es":"alguna","estado":"propuesta"},
+  {"pos":5,"ar":"بَاقِيَةٍۢ","tr":"baqiyatin","es":"superviviente?","estado":"propuesta"}
+ ],
+ "9": [
+  {"pos":1,"ar":"وَجَآءَ","tr":"wajaa","es":"y vino","estado":"propuesta"},
+  {"pos":2,"ar":"فِرْعَوْنُ","tr":"fir''awnu","es":"Faraón","estado":"propuesta"},
+  {"pos":3,"ar":"وَمَن","tr":"waman","es":"y los que","estado":"propuesta"},
+  {"pos":4,"ar":"قَبْلَهُۥ","tr":"qablahu","es":"antes de él","estado":"propuesta"},
+  {"pos":5,"ar":"وَٱلْمُؤْتَفِكَـٰتُ","tr":"wal·mu'tafikatu","es":"y las ciudades derribadas","estado":"propuesta"},
+  {"pos":6,"ar":"بِٱلْخَاطِئَةِ","tr":"bil·jati·ati","es":"con el pecado","estado":"propuesta"}
+ ],
+ "10": [
+  {"pos":1,"ar":"فَعَصَوْا۟","tr":"fa'asaw","es":"y desobedecieron","estado":"propuesta"},
+  {"pos":2,"ar":"رَسُولَ","tr":"rasula","es":"al Mensajero de","estado":"propuesta"},
+  {"pos":3,"ar":"رَبِّهِمْ","tr":"rabbihim","es":"su Señor","estado":"propuesta"},
+  {"pos":4,"ar":"فَأَخَذَهُمْ","tr":"fa·ajadahum","es":"así que los tomó","estado":"propuesta"},
+  {"pos":5,"ar":"أَخْذَةًۭ","tr":"ajdatan","es":"con una toma","estado":"propuesta"},
+  {"pos":6,"ar":"رَّابِيَةً","tr":"rabiyatan","es":"creciente","estado":"propuesta"}
+ ],
+ "11": [
+  {"pos":1,"ar":"إِنَّا","tr":"inna","es":"ciertamente Nosotros","estado":"propuesta"},
+  {"pos":2,"ar":"لَمَّا","tr":"lamma","es":"cuando","estado":"propuesta"},
+  {"pos":3,"ar":"طَغَا","tr":"taga","es":"se desbordó","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلْمَآءُ","tr":"l·mau","es":"el agua","estado":"propuesta"},
+  {"pos":5,"ar":"حَمَلْنَـٰكُمْ","tr":"hamalnakum","es":"los llevamos","estado":"propuesta"},
+  {"pos":6,"ar":"فِى","tr":"fi","es":"en","estado":"propuesta"},
+  {"pos":7,"ar":"ٱلْجَارِيَةِ","tr":"l·jariyati","es":"la nave","estado":"propuesta"}
+ ],
+ "12": [
+  {"pos":1,"ar":"لِنَجْعَلَهَا","tr":"linaj'alaha","es":"para hacerla","estado":"propuesta"},
+  {"pos":2,"ar":"لَكُمْ","tr":"lakum","es":"para ustedes","estado":"propuesta"},
+  {"pos":3,"ar":"تَذْكِرَةًۭ","tr":"tadkiratan","es":"un recuerdo","estado":"propuesta"},
+  {"pos":4,"ar":"وَتَعِيَهَآ","tr":"wata'iyaha","es":"y la retenga","estado":"propuesta"},
+  {"pos":5,"ar":"أُذُنٌۭ","tr":"udunun","es":"un oído","estado":"propuesta"},
+  {"pos":6,"ar":"وَٰعِيَةٌۭ","tr":"wa'iyatun","es":"que retenga","estado":"propuesta"}
+ ],
+ "13": [
+  {"pos":1,"ar":"فَإِذَا","tr":"fa·ida","es":"y cuando","estado":"propuesta"},
+  {"pos":2,"ar":"نُفِخَ","tr":"nufija","es":"se sople","estado":"propuesta"},
+  {"pos":3,"ar":"فِى","tr":"fi","es":"en","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلصُّورِ","tr":"l·suri","es":"la trompeta","estado":"propuesta"},
+  {"pos":5,"ar":"نَفْخَةٌۭ","tr":"nafjatun","es":"un soplido","estado":"propuesta"},
+  {"pos":6,"ar":"وَٰحِدَةٌۭ","tr":"wahidatun","es":"único","estado":"propuesta"}
+ ],
+ "14": [
+  {"pos":1,"ar":"وَحُمِلَتِ","tr":"wahumilati","es":"y sean levantadas","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلْأَرْضُ","tr":"l·ardu","es":"la tierra","estado":"propuesta"},
+  {"pos":3,"ar":"وَٱلْجِبَالُ","tr":"wal·jibalu","es":"y las montañas","estado":"propuesta"},
+  {"pos":4,"ar":"فَدُكَّتَا","tr":"fadukkata","es":"y sean trituradas","estado":"propuesta"},
+  {"pos":5,"ar":"دَكَّةًۭ","tr":"dakkatan","es":"de un golpe","estado":"propuesta"},
+  {"pos":6,"ar":"وَٰحِدَةًۭ","tr":"wahidatan","es":"único","estado":"propuesta"}
+ ],
+ "15": [
+  {"pos":1,"ar":"فَيَوْمَئِذٍۢ","tr":"fayawma·idin","es":"ese día","estado":"propuesta"},
+  {"pos":2,"ar":"وَقَعَتِ","tr":"waqa'ati","es":"ocurrirá","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلْوَاقِعَةُ","tr":"l·waqi'atu","es":"el Suceso","estado":"propuesta"}
+ ],
+ "16": [
+  {"pos":1,"ar":"وَٱنشَقَّتِ","tr":"wa·inshaqqati","es":"y se hienda","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلسَّمَآءُ","tr":"l·samau","es":"el cielo","estado":"propuesta"},
+  {"pos":3,"ar":"فَهِىَ","tr":"fahiya","es":"y entonces estará","estado":"propuesta"},
+  {"pos":4,"ar":"يَوْمَئِذٍۢ","tr":"yawma·idin","es":"ese día","estado":"propuesta"},
+  {"pos":5,"ar":"وَاهِيَةٌۭ","tr":"wahiyatun","es":"frágil","estado":"propuesta"}
+ ],
+ "17": [
+  {"pos":1,"ar":"وَٱلْمَلَكُ","tr":"wal·malaku","es":"y los ángeles","estado":"propuesta"},
+  {"pos":2,"ar":"عَلَىٰٓ","tr":"'ala","es":"sobre","estado":"propuesta"},
+  {"pos":3,"ar":"أَرْجَآئِهَا ۚ","tr":"arjaiha","es":"sus extremos","estado":"propuesta"},
+  {"pos":4,"ar":"وَيَحْمِلُ","tr":"wayahmilu","es":"y llevarán","estado":"propuesta"},
+  {"pos":5,"ar":"عَرْشَ","tr":"'arsha","es":"el Trono de","estado":"propuesta"},
+  {"pos":6,"ar":"رَبِّكَ","tr":"rabbika","es":"tu Señor","estado":"propuesta"},
+  {"pos":7,"ar":"فَوْقَهُمْ","tr":"fawqahum","es":"encima de ellos","estado":"propuesta"},
+  {"pos":8,"ar":"يَوْمَئِذٍۢ","tr":"yawma·idin","es":"ese día","estado":"propuesta"},
+  {"pos":9,"ar":"ثَمَـٰنِيَةٌۭ","tr":"zamaniyatun","es":"ocho","estado":"propuesta"}
+ ],
+ "18": [
+  {"pos":1,"ar":"يَوْمَئِذٍۢ","tr":"yawma·idin","es":"ese día","estado":"propuesta"},
+  {"pos":2,"ar":"تُعْرَضُونَ","tr":"tu''raduna","es":"serán expuestos","estado":"propuesta"},
+  {"pos":3,"ar":"لَا","tr":"la","es":"no","estado":"propuesta"},
+  {"pos":4,"ar":"تَخْفَىٰ","tr":"tajfa","es":"se ocultará","estado":"propuesta"},
+  {"pos":5,"ar":"مِنكُمْ","tr":"minkum","es":"de ustedes","estado":"propuesta"},
+  {"pos":6,"ar":"خَافِيَةٌۭ","tr":"jafiyatun","es":"secreto alguno","estado":"propuesta"}
+ ],
+ "19": [
+  {"pos":1,"ar":"فَأَمَّا","tr":"fa·amma","es":"pues en cuanto a","estado":"propuesta"},
+  {"pos":2,"ar":"مَنْ","tr":"man","es":"quien","estado":"propuesta"},
+  {"pos":3,"ar":"أُوتِىَ","tr":"utiya","es":"se le dé","estado":"propuesta"},
+  {"pos":4,"ar":"كِتَـٰبَهُۥ","tr":"kitabahu","es":"su libro","estado":"propuesta"},
+  {"pos":5,"ar":"بِيَمِينِهِۦ","tr":"biyaminihi","es":"en su derecha","estado":"propuesta"},
+  {"pos":6,"ar":"فَيَقُولُ","tr":"fayaqulu","es":"dirá","estado":"propuesta"},
+  {"pos":7,"ar":"هَآؤُمُ","tr":"haumu","es":"¡tomen","estado":"propuesta"},
+  {"pos":8,"ar":"ٱقْرَءُوا۟","tr":"iq'rau","es":"lean","estado":"propuesta"},
+  {"pos":9,"ar":"كِتَـٰبِيَهْ","tr":"kitabiyah","es":"mi libro!","estado":"propuesta"}
+ ],
+ "20": [
+  {"pos":1,"ar":"إِنِّى","tr":"inni","es":"ciertamente yo","estado":"propuesta"},
+  {"pos":2,"ar":"ظَنَنتُ","tr":"zanantu","es":"estaba seguro","estado":"propuesta"},
+  {"pos":3,"ar":"أَنِّى","tr":"anni","es":"de que yo","estado":"propuesta"},
+  {"pos":4,"ar":"مُلَـٰقٍ","tr":"mulaqin","es":"encontraría","estado":"propuesta"},
+  {"pos":5,"ar":"حِسَابِيَهْ","tr":"hisabiyah","es":"mi cuenta","estado":"propuesta"}
+ ],
+ "21": [
+  {"pos":1,"ar":"فَهُوَ","tr":"fahuwa","es":"así que él","estado":"propuesta"},
+  {"pos":2,"ar":"فِى","tr":"fi","es":"estará en","estado":"propuesta"},
+  {"pos":3,"ar":"عِيشَةٍۢ","tr":"'ishatin","es":"una vida","estado":"propuesta"},
+  {"pos":4,"ar":"رَّاضِيَةٍۢ","tr":"radiyatin","es":"placentera","estado":"propuesta"}
+ ],
+ "22": [
+  {"pos":1,"ar":"فِى","tr":"fi","es":"en","estado":"propuesta"},
+  {"pos":2,"ar":"جَنَّةٍ","tr":"jannatin","es":"un jardín","estado":"propuesta"},
+  {"pos":3,"ar":"عَالِيَةٍۢ","tr":"'aliyatin","es":"elevado","estado":"propuesta"}
+ ],
+ "23": [
+  {"pos":1,"ar":"قُطُوفُهَا","tr":"qutufuha","es":"sus racimos","estado":"propuesta"},
+  {"pos":2,"ar":"دَانِيَةٌۭ","tr":"daniyatun","es":"cercanos","estado":"propuesta"}
+ ],
+ "24": [
+  {"pos":1,"ar":"كُلُوا۟","tr":"kulu","es":"coman","estado":"propuesta"},
+  {"pos":2,"ar":"وَٱشْرَبُوا۟","tr":"wa·ish'rabu","es":"y beban","estado":"propuesta"},
+  {"pos":3,"ar":"هَنِيٓـًٔۢا","tr":"hanian","es":"con gusto","estado":"propuesta"},
+  {"pos":4,"ar":"بِمَآ","tr":"bima","es":"por lo que","estado":"propuesta"},
+  {"pos":5,"ar":"أَسْلَفْتُمْ","tr":"aslaftum","es":"adelantaron","estado":"propuesta"},
+  {"pos":6,"ar":"فِى","tr":"fi","es":"en","estado":"propuesta"},
+  {"pos":7,"ar":"ٱلْأَيَّامِ","tr":"l·ayami","es":"los días","estado":"propuesta"},
+  {"pos":8,"ar":"ٱلْخَالِيَةِ","tr":"l·jaliyati","es":"pasados","estado":"propuesta"}
+ ],
+ "25": [
+  {"pos":1,"ar":"وَأَمَّا","tr":"wa·amma","es":"pero en cuanto a","estado":"propuesta"},
+  {"pos":2,"ar":"مَنْ","tr":"man","es":"quien","estado":"propuesta"},
+  {"pos":3,"ar":"أُوتِىَ","tr":"utiya","es":"se le dé","estado":"propuesta"},
+  {"pos":4,"ar":"كِتَـٰبَهُۥ","tr":"kitabahu","es":"su libro","estado":"propuesta"},
+  {"pos":5,"ar":"بِشِمَالِهِۦ","tr":"bishimalihi","es":"en su izquierda","estado":"propuesta"},
+  {"pos":6,"ar":"فَيَقُولُ","tr":"fayaqulu","es":"dirá","estado":"propuesta"},
+  {"pos":7,"ar":"يَـٰلَيْتَنِى","tr":"yalaytani","es":"¡ojalá","estado":"propuesta"},
+  {"pos":8,"ar":"لَمْ","tr":"lam","es":"no","estado":"propuesta"},
+  {"pos":9,"ar":"أُوتَ","tr":"uta","es":"se me hubiera dado","estado":"propuesta"},
+  {"pos":10,"ar":"كِتَـٰبِيَهْ","tr":"kitabiyah","es":"mi libro!","estado":"propuesta"}
+ ],
+ "26": [
+  {"pos":1,"ar":"وَلَمْ","tr":"walam","es":"y no","estado":"propuesta"},
+  {"pos":2,"ar":"أَدْرِ","tr":"adri","es":"hubiera sabido","estado":"propuesta"},
+  {"pos":3,"ar":"مَا","tr":"ma","es":"cuál","estado":"propuesta"},
+  {"pos":4,"ar":"حِسَابِيَهْ","tr":"hisabiyah","es":"es mi cuenta","estado":"propuesta"}
+ ],
+ "27": [
+  {"pos":1,"ar":"يَـٰلَيْتَهَا","tr":"yalaytaha","es":"¡ojalá ella","estado":"propuesta"},
+  {"pos":2,"ar":"كَانَتِ","tr":"kanati","es":"hubiera sido","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلْقَاضِيَةَ","tr":"l·qadiyata","es":"la definitiva!","estado":"propuesta"}
+ ],
+ "28": [
+  {"pos":1,"ar":"مَآ","tr":"ma","es":"no","estado":"propuesta"},
+  {"pos":2,"ar":"أَغْنَىٰ","tr":"agna","es":"me sirvió","estado":"propuesta"},
+  {"pos":3,"ar":"عَنِّى","tr":"'anni","es":"a mí","estado":"propuesta"},
+  {"pos":4,"ar":"مَالِيَهْ ۜ","tr":"maliyah","es":"mi riqueza","estado":"propuesta"}
+ ],
+ "29": [
+  {"pos":1,"ar":"هَلَكَ","tr":"halaka","es":"se perdió","estado":"propuesta"},
+  {"pos":2,"ar":"عَنِّى","tr":"'anni","es":"para mí","estado":"propuesta"},
+  {"pos":3,"ar":"سُلْطَـٰنِيَهْ","tr":"sul'taniyah","es":"mi poder","estado":"propuesta"}
+ ],
+ "30": [
+  {"pos":1,"ar":"خُذُوهُ","tr":"juduhu","es":"¡tómenlo","estado":"propuesta"},
+  {"pos":2,"ar":"فَغُلُّوهُ","tr":"fagulluhu","es":"y encadénenlo!","estado":"propuesta"}
+ ],
+ "31": [
+  {"pos":1,"ar":"ثُمَّ","tr":"zumma","es":"luego","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلْجَحِيمَ","tr":"l·jahima","es":"al Infierno","estado":"propuesta"},
+  {"pos":3,"ar":"صَلُّوهُ","tr":"salluhu","es":"háganlo arder","estado":"propuesta"}
+ ],
+ "32": [
+  {"pos":1,"ar":"ثُمَّ","tr":"zumma","es":"luego","estado":"propuesta"},
+  {"pos":2,"ar":"فِى","tr":"fi","es":"en","estado":"propuesta"},
+  {"pos":3,"ar":"سِلْسِلَةٍۢ","tr":"sil'silatin","es":"una cadena","estado":"propuesta"},
+  {"pos":4,"ar":"ذَرْعُهَا","tr":"dar'uha","es":"su longitud","estado":"propuesta"},
+  {"pos":5,"ar":"سَبْعُونَ","tr":"sab'una","es":"setenta","estado":"propuesta"},
+  {"pos":6,"ar":"ذِرَاعًۭا","tr":"dira'an","es":"codos","estado":"propuesta"},
+  {"pos":7,"ar":"فَٱسْلُكُوهُ","tr":"fa·us'lukuhu","es":"métanlo","estado":"propuesta"}
+ ],
+ "33": [
+  {"pos":1,"ar":"إِنَّهُۥ","tr":"innahu","es":"ciertamente él","estado":"propuesta"},
+  {"pos":2,"ar":"كَانَ","tr":"kana","es":"era","estado":"propuesta"},
+  {"pos":3,"ar":"لَا","tr":"la","es":"no","estado":"propuesta"},
+  {"pos":4,"ar":"يُؤْمِنُ","tr":"yu'minu","es":"creyente","estado":"propuesta"},
+  {"pos":5,"ar":"بِٱللَّهِ","tr":"bil·lahi","es":"en Alá","estado":"propuesta"},
+  {"pos":6,"ar":"ٱلْعَظِيمِ","tr":"l·'azimi","es":"el Grandioso","estado":"propuesta"}
+ ],
+ "34": [
+  {"pos":1,"ar":"وَلَا","tr":"wala","es":"y no","estado":"propuesta"},
+  {"pos":2,"ar":"يَحُضُّ","tr":"yahuddu","es":"incitaba","estado":"propuesta"},
+  {"pos":3,"ar":"عَلَىٰ","tr":"'ala","es":"a","estado":"propuesta"},
+  {"pos":4,"ar":"طَعَامِ","tr":"ta'ami","es":"dar de comer","estado":"propuesta"},
+  {"pos":5,"ar":"ٱلْمِسْكِينِ","tr":"l·mis'kini","es":"al pobre","estado":"propuesta"}
+ ],
+ "35": [
+  {"pos":1,"ar":"فَلَيْسَ","tr":"falaysa","es":"así que no","estado":"propuesta"},
+  {"pos":2,"ar":"لَهُ","tr":"lahu","es":"tiene","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلْيَوْمَ","tr":"l·yawma","es":"hoy","estado":"propuesta"},
+  {"pos":4,"ar":"هَـٰهُنَا","tr":"hahuna","es":"aquí","estado":"propuesta"},
+  {"pos":5,"ar":"حَمِيمٌۭ","tr":"hamimun","es":"amigo íntimo","estado":"propuesta"}
+ ],
+ "36": [
+  {"pos":1,"ar":"وَلَا","tr":"wala","es":"y no","estado":"propuesta"},
+  {"pos":2,"ar":"طَعَامٌ","tr":"ta'amun","es":"comida","estado":"propuesta"},
+  {"pos":3,"ar":"إِلَّا","tr":"illa","es":"salvo","estado":"propuesta"},
+  {"pos":4,"ar":"مِنْ","tr":"min","es":"de","estado":"propuesta"},
+  {"pos":5,"ar":"غِسْلِينٍۢ","tr":"gis'linin","es":"pus de heridas","estado":"propuesta"}
+ ],
+ "37": [
+  {"pos":1,"ar":"لَّا","tr":"la","es":"no","estado":"propuesta"},
+  {"pos":2,"ar":"يَأْكُلُهُۥٓ","tr":"yakuluhu","es":"la comen","estado":"propuesta"},
+  {"pos":3,"ar":"إِلَّا","tr":"illa","es":"salvo","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلْخَـٰطِـُٔونَ","tr":"l·jatiuna","es":"los pecadores","estado":"propuesta"}
+ ],
+ "38": [
+  {"pos":1,"ar":"فَلَآ","tr":"fala","es":"¡no!","estado":"propuesta"},
+  {"pos":2,"ar":"أُقْسِمُ","tr":"uq'simu","es":"juro","estado":"propuesta"},
+  {"pos":3,"ar":"بِمَا","tr":"bima","es":"por lo que","estado":"propuesta"},
+  {"pos":4,"ar":"تُبْصِرُونَ","tr":"tub'siruna","es":"ven","estado":"propuesta"}
+ ],
+ "39": [
+  {"pos":1,"ar":"وَمَا","tr":"wama","es":"y por lo que","estado":"propuesta"},
+  {"pos":2,"ar":"لَا","tr":"la","es":"no","estado":"propuesta"},
+  {"pos":3,"ar":"تُبْصِرُونَ","tr":"tub'siruna","es":"ven","estado":"propuesta"}
+ ],
+ "40": [
+  {"pos":1,"ar":"إِنَّهُۥ","tr":"innahu","es":"ciertamente él","estado":"propuesta"},
+  {"pos":2,"ar":"لَقَوْلُ","tr":"laqawlu","es":"es sin duda palabra de","estado":"propuesta"},
+  {"pos":3,"ar":"رَسُولٍۢ","tr":"rasulin","es":"un Mensajero","estado":"propuesta"},
+  {"pos":4,"ar":"كَرِيمٍۢ","tr":"karimin","es":"noble","estado":"propuesta"}
+ ],
+ "41": [
+  {"pos":1,"ar":"وَمَا","tr":"wama","es":"y no","estado":"propuesta"},
+  {"pos":2,"ar":"هُوَ","tr":"huwa","es":"es él","estado":"propuesta"},
+  {"pos":3,"ar":"بِقَوْلِ","tr":"biqawli","es":"palabra de","estado":"propuesta"},
+  {"pos":4,"ar":"شَاعِرٍۢ ۚ","tr":"sha'irin","es":"un poeta","estado":"propuesta"},
+  {"pos":5,"ar":"قَلِيلًۭا","tr":"qalilan","es":"poco","estado":"propuesta"},
+  {"pos":6,"ar":"مَّا","tr":"ma","es":"es lo que","estado":"propuesta"},
+  {"pos":7,"ar":"تُؤْمِنُونَ","tr":"tu'minuna","es":"creen","estado":"propuesta"}
+ ],
+ "42": [
+  {"pos":1,"ar":"وَلَا","tr":"wala","es":"y no","estado":"propuesta"},
+  {"pos":2,"ar":"بِقَوْلِ","tr":"biqawli","es":"palabra de","estado":"propuesta"},
+  {"pos":3,"ar":"كَاهِنٍۢ ۚ","tr":"kahinin","es":"un adivino","estado":"propuesta"},
+  {"pos":4,"ar":"قَلِيلًۭا","tr":"qalilan","es":"poco","estado":"propuesta"},
+  {"pos":5,"ar":"مَّا","tr":"ma","es":"es lo que","estado":"propuesta"},
+  {"pos":6,"ar":"تَذَكَّرُونَ","tr":"tadakkaruna","es":"recapacitan","estado":"propuesta"}
+ ],
+ "43": [
+  {"pos":1,"ar":"تَنزِيلٌۭ","tr":"tanzilun","es":"una revelación","estado":"propuesta"},
+  {"pos":2,"ar":"مِّن","tr":"min","es":"de","estado":"propuesta"},
+  {"pos":3,"ar":"رَّبِّ","tr":"rabbi","es":"el Señor","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلْعَـٰلَمِينَ","tr":"l·'alamina","es":"de los mundos","estado":"propuesta"}
+ ],
+ "44": [
+  {"pos":1,"ar":"وَلَوْ","tr":"walaw","es":"y si","estado":"propuesta"},
+  {"pos":2,"ar":"تَقَوَّلَ","tr":"taqawwala","es":"hubiera inventado","estado":"propuesta"},
+  {"pos":3,"ar":"عَلَيْنَا","tr":"'alayna","es":"sobre Nosotros","estado":"propuesta"},
+  {"pos":4,"ar":"بَعْضَ","tr":"ba'da","es":"algunos","estado":"propuesta"},
+  {"pos":5,"ar":"ٱلْأَقَاوِيلِ","tr":"l·aqawili","es":"dichos","estado":"propuesta"}
+ ],
+ "45": [
+  {"pos":1,"ar":"لَأَخَذْنَا","tr":"la·ajadna","es":"lo habríamos tomado","estado":"propuesta"},
+  {"pos":2,"ar":"مِنْهُ","tr":"min'hu","es":"de él","estado":"propuesta"},
+  {"pos":3,"ar":"بِٱلْيَمِينِ","tr":"bil·yamini","es":"por la diestra","estado":"propuesta"}
+ ],
+ "46": [
+  {"pos":1,"ar":"ثُمَّ","tr":"zumma","es":"luego","estado":"propuesta"},
+  {"pos":2,"ar":"لَقَطَعْنَا","tr":"laqata'na","es":"habríamos cortado","estado":"propuesta"},
+  {"pos":3,"ar":"مِنْهُ","tr":"min'hu","es":"de él","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلْوَتِينَ","tr":"l·watina","es":"la arteria","estado":"propuesta"}
+ ],
+ "47": [
+  {"pos":1,"ar":"فَمَا","tr":"fama","es":"y no","estado":"propuesta"},
+  {"pos":2,"ar":"مِنكُم","tr":"minkum","es":"entre ustedes","estado":"propuesta"},
+  {"pos":3,"ar":"مِّنْ","tr":"min","es":"alguno","estado":"propuesta"},
+  {"pos":4,"ar":"أَحَدٍ","tr":"ahadin","es":"uno","estado":"propuesta"},
+  {"pos":5,"ar":"عَنْهُ","tr":"'anhu","es":"por él","estado":"propuesta"},
+  {"pos":6,"ar":"حَـٰجِزِينَ","tr":"hajizina","es":"que impida","estado":"propuesta"}
+ ],
+ "48": [
+  {"pos":1,"ar":"وَإِنَّهُۥ","tr":"wa·innahu","es":"y ciertamente él","estado":"propuesta"},
+  {"pos":2,"ar":"لَتَذْكِرَةٌۭ","tr":"latadkiratun","es":"es sin duda un recordatorio","estado":"propuesta"},
+  {"pos":3,"ar":"لِّلْمُتَّقِينَ","tr":"lil'muttaqina","es":"para los temerosos","estado":"propuesta"}
+ ],
+ "49": [
+  {"pos":1,"ar":"وَإِنَّا","tr":"wa·inna","es":"y ciertamente Nosotros","estado":"propuesta"},
+  {"pos":2,"ar":"لَنَعْلَمُ","tr":"lana'lamu","es":"sabemos","estado":"propuesta"},
+  {"pos":3,"ar":"أَنَّ","tr":"anna","es":"que","estado":"propuesta"},
+  {"pos":4,"ar":"مِنكُم","tr":"minkum","es":"entre ustedes","estado":"propuesta"},
+  {"pos":5,"ar":"مُّكَذِّبِينَ","tr":"mukadibina","es":"hay desmentidores","estado":"propuesta"}
+ ],
+ "50": [
+  {"pos":1,"ar":"وَإِنَّهُۥ","tr":"wa·innahu","es":"y ciertamente él","estado":"propuesta"},
+  {"pos":2,"ar":"لَحَسْرَةٌ","tr":"lahasratun","es":"es sin duda una lamentación","estado":"propuesta"},
+  {"pos":3,"ar":"عَلَى","tr":"'ala","es":"sobre","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلْكَـٰفِرِينَ","tr":"l·kafirina","es":"los incrédulos","estado":"propuesta"}
+ ],
+ "51": [
+  {"pos":1,"ar":"وَإِنَّهُۥ","tr":"wa·innahu","es":"y ciertamente él","estado":"propuesta"},
+  {"pos":2,"ar":"لَحَقُّ","tr":"lahaqqu","es":"es sin duda la verdad","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلْيَقِينِ","tr":"l·yaqini","es":"de la certeza","estado":"propuesta"}
+ ],
+ "52": [
+  {"pos":1,"ar":"فَسَبِّحْ","tr":"fasabbih","es":"así que glorifica","estado":"propuesta"},
+  {"pos":2,"ar":"بِٱسْمِ","tr":"bi·is'mi","es":"con el nombre de","estado":"propuesta"},
+  {"pos":3,"ar":"رَبِّكَ","tr":"rabbika","es":"tu Señor","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلْعَظِيمِ","tr":"l·'azimi","es":"el Grandioso","estado":"propuesta"}
+ ]
+ }
+}

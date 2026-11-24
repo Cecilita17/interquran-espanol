@@ -1,0 +1,15 @@
+{
+ "capitulo": 67,
+ "sura": "Al-Mulk",
+ "totalAleyas": 30,
+ "aleyasConGlosas": 30,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "67-001-030.json",
+   "desde": 1,
+   "hasta": 30
+  }
+ ]
+}

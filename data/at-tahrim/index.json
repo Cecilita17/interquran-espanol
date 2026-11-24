@@ -1,0 +1,15 @@
+{
+ "capitulo": 66,
+ "sura": "At-Tahrim",
+ "totalAleyas": 12,
+ "aleyasConGlosas": 12,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "66-001-012.json",
+   "desde": 1,
+   "hasta": 12
+  }
+ ]
+}
