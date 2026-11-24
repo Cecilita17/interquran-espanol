@@ -1,0 +1,15 @@
+{
+ "capitulo": 50,
+ "sura": "Qaf",
+ "totalAleyas": 45,
+ "aleyasConGlosas": 45,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "50-001-045.json",
+   "desde": 1,
+   "hasta": 45
+  }
+ ]
+}

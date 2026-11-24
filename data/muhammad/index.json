@@ -1,0 +1,15 @@
+{
+ "capitulo": 47,
+ "sura": "Muhammad",
+ "totalAleyas": 38,
+ "aleyasConGlosas": 38,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "47-001-038.json",
+   "desde": 1,
+   "hasta": 38
+  }
+ ]
+}

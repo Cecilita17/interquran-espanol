@@ -1,0 +1,15 @@
+{
+ "capitulo": 53,
+ "sura": "An-Najm",
+ "totalAleyas": 62,
+ "aleyasConGlosas": 62,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "53-001-062.json",
+   "desde": 1,
+   "hasta": 62
+  }
+ ]
+}

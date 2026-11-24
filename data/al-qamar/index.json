@@ -1,0 +1,15 @@
+{
+ "capitulo": 54,
+ "sura": "Al-Qamar",
+ "totalAleyas": 55,
+ "aleyasConGlosas": 55,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "54-001-055.json",
+   "desde": 1,
+   "hasta": 55
+  }
+ ]
+}

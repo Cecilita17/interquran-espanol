@@ -1,0 +1,15 @@
+{
+ "capitulo": 49,
+ "sura": "Al-Hujurat",
+ "totalAleyas": 18,
+ "aleyasConGlosas": 18,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "49-001-018.json",
+   "desde": 1,
+   "hasta": 18
+  }
+ ]
+}
