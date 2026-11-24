@@ -2,7 +2,7 @@
  "capitulo": 5,
  "sura": "Al-Ma'ida",
  "totalAleyas": 120,
- "aleyasConGlosas": 40,
+ "aleyasConGlosas": 80,
  "aleyasRevisadas": 0,
  "estadoRevision": "propuesta (revisión humana en curso)",
  "bloques": [
@@ -15,6 +15,16 @@
    "archivo": "5-021-040.json",
    "desde": 21,
    "hasta": 40
+  },
+  {
+   "archivo": "5-041-060.json",
+   "desde": 41,
+   "hasta": 60
+  },
+  {
+   "archivo": "5-061-080.json",
+   "desde": 61,
+   "hasta": 80
   }
  ]
 }
