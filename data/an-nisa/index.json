@@ -2,7 +2,7 @@
  "capitulo": 4,
  "sura": "An-Nisa",
  "totalAleyas": 176,
- "aleyasConGlosas": 120,
+ "aleyasConGlosas": 160,
  "aleyasRevisadas": 0,
  "estadoRevision": "propuesta (revisión humana en curso)",
  "bloques": [
@@ -35,6 +35,16 @@
    "archivo": "4-101-120.json",
    "desde": 101,
    "hasta": 120
+  },
+  {
+   "archivo": "4-121-140.json",
+   "desde": 121,
+   "hasta": 140
+  },
+  {
+   "archivo": "4-141-160.json",
+   "desde": 141,
+   "hasta": 160
   }
  ]
 }
