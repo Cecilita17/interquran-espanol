@@ -3,7 +3,9 @@
 // en Chromium (Playwright) y comprueba que cada aleya glosada muestra árabe,
 // transliteración y significado en español desde data/al-baqarah/.
 // Requiere red hacia api.alquran.cloud y api.qurancdn.com (texto y audio del lector).
-//   node tools/probar-lector.mjs [URL]   (sin URL usa un servidor local)
+//   node tools/probar-lector.mjs [URL] [--sin-qdc]   (sin URL usa un servidor local;
+//   --sin-qdc bloquea la API palabra por palabra de Quran.com para comprobar que
+//   las glosas estáticas se alinean también con el texto de Al Quran Cloud)
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -15,7 +17,8 @@ const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
 const types = { '.html': 'text/html', '.json': 'application/json', '.js': 'text/javascript', '.png': 'image/png', '.webmanifest': 'application/manifest+json' };
 
-let server, base = process.argv[2];
+const NO_QDC = process.argv.includes('--sin-qdc');
+let server, base = process.argv.slice(2).find(a => !a.startsWith('--'));
 if (!base) {
   server = http.createServer((req, res) => {
     let p = decodeURIComponent(new URL(req.url, 'http://x').pathname);
@@ -34,6 +37,7 @@ for (const b of index.bloques) Object.assign(expected, JSON.parse(fs.readFileSyn
 
 const browser = await chromium.launch();
 const page = await browser.newPage();
+if (NO_QDC) await page.route(/api\.qurancdn\.com/, r => r.abort());
 const errors = [];
 try {
   await page.goto(base, { waitUntil: 'domcontentloaded' });
@@ -54,6 +58,7 @@ try {
       if (g.ar !== w.ar || g.es !== w.es || g.tr !== w.tr) errors.push(`2:${v}:${i + 1}: el lector muestra «${g.ar} / ${g.tr} / ${g.es}»`);
     });
   }
+  if (!/286 aleyas con glosas fijas/.test(status) || /requieren revisión de alineación/.test(status)) errors.push('Estado inesperado: ' + status);
   console.log('Estado del lector:', status);
   console.log(`Aleyas verificadas en el lector: ${Object.keys(expected).length}`);
 } finally {

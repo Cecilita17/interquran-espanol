@@ -21,7 +21,7 @@ async function applyFixedGlosses(chapter){
   .replace(/[\u064B-\u065F\u0670\u06D6-\u06ED\u0640]/g,'')
   .replace(/[إأآٱ]/g,'ا').replace(/ى/g,'ي').replace(/ؤ/g,'و')
   .replace(/ئ/g,'ي').replace(/ة/g,'ه')
-  .replace(/[^ء-ي]/g,'').replace(/ءا/g,'ا');
+  .replace(/[^\u0621-\u064A]/g,'').replace(/ءا/g,'ا');
  let applied=0,skipped=0,pending=0;
  try{
   const manifest=await (await fetch('/data/al-baqarah/index.json',{cache:'no-store'})).json();

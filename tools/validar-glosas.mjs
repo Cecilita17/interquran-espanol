@@ -33,7 +33,9 @@ for (const [v, words] of Object.entries(source.aleyas)) {
 if (args.has('--online')) {
   const live = {};
   for (let page = 1; page <= 10; page++) {
-    const r = await fetch(`https://api.quran.com/api/v4/verses/by_chapter/2?words=true&word_fields=text_uthmani&per_page=50&page=${page}`);
+    let r;
+    try { r = await fetch(`https://api.quran.com/api/v4/verses/by_chapter/2?words=true&word_fields=text_uthmani&per_page=50&page=${page}`); }
+    catch (e) { fail(`No se pudo consultar Quran.com (${e.cause?.code || e.message}); detrás de un proxy usar NODE_USE_ENV_PROXY=1`); break; }
     if (!r.ok) { fail(`Quran.com no respondió (${r.status})`); break; }
     const d = await r.json();
     for (const v of d.verses) live[v.verse_number] = v.words.filter(w => w.char_type_name === 'word').map(w => w.text_uthmani);
