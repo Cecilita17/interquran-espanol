@@ -133,13 +133,13 @@ async function speakTranslation(i,token){const text=state.verses[i].es;if(state.
 function talk(text,token){return new Promise(done=>{if(!text||!window.speechSynthesis||token!==state.token)return done();let u=new SpeechSynthesisUtterance(strip(text));u.lang='es-ES';u.rate=.92;let vs=speechSynthesis.getVoices();u.voice=vs.find(v=>v.lang.startsWith('es')&&/natural|google/i.test(v.name))||vs.find(v=>v.lang.startsWith('es'))||null;u.onend=done;u.onerror=done;speechSynthesis.speak(u)})}
 
 async function loadWordTimings(chapter){
- // Recitación 7: Mishary Rashid Alafasy. Los segmentos sólo se usan con
+ // Recitación 7: Mishary Rashid Alafasy; recitación 10: Saud Ash-Shuraym. Los segmentos sólo se usan con
  // la URL de audio devuelta por ESTA MISMA API para evitar desincronización.
- if(!/afasy|alafasy/i.test(state.reciter))return;
+ const recId=/afasy/i.test(state.reciter)?7:/shuraym|shuraim/i.test(state.reciter)?10:0;if(!recId)return;
  const nextTimings={},nextAudio={};
  try{
   for(let page=1;page<=8;page++){
-   const r=await fetch('https://api.quran.com/api/v4/recitations/7/by_chapter/'+chapter+'?fields=segments&per_page=50&page='+page);
+   const r=await fetch('https://api.quran.com/api/v4/recitations/'+recId+'/by_chapter/'+chapter+'?fields=segments&per_page=50&page='+page);
    if(!r.ok)break;const d=await r.json();const files=d.audio_files||[];
    files.forEach(f=>{
     const idx=Number(String(f.verse_key||'').split(':')[1])-1;
@@ -178,7 +178,7 @@ function startWordHighlight(i,a,segments){
  update();
 }
 
-function audio(url,token,verseIndex){return new Promise(done=>{if(!url||token!==state.token){$('status').textContent='Audio no disponible';return done()}let a=new Audio(url);state.track=a;a.playbackRate=+$('speed').value;const segments=state.timedAudio[verseIndex]===url?state.timings[verseIndex]:null;startWordHighlight(verseIndex,a,segments);a.onended=()=>done(true);a.onerror=()=>{$('status').textContent='Error de audio';done(false)};a.play().catch(()=>{stop();$('status').textContent='Navegador bloqueó el audio; volvé a tocar play';done()})})}
+function audio(url,token,verseIndex){return new Promise(done=>{if(!url||token!==state.token){$('status').textContent='Audio no disponible';return done()}const timed=state.timedAudio[verseIndex]===url,list=[url];if(timed){const alt=url.replace('//audio.qurancdn.com/','//verses.quran.com/');if(alt!==url)list.push(alt);if(state.audio[verseIndex])list.push(state.audio[verseIndex])}const segN=list.length-(timed&&state.audio[verseIndex]?1:0);const tryPlay=k=>{if(k>=list.length||token!==state.token){if(token===state.token)$('status').textContent='Error de audio';return done(false)}const a=new Audio(list[k]);state.track=a;a.playbackRate=+$('speed').value;startWordHighlight(verseIndex,a,timed&&k<segN?state.timings[verseIndex]:null);a.onended=()=>done(true);a.onerror=()=>{clearInterval(state.highlightTimer);tryPlay(k+1)};a.play().catch(e=>{if(e&&e.name==='NotAllowedError'){stop();$('status').textContent='Navegador bloqueó el audio; volvé a tocar play';done()}else{clearInterval(state.highlightTimer);tryPlay(k+1)}})};tryPlay(0)})}
 async function play(){if(state.playing)return;state.playing=true;$('play').textContent='Ⅱ';let token=++state.token;while(state.playing&&token===state.token&&state.i<state.verses.length){let i=state.i;setPos(i);if($('spanish').checked){$('status').textContent='Traducción española · '+state.chapter+':'+(i+1);await speakTranslation(i,token)}for(let k=0;k<state.repeat&&token===state.token;k++){$('status').textContent='Recitación '+(k+1)+'/'+state.repeat;if(await audio(state.timedAudio[i]&&state.timings[i]?state.timedAudio[i]:state.audio[i],token,i)&&token===state.token)markRead(state.chapter,i)}highlightWord(i,-1);clearInterval(state.highlightTimer);if(token!==state.token||i===state.verses.length-1)break;await new Promise(ok=>setTimeout(ok,+$('pause').value));if(token!==state.token)break;state.i=i+1}if(token===state.token){state.playing=false;$('play').textContent='▶';$('status').textContent='Fin de reproducción'}}
 // «Atrás» (botón, gesto del sistema o del navegador) dentro de una sura vuelve a la lista de suras.
 function closeReader(){$('settings').classList.add('hide');stop();view(false);updateReadCounts()}
