@@ -1,0 +1,22 @@
+# Al-Baqarah 2:1–20. Una celda por palabra de Quran.com, separadas por "|".
+# 2:1–15 revisadas frente a los borradores anteriores (data/al-baqarah-es*.json).
+1: Álif, Lam, Mim (letras aisladas)
+2: ese | es el Libro | no hay | duda | en él | guía | para los temerosos de Alá
+3: quienes | creen | en lo oculto | y practican | la oración | y de lo que | les hemos provisto | dan
+4: y quienes | creen | en lo que | fue revelado | a ti | y en lo que | fue revelado | desde | antes de ti | y en la otra vida | ellos | creen con certeza
+5: esos | están sobre | una guía | procedente de | su Señor | y esos | ellos son | los triunfadores
+6: ciertamente | quienes | rechazaron la fe | les da igual | a ellos | que los adviertas | o | no | los adviertas | no | creerán
+7: ha sellado | Alá | sobre | sus corazones | y sobre | su oído | y sobre | sus ojos | hay un velo | y tendrán | un castigo | inmenso
+8: y entre | la gente | hay quien | dice | creemos | en Alá | y en el Día | Último | pero no | son | creyentes
+9: pretenden engañar | a Alá | y a quienes | creen | pero no | engañan | sino | a sí mismos | y no | se dan cuenta
+10: en | sus corazones | hay una enfermedad | y les aumentó | Alá | la enfermedad | y tendrán | un castigo | doloroso | por lo que | solían | mentir
+11: y cuando | se dice | a ellos | no | corrompan | en | la tierra | dicen | solo | nosotros | somos reformadores
+12: ¡atención! | ellos | son | los corruptores | pero | no | se dan cuenta
+13: y cuando | se dice | a ellos | crean | como | ha creído | la gente | dicen | ¿vamos a creer | como | han creído | los necios? | ¡atención! | ellos | son | los necios | pero | no | lo saben
+14: y cuando | se encuentran con | quienes | creen | dicen | creemos | pero cuando | se quedan a solas | con | sus demonios | dicen | nosotros | estamos con ustedes | solo | nosotros | nos burlamos
+15: Alá | se burla | de ellos | y los deja prolongarse | en | su transgresión | errando a ciegas
+16: esos | son quienes | compraron | el extravío | a cambio de la guía | y no | ganó | su comercio | ni | estuvieron | bien guiados
+17: su ejemplo | es como el ejemplo | de quien | encendió | un fuego | y cuando | iluminó | lo que | había a su alrededor | se llevó | Alá | su luz | y los dejó | en | tinieblas | no | ven
+18: sordos | mudos | ciegos | ellos | no | volverán
+19: o | como un aguacero | desde | el cielo | en él hay | tinieblas | y truenos | y relámpagos | ponen | sus dedos | en | sus oídos | por | los rayos | por miedo a | la muerte | y Alá | rodea | a los que rechazan la fe
+20: casi | el relámpago | arrebata | su vista | cada vez que | ilumina | para ellos | caminan | en él | y cuando | oscurece | sobre ellos | se detienen | y si | hubiera querido | Alá | se habría llevado | su oído | y su vista | ciertamente | Alá | sobre | toda | cosa | es Poderoso
