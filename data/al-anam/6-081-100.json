@@ -223,7 +223,7 @@
   {"pos":7,"ar":"بَيْنَ","tr":"bayna","es":"hubo","estado":"propuesta"},
   {"pos":8,"ar":"يَدَيْهِ","tr":"yadayhi","es":"antes de él","estado":"propuesta"},
   {"pos":9,"ar":"وَلِتُنذِرَ","tr":"walitundira","es":"para que advirtieras","estado":"propuesta"},
-  {"pos":10,"ar":"أُمَّ","tr":"umma","es":"a la madre","estado":"propuesta"},
+  {"pos":10,"ar":"أُمَّ","tr":"umma","es":"a la madre","estado":"propuesta","revisar":"umm al-qurā: «la madre de las ciudades», entendida por la mayoría como La Meca"},
   {"pos":11,"ar":"ٱلْقُرَىٰ","tr":"l·qura","es":"de las ciudades","estado":"propuesta"},
   {"pos":12,"ar":"وَمَنْ","tr":"waman","es":"y a quienes","estado":"propuesta"},
   {"pos":13,"ar":"حَوْلَهَا ۚ","tr":"hawlaha","es":"están a su alrededor","estado":"propuesta"},

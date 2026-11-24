@@ -206,7 +206,7 @@
   {"pos":20,"ar":"ٱلَّذِينَ","tr":"alladina","es":"quienes","estado":"propuesta"},
   {"pos":21,"ar":"خَسِرُوٓا۟","tr":"jasiru","es":"se perdieron","estado":"propuesta"},
   {"pos":22,"ar":"أَنفُسَهُمْ","tr":"anfusahum","es":"a sí mismos","estado":"propuesta"},
-  {"pos":23,"ar":"فَهُمْ","tr":"fahum","es":"ellos","estado":"propuesta"},
+  {"pos":23,"ar":"فَهُمْ","tr":"fahum","es":"por eso ellos","estado":"propuesta"},
   {"pos":24,"ar":"لَا","tr":"la","es":"no","estado":"propuesta"},
   {"pos":25,"ar":"يُؤْمِنُونَ","tr":"yu'minuna","es":"creen","estado":"propuesta"}
  ],
@@ -223,9 +223,9 @@
  ],
  "14": [
   {"pos":1,"ar":"قُلْ","tr":"qul","es":"di","estado":"propuesta"},
-  {"pos":2,"ar":"أَغَيْرَ","tr":"agayra","es":"¿tomaré","estado":"propuesta"},
-  {"pos":3,"ar":"ٱللَّهِ","tr":"l·lahi","es":"a otro que","estado":"propuesta"},
-  {"pos":4,"ar":"أَتَّخِذُ","tr":"attajidu","es":"Alá","estado":"propuesta"},
+  {"pos":2,"ar":"أَغَيْرَ","tr":"agayra","es":"¿acaso a otro que","estado":"propuesta"},
+  {"pos":3,"ar":"ٱللَّهِ","tr":"l·lahi","es":"Alá","estado":"propuesta"},
+  {"pos":4,"ar":"أَتَّخِذُ","tr":"attajidu","es":"tomaré","estado":"propuesta"},
   {"pos":5,"ar":"وَلِيًّۭا","tr":"waliyyan","es":"como protector","estado":"propuesta"},
   {"pos":6,"ar":"فَاطِرِ","tr":"fatiri","es":"Creador","estado":"propuesta"},
   {"pos":7,"ar":"ٱلسَّمَـٰوَٰتِ","tr":"l·samawati","es":"de los cielos","estado":"propuesta"},
@@ -347,7 +347,7 @@
   {"pos":8,"ar":"ٱلَّذِينَ","tr":"alladina","es":"quienes","estado":"propuesta"},
   {"pos":9,"ar":"خَسِرُوٓا۟","tr":"jasiru","es":"se perdieron","estado":"propuesta"},
   {"pos":10,"ar":"أَنفُسَهُمْ","tr":"anfusahum","es":"a sí mismos","estado":"propuesta"},
-  {"pos":11,"ar":"فَهُمْ","tr":"fahum","es":"ellos","estado":"propuesta"},
+  {"pos":11,"ar":"فَهُمْ","tr":"fahum","es":"por eso ellos","estado":"propuesta"},
   {"pos":12,"ar":"لَا","tr":"la","es":"no","estado":"propuesta"},
   {"pos":13,"ar":"يُؤْمِنُونَ","tr":"yu'minuna","es":"creen","estado":"propuesta"}
  ]

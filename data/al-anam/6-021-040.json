@@ -232,9 +232,9 @@
   {"pos":9,"ar":"يُكَذِّبُونَكَ","tr":"yukadibunaka","es":"te desmienten a ti","estado":"propuesta"},
   {"pos":10,"ar":"وَلَـٰكِنَّ","tr":"walakinna","es":"pero","estado":"propuesta"},
   {"pos":11,"ar":"ٱلظَّـٰلِمِينَ","tr":"l·zalimina","es":"los injustos","estado":"propuesta"},
-  {"pos":12,"ar":"بِـَٔايَـٰتِ","tr":"biayati","es":"rechazan","estado":"propuesta"},
-  {"pos":13,"ar":"ٱللَّهِ","tr":"l·lahi","es":"las señales","estado":"propuesta"},
-  {"pos":14,"ar":"يَجْحَدُونَ","tr":"yajhaduna","es":"de Alá","estado":"propuesta"}
+  {"pos":12,"ar":"بِـَٔايَـٰتِ","tr":"biayati","es":"las señales","estado":"propuesta"},
+  {"pos":13,"ar":"ٱللَّهِ","tr":"l·lahi","es":"de Alá","estado":"propuesta"},
+  {"pos":14,"ar":"يَجْحَدُونَ","tr":"yajhaduna","es":"rechazan","estado":"propuesta"}
  ],
  "34": [
   {"pos":1,"ar":"وَلَقَدْ","tr":"walaqad","es":"y ciertamente","estado":"propuesta"},

@@ -10,6 +10,7 @@ en `tools/suras.mjs` y en `FIXED_GLOSSES` de `index.html`. Método, formato, cri
 | 3 Al-Imran | `data/al-imran/` | 200 | 3.481 |
 | 4 An-Nisa | `data/an-nisa/` | 176 | 3.747 |
 | 5 Al-Ma'ida | `data/al-maida/` | 120 | 2.804 |
+| 6 Al-An'am | `data/al-anam/` | 165 | 3.050 |
 | 105 Al-Fil | `data/al-fil/` | 5 | 23 |
 | 106 Quraysh | `data/quraysh/` | 4 | 17 |
 | 107 Al-Ma'un | `data/al-maun/` | 7 | 25 |

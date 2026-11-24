@@ -284,7 +284,7 @@
   {"pos":1,"ar":"۞ وَإِذْ","tr":"wa·id","es":"y cuando","estado":"propuesta"},
   {"pos":2,"ar":"قَالَ","tr":"qala","es":"dijo","estado":"propuesta"},
   {"pos":3,"ar":"إِبْرَٰهِيمُ","tr":"ib'rahimu","es":"Abraham","estado":"propuesta"},
-  {"pos":4,"ar":"لِأَبِيهِ","tr":"li·abihi","es":"a su padre","estado":"propuesta"},
+  {"pos":4,"ar":"لِأَبِيهِ","tr":"li·abihi","es":"a su padre","estado":"propuesta","revisar":"abīhi: «a su padre»; algunos exegetas lo entienden como «su tío», pues el término árabe admite ambos sentidos"},
   {"pos":5,"ar":"ءَازَرَ","tr":"azara","es":"Azar","estado":"propuesta"},
   {"pos":6,"ar":"أَتَتَّخِذُ","tr":"atattajidu","es":"¿tomas","estado":"propuesta"},
   {"pos":7,"ar":"أَصْنَامًا","tr":"asnaman","es":"ídolos","estado":"propuesta"},

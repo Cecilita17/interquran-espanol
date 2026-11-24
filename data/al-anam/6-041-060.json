@@ -34,7 +34,7 @@
   {"pos":11,"ar":"يَتَضَرَّعُونَ","tr":"yatadarra'una","es":"se humillaran","estado":"propuesta"}
  ],
  "43": [
-  {"pos":1,"ar":"فَلَوْلَآ","tr":"falawla","es":"¿por qué no","estado":"propuesta"},
+  {"pos":1,"ar":"فَلَوْلَآ","tr":"falawla","es":"¿entonces por qué no","estado":"propuesta"},
   {"pos":2,"ar":"إِذْ","tr":"id","es":"cuando","estado":"propuesta"},
   {"pos":3,"ar":"جَآءَهُم","tr":"jaahum","es":"les llegó","estado":"propuesta"},
   {"pos":4,"ar":"بَأْسُنَا","tr":"basuna","es":"Nuestro castigo","estado":"propuesta"},
@@ -379,7 +379,7 @@
  "60": [
   {"pos":1,"ar":"وَهُوَ","tr":"wahuwa","es":"y Él","estado":"propuesta"},
   {"pos":2,"ar":"ٱلَّذِى","tr":"alladi","es":"es Aquel que","estado":"propuesta"},
-  {"pos":3,"ar":"يَتَوَفَّىٰكُم","tr":"yatawaffakum","es":"los toma","estado":"propuesta"},
+  {"pos":3,"ar":"يَتَوَفَّىٰكُم","tr":"yatawaffakum","es":"los toma","estado":"propuesta","revisar":"yatawaffākum: «los toma (el alma)» durante el sueño; ver 3:55"},
   {"pos":4,"ar":"بِٱلَّيْلِ","tr":"bi·al·layli","es":"por la noche","estado":"propuesta"},
   {"pos":5,"ar":"وَيَعْلَمُ","tr":"waya'lamu","es":"y sabe","estado":"propuesta"},
   {"pos":6,"ar":"مَا","tr":"ma","es":"lo que","estado":"propuesta"},
