@@ -17,6 +17,10 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC_DIR = path.join(root, 'tools/glosas-es');
 const OUT_DIR = path.join(root, 'data/al-baqarah');
 const source = JSON.parse(fs.readFileSync(path.join(root, 'data/fuentes/quran-com-al-baqarah.json'), 'utf8'));
+// Revisión humana registrada: { "30": { "revisor": "Nombre", "fecha": "AAAA-MM-DD" } }.
+// Sólo una persona que haya revisado la aleya completa debe añadirla aquí.
+const REVIEWS_FILE = path.join(root, 'tools/glosas-es/revisiones.json');
+const reviews = fs.existsSync(REVIEWS_FILE) ? JSON.parse(fs.readFileSync(REVIEWS_FILE, 'utf8')) : {};
 
 // Transliteración aproximada para hispanohablantes: misma conversión que el lector
 // (función trES de index.html) aplicada a la transliteración de Quran.com.
@@ -73,7 +77,9 @@ function build() {
         continue;
       }
       aleyas[num] = ref.map((w, i) => {
-        const entry = { pos: w.pos, ar: w.ar, tr: trES(w.translit), es: cells[i].es, estado: 'propuesta' };
+        const rev = reviews[num];
+        const entry = { pos: w.pos, ar: w.ar, tr: trES(w.translit), es: cells[i].es, estado: rev ? 'revisada' : 'propuesta' };
+        if (rev) { entry.revisor = rev.revisor; entry.fecha = rev.fecha; }
         if (cells[i].revisar) entry.revisar = cells[i].revisar;
         return entry;
       });
@@ -93,13 +99,18 @@ function build() {
     fs.writeFileSync(path.join(OUT_DIR, name), format(out));
     blocks.push({ archivo: name, desde: from, hasta: to, aleyas: Object.keys(aleyas).map(Number), faltan: missing });
   }
+  for (const [v, r] of Object.entries(reviews)) {
+    if (!source.aleyas[v]) errors.push(`revisiones.json: la aleya ${v} no existe`);
+    if (!r || typeof r.revisor !== 'string' || !r.revisor.trim() || !/^\d{4}-\d{2}-\d{2}$/.test(r.fecha || '')) errors.push(`revisiones.json: 2:${v} necesita "revisor" y "fecha" (AAAA-MM-DD)`);
+  }
   const covered = new Set(blocks.flatMap(b => b.aleyas));
   const index = {
     capitulo: 2,
     sura: 'Al-Baqarah',
     totalAleyas: 286,
     aleyasConGlosas: covered.size,
-    estadoRevision: 'propuesta (pendiente de revisión humana)',
+    aleyasRevisadas: Object.keys(reviews).length,
+    estadoRevision: Object.keys(reviews).length === 286 ? 'revisada' : 'propuesta (revisión humana en curso)',
     bloques: blocks.map(({ archivo, desde, hasta }) => ({ archivo, desde, hasta })),
   };
   fs.writeFileSync(path.join(OUT_DIR, 'index.json'), JSON.stringify(index, null, 1) + '\n');

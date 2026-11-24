@@ -50,8 +50,14 @@ Los JSON se generan: para corregir una glosa, editar el `.txt` correspondiente y
 
 Todas las glosas tienen `estado: "propuesta"`: fueron redactadas con asistencia de IA y verificadas
 automáticamente (alineación, segmentación, formato), **pero no han sido revisadas por una persona**.
-Para marcar una palabra como revisada, cambiar `estado` a `revisada` y añadir `revisor` (el
-validador rechaza `revisada` sin revisor). Las glosas de 2:1–2:15 que existían antes también se
+La revisión se registra por aleya en `tools/glosas-es/revisiones.json`
+(`{"30": {"revisor": "Nombre", "fecha": "AAAA-MM-DD"}}`); al construir, todas las palabras de esa
+aleya pasan a `estado: "revisada"` con `revisor` y `fecha`. El validador rechaza una palabra
+`revisada` sin revisor. Las correcciones de glosas se hacen en los `.txt`.
+
+Flujo de revisión: las aleyas se revisan en la página «Revisión Al-Baqarah» (artifact de claude.ai),
+donde se aprueba cada aleya, se corrigen glosas y se anotan dudas. Esas decisiones se trasladan
+después a los `.txt` y a `revisiones.json`, y se vuelven a ejecutar la construcción y la validación. Las glosas de 2:1–2:15 que existían antes también se
 revisaron y se reclasificaron como propuesta, porque tampoco tenían revisión humana registrada.
 
 ## Comandos
