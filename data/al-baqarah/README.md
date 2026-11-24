@@ -62,10 +62,12 @@ revisaron y se reclasificaron como propuesta, porque tampoco tenían revisión h
 
 ## Criterio de publicación
 
-Se publica (push a `main` y despliegue) cuando las 30 aleyas con dudas señaladas están revisadas por
-una persona y registradas en `revisiones.json`. El resto de las aleyas puede publicarse en estado
-`propuesta`; el lector indica cuántas siguen pendientes de revisión humana. Comprobarlo con
-`node tools/validar-glosas.mjs --publicacion`.
+Criterio acordado: publicar cuando las 30 aleyas con dudas señaladas estén revisadas por una persona
+y registradas en `revisiones.json` (comprobar con `node tools/validar-glosas.mjs --publicacion`).
+
+Primera publicación (2026-11-24): por decisión de la responsable del proyecto se publicaron las 286
+aleyas **antes** de esa revisión, con todas las glosas en estado `propuesta`. No hay ninguna aleya
+registrada como revisada; el lector lo indica en su línea de estado.
 
 ## Comandos
 
