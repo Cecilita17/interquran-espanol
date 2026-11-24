@@ -2,7 +2,7 @@
  "capitulo": 6,
  "sura": "Al-An'am",
  "totalAleyas": 165,
- "aleyasConGlosas": 140,
+ "aleyasConGlosas": 160,
  "aleyasRevisadas": 0,
  "estadoRevision": "propuesta (revisión humana en curso)",
  "bloques": [
@@ -40,6 +40,11 @@
    "archivo": "6-121-140.json",
    "desde": 121,
    "hasta": 140
+  },
+  {
+   "archivo": "6-141-160.json",
+   "desde": 141,
+   "hasta": 160
   }
  ]
 }
