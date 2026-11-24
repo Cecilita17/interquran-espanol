@@ -24,7 +24,7 @@
   {"pos":15,"ar":"ثَمَنًۭا","tr":"zamanan","es":"por un precio","estado":"propuesta"},
   {"pos":16,"ar":"قَلِيلًۭا","tr":"qalilan","es":"pequeño","estado":"propuesta"},
   {"pos":17,"ar":"وَإِيَّـٰىَ","tr":"wa·iyyaya","es":"y solo a Mí","estado":"propuesta"},
-  {"pos":18,"ar":"فَٱتَّقُونِ","tr":"fa·ittaquni","es":"témanme","estado":"propuesta"}
+  {"pos":18,"ar":"فَٱتَّقُونِ","tr":"fa·ittaquni","es":"pues témanme","estado":"propuesta"}
  ],
  "42": [
   {"pos":1,"ar":"وَلَا","tr":"wala","es":"y no","estado":"propuesta"},

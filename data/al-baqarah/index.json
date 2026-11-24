@@ -2,7 +2,7 @@
  "capitulo": 2,
  "sura": "Al-Baqarah",
  "totalAleyas": 286,
- "aleyasConGlosas": 260,
+ "aleyasConGlosas": 286,
  "estadoRevision": "propuesta (pendiente de revisión humana)",
  "bloques": [
   {
@@ -69,6 +69,11 @@
    "archivo": "2-241-260.json",
    "desde": 241,
    "hasta": 260
+  },
+  {
+   "archivo": "2-261-286.json",
+   "desde": 261,
+   "hasta": 286
   }
  ]
 }

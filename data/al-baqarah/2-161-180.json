@@ -180,9 +180,9 @@
  ],
  "169": [
   {"pos":1,"ar":"إِنَّمَا","tr":"innama","es":"solo","estado":"propuesta"},
-  {"pos":2,"ar":"يَأْمُرُكُم","tr":"yamurukum","es":"les ordena","estado":"propuesta"},
-  {"pos":3,"ar":"بِٱلسُّوٓءِ","tr":"bil·sui","es":"el mal","estado":"propuesta"},
-  {"pos":4,"ar":"وَٱلْفَحْشَآءِ","tr":"wal·fahshai","es":"y la indecencia","estado":"propuesta"},
+  {"pos":2,"ar":"يَأْمُرُكُم","tr":"yamurukum","es":"les incita","estado":"propuesta"},
+  {"pos":3,"ar":"بِٱلسُّوٓءِ","tr":"bil·sui","es":"al mal","estado":"propuesta"},
+  {"pos":4,"ar":"وَٱلْفَحْشَآءِ","tr":"wal·fahshai","es":"y a la indecencia","estado":"propuesta"},
   {"pos":5,"ar":"وَأَن","tr":"wa·an","es":"y que","estado":"propuesta"},
   {"pos":6,"ar":"تَقُولُوا۟","tr":"taqulu","es":"digan","estado":"propuesta"},
   {"pos":7,"ar":"عَلَى","tr":"'ala","es":"sobre","estado":"propuesta"},
@@ -231,7 +231,7 @@
   {"pos":13,"ar":"صُمٌّۢ","tr":"summun","es":"sordos","estado":"propuesta"},
   {"pos":14,"ar":"بُكْمٌ","tr":"buk'mun","es":"mudos","estado":"propuesta"},
   {"pos":15,"ar":"عُمْىٌۭ","tr":"'um'yun","es":"ciegos","estado":"propuesta"},
-  {"pos":16,"ar":"فَهُمْ","tr":"fahum","es":"ellos","estado":"propuesta"},
+  {"pos":16,"ar":"فَهُمْ","tr":"fahum","es":"por eso ellos","estado":"propuesta"},
   {"pos":17,"ar":"لَا","tr":"la","es":"no","estado":"propuesta"},
   {"pos":18,"ar":"يَعْقِلُونَ","tr":"ya'qiluna","es":"razonan","estado":"propuesta"}
  ],
@@ -270,7 +270,7 @@
   {"pos":16,"ar":"بَاغٍۢ","tr":"bagin","es":"desearlo","estado":"propuesta"},
   {"pos":17,"ar":"وَلَا","tr":"wala","es":"ni","estado":"propuesta"},
   {"pos":18,"ar":"عَادٍۢ","tr":"'adin","es":"excederse","estado":"propuesta"},
-  {"pos":19,"ar":"فَلَآ","tr":"fala","es":"no hay","estado":"propuesta"},
+  {"pos":19,"ar":"فَلَآ","tr":"fala","es":"entonces no hay","estado":"propuesta"},
   {"pos":20,"ar":"إِثْمَ","tr":"iz'ma","es":"pecado","estado":"propuesta"},
   {"pos":21,"ar":"عَلَيْهِ ۚ","tr":"'alayhi","es":"sobre él","estado":"propuesta"},
   {"pos":22,"ar":"إِنَّ","tr":"inna","es":"ciertamente","estado":"propuesta"},
@@ -317,7 +317,7 @@
   {"pos":5,"ar":"بِٱلْهُدَىٰ","tr":"bil·huda","es":"a cambio de la guía","estado":"propuesta"},
   {"pos":6,"ar":"وَٱلْعَذَابَ","tr":"wal·'adaba","es":"y el castigo","estado":"propuesta"},
   {"pos":7,"ar":"بِٱلْمَغْفِرَةِ ۚ","tr":"bil·magfirati","es":"a cambio del perdón","estado":"propuesta"},
-  {"pos":8,"ar":"فَمَآ","tr":"fama","es":"¡qué","estado":"propuesta"},
+  {"pos":8,"ar":"فَمَآ","tr":"fama","es":"pues ¡qué","estado":"propuesta"},
   {"pos":9,"ar":"أَصْبَرَهُمْ","tr":"asbarahum","es":"resistentes son","estado":"propuesta"},
   {"pos":10,"ar":"عَلَى","tr":"'ala","es":"ante","estado":"propuesta"},
   {"pos":11,"ar":"ٱلنَّارِ","tr":"l·nari","es":"el Fuego!","estado":"propuesta"}
@@ -426,7 +426,7 @@
   {"pos":32,"ar":"ٱعْتَدَىٰ","tr":"i''tada","es":"transgreda","estado":"propuesta"},
   {"pos":33,"ar":"بَعْدَ","tr":"ba'da","es":"después de","estado":"propuesta"},
   {"pos":34,"ar":"ذَٰلِكَ","tr":"dalika","es":"eso","estado":"propuesta"},
-  {"pos":35,"ar":"فَلَهُۥ","tr":"falahu","es":"tendrá","estado":"propuesta"},
+  {"pos":35,"ar":"فَلَهُۥ","tr":"falahu","es":"pues tendrá","estado":"propuesta"},
   {"pos":36,"ar":"عَذَابٌ","tr":"'adabun","es":"un castigo","estado":"propuesta"},
   {"pos":37,"ar":"أَلِيمٌۭ","tr":"alimun","es":"doloroso","estado":"propuesta"}
  ],

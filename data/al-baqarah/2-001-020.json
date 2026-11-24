@@ -224,7 +224,7 @@
   {"pos":1,"ar":"صُمٌّۢ","tr":"summun","es":"sordos","estado":"propuesta"},
   {"pos":2,"ar":"بُكْمٌ","tr":"buk'mun","es":"mudos","estado":"propuesta"},
   {"pos":3,"ar":"عُمْىٌۭ","tr":"'um'yun","es":"ciegos","estado":"propuesta"},
-  {"pos":4,"ar":"فَهُمْ","tr":"fahum","es":"ellos","estado":"propuesta"},
+  {"pos":4,"ar":"فَهُمْ","tr":"fahum","es":"por eso ellos","estado":"propuesta"},
   {"pos":5,"ar":"لَا","tr":"la","es":"no","estado":"propuesta"},
   {"pos":6,"ar":"يَرْجِعُونَ","tr":"yarji'una","es":"volverán","estado":"propuesta"}
  ],
