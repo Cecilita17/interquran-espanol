@@ -2,8 +2,19 @@
  "capitulo": 36,
  "sura": "Ya-Sin",
  "totalAleyas": 83,
- "aleyasConGlosas": 0,
+ "aleyasConGlosas": 83,
  "aleyasRevisadas": 0,
  "estadoRevision": "propuesta (revisión humana en curso)",
- "bloques": []
+ "bloques": [
+  {
+   "archivo": "36-001-045.json",
+   "desde": 1,
+   "hasta": 45
+  },
+  {
+   "archivo": "36-046-083.json",
+   "desde": 46,
+   "hasta": 83
+  }
+ ]
 }
