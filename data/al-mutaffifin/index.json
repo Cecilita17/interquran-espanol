@@ -1,0 +1,15 @@
+{
+ "capitulo": 83,
+ "sura": "Al-Mutaffifin",
+ "totalAleyas": 36,
+ "aleyasConGlosas": 36,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "83-001-036.json",
+   "desde": 1,
+   "hasta": 36
+  }
+ ]
+}

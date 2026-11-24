@@ -1,0 +1,15 @@
+{
+ "capitulo": 84,
+ "sura": "Al-Inshiqaq",
+ "totalAleyas": 25,
+ "aleyasConGlosas": 25,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "84-001-025.json",
+   "desde": 1,
+   "hasta": 25
+  }
+ ]
+}

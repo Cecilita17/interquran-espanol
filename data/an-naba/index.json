@@ -1,0 +1,15 @@
+{
+ "capitulo": 78,
+ "sura": "An-Naba",
+ "totalAleyas": 40,
+ "aleyasConGlosas": 40,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "78-001-040.json",
+   "desde": 1,
+   "hasta": 40
+  }
+ ]
+}

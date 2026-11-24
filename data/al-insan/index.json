@@ -1,0 +1,15 @@
+{
+ "capitulo": 76,
+ "sura": "Al-Insan",
+ "totalAleyas": 31,
+ "aleyasConGlosas": 31,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "76-001-031.json",
+   "desde": 1,
+   "hasta": 31
+  }
+ ]
+}

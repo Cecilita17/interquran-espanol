@@ -1,0 +1,15 @@
+{
+ "capitulo": 81,
+ "sura": "At-Takwir",
+ "totalAleyas": 29,
+ "aleyasConGlosas": 29,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "81-001-029.json",
+   "desde": 1,
+   "hasta": 29
+  }
+ ]
+}
