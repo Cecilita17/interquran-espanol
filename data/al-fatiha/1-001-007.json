@@ -1,0 +1,53 @@
+{
+ "capitulo": 1,
+ "sura": "Al-Fatiha",
+ "bloque": "1-7",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-al-fatiha.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/1-001-007.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"بِسْمِ","tr":"bis'mi","es":"en el nombre de","estado":"propuesta"},
+  {"pos":2,"ar":"ٱللَّهِ","tr":"l·lahi","es":"Alá","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلرَّحْمَـٰنِ","tr":"l·rahmani","es":"el Compasivo","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلرَّحِيمِ","tr":"l·rahimi","es":"el Misericordioso","estado":"propuesta"}
+ ],
+ "2": [
+  {"pos":1,"ar":"ٱلْحَمْدُ","tr":"al·hamdu","es":"la alabanza","estado":"propuesta"},
+  {"pos":2,"ar":"لِلَّهِ","tr":"lillahi","es":"es para Alá","estado":"propuesta"},
+  {"pos":3,"ar":"رَبِّ","tr":"rabbi","es":"Señor de","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلْعَـٰلَمِينَ","tr":"l·'alamina","es":"los mundos","estado":"propuesta"}
+ ],
+ "3": [
+  {"pos":1,"ar":"ٱلرَّحْمَـٰنِ","tr":"al·rahmani","es":"el Compasivo","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلرَّحِيمِ","tr":"l·rahimi","es":"el Misericordioso","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"مَـٰلِكِ","tr":"maliki","es":"Dueño del","estado":"propuesta"},
+  {"pos":2,"ar":"يَوْمِ","tr":"yawmi","es":"día","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلدِّينِ","tr":"l·dini","es":"del Juicio","estado":"propuesta"}
+ ],
+ "5": [
+  {"pos":1,"ar":"إِيَّاكَ","tr":"iyyaka","es":"solo a Ti","estado":"propuesta"},
+  {"pos":2,"ar":"نَعْبُدُ","tr":"na'budu","es":"adoramos","estado":"propuesta"},
+  {"pos":3,"ar":"وَإِيَّاكَ","tr":"wa·iyyaka","es":"y solo a Ti","estado":"propuesta"},
+  {"pos":4,"ar":"نَسْتَعِينُ","tr":"nasta'inu","es":"pedimos ayuda","estado":"propuesta"}
+ ],
+ "6": [
+  {"pos":1,"ar":"ٱهْدِنَا","tr":"ih'dina","es":"guíanos","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلصِّرَٰطَ","tr":"l·sirata","es":"por el camino","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلْمُسْتَقِيمَ","tr":"l·mus'taqima","es":"recto","estado":"propuesta"}
+ ],
+ "7": [
+  {"pos":1,"ar":"صِرَٰطَ","tr":"sirata","es":"el camino de","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلَّذِينَ","tr":"alladina","es":"quienes","estado":"propuesta"},
+  {"pos":3,"ar":"أَنْعَمْتَ","tr":"an'amta","es":"favoreciste","estado":"propuesta"},
+  {"pos":4,"ar":"عَلَيْهِمْ","tr":"'alayhim","es":"a ellos","estado":"propuesta"},
+  {"pos":5,"ar":"غَيْرِ","tr":"gayri","es":"no el de","estado":"propuesta"},
+  {"pos":6,"ar":"ٱلْمَغْضُوبِ","tr":"l·magdubi","es":"los que recibieron la ira","estado":"propuesta"},
+  {"pos":7,"ar":"عَلَيْهِمْ","tr":"'alayhim","es":"sobre ellos","estado":"propuesta"},
+  {"pos":8,"ar":"وَلَا","tr":"wala","es":"ni","estado":"propuesta"},
+  {"pos":9,"ar":"ٱلضَّآلِّينَ","tr":"l·dalina","es":"los extraviados","estado":"propuesta"}
+ ]
+ }
+}

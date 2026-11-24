@@ -1,0 +1,20 @@
+{
+ "capitulo": 39,
+ "sura": "Az-Zumar",
+ "totalAleyas": 75,
+ "aleyasConGlosas": 75,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "39-001-040.json",
+   "desde": 1,
+   "hasta": 40
+  },
+  {
+   "archivo": "39-041-075.json",
+   "desde": 41,
+   "hasta": 75
+  }
+ ]
+}

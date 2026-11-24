@@ -3,11 +3,22 @@
 //   data/fuentes/quran-com-<slug>.json   segmentación de referencia de Quran.com
 //   tools/glosas-es/<capítulo>-NNN-NNN.txt   borradores editables
 export const SURAS = {
+  1: { slug: 'al-fatiha', nombre: "Al-Fatiha", aleyas: 7 },
   2: { slug: 'al-baqarah', nombre: 'Al-Baqarah', aleyas: 286 },
   3: { slug: 'al-imran', nombre: 'Al-Imran', aleyas: 200 },
   4: { slug: 'an-nisa', nombre: 'An-Nisa', aleyas: 176 },
   5: { slug: 'al-maida', nombre: "Al-Ma'ida", aleyas: 120 },
   6: { slug: 'al-anam', nombre: "Al-An'am", aleyas: 165 },
+  35: { slug: 'fatir', nombre: "Fatir", aleyas: 45 },
+  36: { slug: 'ya-sin', nombre: "Ya-Sin", aleyas: 83 },
+  37: { slug: 'as-saffat', nombre: "As-Saffat", aleyas: 182 },
+  38: { slug: 'sad', nombre: "Sad", aleyas: 88 },
+  39: { slug: 'az-zumar', nombre: "Az-Zumar", aleyas: 75 },
+  40: { slug: 'ghafir', nombre: "Ghafir", aleyas: 85 },
+  41: { slug: 'fussilat', nombre: "Fussilat", aleyas: 54 },
+  42: { slug: 'ash-shura', nombre: "Ash-Shura", aleyas: 53 },
+  43: { slug: 'az-zukhruf', nombre: "Az-Zukhruf", aleyas: 89 },
+  44: { slug: 'ad-dukhan', nombre: "Ad-Dukhan", aleyas: 59 },
   45: { slug: 'al-jathiya', nombre: "Al-Jathiya", aleyas: 37 },
   46: { slug: 'al-ahqaf', nombre: "Al-Ahqaf", aleyas: 35 },
   47: { slug: 'muhammad', nombre: "Muhammad", aleyas: 38 },

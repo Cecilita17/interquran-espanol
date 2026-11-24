@@ -1,0 +1,15 @@
+{
+ "capitulo": 44,
+ "sura": "Ad-Dukhan",
+ "totalAleyas": 59,
+ "aleyasConGlosas": 59,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "44-001-059.json",
+   "desde": 1,
+   "hasta": 59
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+{
+ "capitulo": 43,
+ "sura": "Az-Zukhruf",
+ "totalAleyas": 89,
+ "aleyasConGlosas": 89,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "43-001-050.json",
+   "desde": 1,
+   "hasta": 50
+  },
+  {
+   "archivo": "43-051-089.json",
+   "desde": 51,
+   "hasta": 89
+  }
+ ]
+}

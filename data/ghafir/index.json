@@ -1,0 +1,20 @@
+{
+ "capitulo": 40,
+ "sura": "Ghafir",
+ "totalAleyas": 85,
+ "aleyasConGlosas": 85,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "40-001-045.json",
+   "desde": 1,
+   "hasta": 45
+  },
+  {
+   "archivo": "40-046-085.json",
+   "desde": 46,
+   "hasta": 85
+  }
+ ]
+}
