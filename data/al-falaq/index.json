@@ -1,0 +1,15 @@
+{
+ "capitulo": 113,
+ "sura": "Al-Falaq",
+ "totalAleyas": 5,
+ "aleyasConGlosas": 5,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "113-001-005.json",
+   "desde": 1,
+   "hasta": 5
+  }
+ ]
+}

@@ -1,0 +1,15 @@
+{
+ "capitulo": 105,
+ "sura": "Al-Fil",
+ "totalAleyas": 5,
+ "aleyasConGlosas": 5,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "105-001-005.json",
+   "desde": 1,
+   "hasta": 5
+  }
+ ]
+}

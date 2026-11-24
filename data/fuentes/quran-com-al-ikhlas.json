@@ -1,0 +1,4 @@
+{"fuente":"Quran.com API v4 (api.quran.com/api/v4/verses/by_chapter/112?words=true), campo text_uthmani; tokens char_type_name=word","descargado":"2026-11-24","capitulo":112,"aleyas":{"1":[{"pos":1,"ar":"قُلْ","translit":"qul"},{"pos":2,"ar":"هُوَ","translit":"huwa"},{"pos":3,"ar":"ٱللَّهُ","translit":"l-lahu"},{"pos":4,"ar":"أَحَدٌ","translit":"aḥadun"}],
+"2":[{"pos":1,"ar":"ٱللَّهُ","translit":"al-lahu"},{"pos":2,"ar":"ٱلصَّمَدُ","translit":"l-ṣamadu"}],
+"3":[{"pos":1,"ar":"لَمْ","translit":"lam"},{"pos":2,"ar":"يَلِدْ","translit":"yalid"},{"pos":3,"ar":"وَلَمْ","translit":"walam"},{"pos":4,"ar":"يُولَدْ","translit":"yūlad"}],
+"4":[{"pos":1,"ar":"وَلَمْ","translit":"walam"},{"pos":2,"ar":"يَكُن","translit":"yakun"},{"pos":3,"ar":"لَّهُۥ","translit":"lahu"},{"pos":4,"ar":"كُفُوًا","translit":"kufuwan"},{"pos":5,"ar":"أَحَدٌۢ","translit":"aḥadun"}]}}

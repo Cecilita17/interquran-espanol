@@ -1,0 +1,7 @@
+{"fuente":"Quran.com API v4 (api.quran.com/api/v4/verses/by_chapter/107?words=true), campo text_uthmani; tokens char_type_name=word","descargado":"2026-11-24","capitulo":107,"aleyas":{"1":[{"pos":1,"ar":"أَرَءَيْتَ","translit":"ara-ayta"},{"pos":2,"ar":"ٱلَّذِى","translit":"alladhī"},{"pos":3,"ar":"يُكَذِّبُ","translit":"yukadhibu"},{"pos":4,"ar":"بِٱلدِّينِ","translit":"bil-dīni"}],
+"2":[{"pos":1,"ar":"فَذَٰلِكَ","translit":"fadhālika"},{"pos":2,"ar":"ٱلَّذِى","translit":"alladhī"},{"pos":3,"ar":"يَدُعُّ","translit":"yaduʿʿu"},{"pos":4,"ar":"ٱلْيَتِيمَ","translit":"l-yatīma"}],
+"3":[{"pos":1,"ar":"وَلَا","translit":"walā"},{"pos":2,"ar":"يَحُضُّ","translit":"yaḥuḍḍu"},{"pos":3,"ar":"عَلَىٰ","translit":"ʿalā"},{"pos":4,"ar":"طَعَامِ","translit":"ṭaʿāmi"},{"pos":5,"ar":"ٱلْمِسْكِينِ","translit":"l-mis'kīni"}],
+"4":[{"pos":1,"ar":"فَوَيْلٌۭ","translit":"fawaylun"},{"pos":2,"ar":"لِّلْمُصَلِّينَ","translit":"lil'muṣallīna"}],
+"5":[{"pos":1,"ar":"ٱلَّذِينَ","translit":"alladhīna"},{"pos":2,"ar":"هُمْ","translit":"hum"},{"pos":3,"ar":"عَن","translit":"ʿan"},{"pos":4,"ar":"صَلَاتِهِمْ","translit":"ṣalātihim"},{"pos":5,"ar":"سَاهُونَ","translit":"sāhūna"}],
+"6":[{"pos":1,"ar":"ٱلَّذِينَ","translit":"alladhīna"},{"pos":2,"ar":"هُمْ","translit":"hum"},{"pos":3,"ar":"يُرَآءُونَ","translit":"yurāūna"}],
+"7":[{"pos":1,"ar":"وَيَمْنَعُونَ","translit":"wayamnaʿūna"},{"pos":2,"ar":"ٱلْمَاعُونَ","translit":"l-māʿūna"}]}}

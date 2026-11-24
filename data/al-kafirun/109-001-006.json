@@ -1,0 +1,48 @@
+{
+ "capitulo": 109,
+ "sura": "Al-Kafirun",
+ "bloque": "1-6",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-al-kafirun.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/109-001-006.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"قُلْ","tr":"qul","es":"di","estado":"propuesta"},
+  {"pos":2,"ar":"يَـٰٓأَيُّهَا","tr":"yaayyuha","es":"¡oh","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلْكَـٰفِرُونَ","tr":"l·kafiruna","es":"incrédulos!","estado":"propuesta"}
+ ],
+ "2": [
+  {"pos":1,"ar":"لَآ","tr":"la","es":"no","estado":"propuesta"},
+  {"pos":2,"ar":"أَعْبُدُ","tr":"a'budu","es":"adoro","estado":"propuesta"},
+  {"pos":3,"ar":"مَا","tr":"ma","es":"lo que","estado":"propuesta"},
+  {"pos":4,"ar":"تَعْبُدُونَ","tr":"ta'buduna","es":"adoran","estado":"propuesta"}
+ ],
+ "3": [
+  {"pos":1,"ar":"وَلَآ","tr":"wala","es":"ni","estado":"propuesta"},
+  {"pos":2,"ar":"أَنتُمْ","tr":"antum","es":"ustedes","estado":"propuesta"},
+  {"pos":3,"ar":"عَـٰبِدُونَ","tr":"'abiduna","es":"son adoradores","estado":"propuesta"},
+  {"pos":4,"ar":"مَآ","tr":"ma","es":"de lo que","estado":"propuesta"},
+  {"pos":5,"ar":"أَعْبُدُ","tr":"a'budu","es":"adoro","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"وَلَآ","tr":"wala","es":"ni","estado":"propuesta"},
+  {"pos":2,"ar":"أَنَا۠","tr":"ana","es":"yo","estado":"propuesta"},
+  {"pos":3,"ar":"عَابِدٌۭ","tr":"'abidun","es":"soy adorador","estado":"propuesta"},
+  {"pos":4,"ar":"مَّا","tr":"ma","es":"de lo que","estado":"propuesta"},
+  {"pos":5,"ar":"عَبَدتُّمْ","tr":"'abadttum","es":"adoraron","estado":"propuesta"}
+ ],
+ "5": [
+  {"pos":1,"ar":"وَلَآ","tr":"wala","es":"ni","estado":"propuesta"},
+  {"pos":2,"ar":"أَنتُمْ","tr":"antum","es":"ustedes","estado":"propuesta"},
+  {"pos":3,"ar":"عَـٰبِدُونَ","tr":"'abiduna","es":"son adoradores","estado":"propuesta"},
+  {"pos":4,"ar":"مَآ","tr":"ma","es":"de lo que","estado":"propuesta"},
+  {"pos":5,"ar":"أَعْبُدُ","tr":"a'budu","es":"adoro","estado":"propuesta"}
+ ],
+ "6": [
+  {"pos":1,"ar":"لَكُمْ","tr":"lakum","es":"para ustedes","estado":"propuesta"},
+  {"pos":2,"ar":"دِينُكُمْ","tr":"dinukum","es":"su religión","estado":"propuesta"},
+  {"pos":3,"ar":"وَلِىَ","tr":"waliya","es":"y para mí","estado":"propuesta"},
+  {"pos":4,"ar":"دِينِ","tr":"dini","es":"mi religión","estado":"propuesta"}
+ ]
+ }
+}

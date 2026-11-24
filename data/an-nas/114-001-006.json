@@ -1,0 +1,42 @@
+{
+ "capitulo": 114,
+ "sura": "An-Nas",
+ "bloque": "1-6",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-an-nas.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/114-001-006.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"قُلْ","tr":"qul","es":"di","estado":"propuesta"},
+  {"pos":2,"ar":"أَعُوذُ","tr":"a'udu","es":"me refugio","estado":"propuesta"},
+  {"pos":3,"ar":"بِرَبِّ","tr":"birabbi","es":"en el Señor","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلنَّاسِ","tr":"l·nasi","es":"de los hombres","estado":"propuesta"}
+ ],
+ "2": [
+  {"pos":1,"ar":"مَلِكِ","tr":"maliki","es":"el Rey","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلنَّاسِ","tr":"l·nasi","es":"de los hombres","estado":"propuesta"}
+ ],
+ "3": [
+  {"pos":1,"ar":"إِلَـٰهِ","tr":"ilahi","es":"el Dios","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلنَّاسِ","tr":"l·nasi","es":"de los hombres","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"مِن","tr":"min","es":"del","estado":"propuesta"},
+  {"pos":2,"ar":"شَرِّ","tr":"sharri","es":"mal","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلْوَسْوَاسِ","tr":"l·waswasi","es":"del susurrador","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلْخَنَّاسِ","tr":"l·janasi","es":"que se esconde","estado":"propuesta"}
+ ],
+ "5": [
+  {"pos":1,"ar":"ٱلَّذِى","tr":"alladi","es":"que","estado":"propuesta"},
+  {"pos":2,"ar":"يُوَسْوِسُ","tr":"yuwaswisu","es":"susurra","estado":"propuesta"},
+  {"pos":3,"ar":"فِى","tr":"fi","es":"en","estado":"propuesta"},
+  {"pos":4,"ar":"صُدُورِ","tr":"suduri","es":"los pechos","estado":"propuesta"},
+  {"pos":5,"ar":"ٱلنَّاسِ","tr":"l·nasi","es":"de los hombres","estado":"propuesta"}
+ ],
+ "6": [
+  {"pos":1,"ar":"مِنَ","tr":"mina","es":"de entre","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلْجِنَّةِ","tr":"l·jinati","es":"los yinn","estado":"propuesta"},
+  {"pos":3,"ar":"وَٱلنَّاسِ","tr":"wal·nasi","es":"y los hombres","estado":"propuesta"}
+ ]
+ }
+}

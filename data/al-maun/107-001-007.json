@@ -1,0 +1,49 @@
+{
+ "capitulo": 107,
+ "sura": "Al-Ma'un",
+ "bloque": "1-7",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-al-maun.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/107-001-007.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"أَرَءَيْتَ","tr":"ara·ayta","es":"¿has visto","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلَّذِى","tr":"alladi","es":"a quien","estado":"propuesta"},
+  {"pos":3,"ar":"يُكَذِّبُ","tr":"yukadibu","es":"desmiente","estado":"propuesta"},
+  {"pos":4,"ar":"بِٱلدِّينِ","tr":"bil·dini","es":"el Juicio?","estado":"propuesta"}
+ ],
+ "2": [
+  {"pos":1,"ar":"فَذَٰلِكَ","tr":"fadalika","es":"pues ese","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلَّذِى","tr":"alladi","es":"es quien","estado":"propuesta"},
+  {"pos":3,"ar":"يَدُعُّ","tr":"yadu''u","es":"rechaza con violencia","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلْيَتِيمَ","tr":"l·yatima","es":"al huérfano","estado":"propuesta"}
+ ],
+ "3": [
+  {"pos":1,"ar":"وَلَا","tr":"wala","es":"y no","estado":"propuesta"},
+  {"pos":2,"ar":"يَحُضُّ","tr":"yahuddu","es":"anima","estado":"propuesta"},
+  {"pos":3,"ar":"عَلَىٰ","tr":"'ala","es":"a","estado":"propuesta"},
+  {"pos":4,"ar":"طَعَامِ","tr":"ta'ami","es":"alimentar","estado":"propuesta"},
+  {"pos":5,"ar":"ٱلْمِسْكِينِ","tr":"l·mis'kini","es":"al pobre","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"فَوَيْلٌۭ","tr":"fawaylun","es":"pues ¡ay","estado":"propuesta"},
+  {"pos":2,"ar":"لِّلْمُصَلِّينَ","tr":"lil'musallina","es":"de los que rezan","estado":"propuesta"}
+ ],
+ "5": [
+  {"pos":1,"ar":"ٱلَّذِينَ","tr":"alladina","es":"que","estado":"propuesta"},
+  {"pos":2,"ar":"هُمْ","tr":"hum","es":"ellos","estado":"propuesta"},
+  {"pos":3,"ar":"عَن","tr":"'an","es":"de","estado":"propuesta"},
+  {"pos":4,"ar":"صَلَاتِهِمْ","tr":"salatihim","es":"su oración","estado":"propuesta"},
+  {"pos":5,"ar":"سَاهُونَ","tr":"sahuna","es":"son descuidados","estado":"propuesta"}
+ ],
+ "6": [
+  {"pos":1,"ar":"ٱلَّذِينَ","tr":"alladina","es":"que","estado":"propuesta"},
+  {"pos":2,"ar":"هُمْ","tr":"hum","es":"ellos","estado":"propuesta"},
+  {"pos":3,"ar":"يُرَآءُونَ","tr":"yurauna","es":"aparentan","estado":"propuesta"}
+ ],
+ "7": [
+  {"pos":1,"ar":"وَيَمْنَعُونَ","tr":"wayamna'una","es":"y niegan","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلْمَاعُونَ","tr":"l·ma'una","es":"la ayuda más pequeña","estado":"propuesta","revisar":"al-māʿūn: «la pequeña ayuda / los enseres de uso cotidiano / el zakat», según los exegetas"}
+ ]
+ }
+}

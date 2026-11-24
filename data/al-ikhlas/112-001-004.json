@@ -1,0 +1,33 @@
+{
+ "capitulo": 112,
+ "sura": "Al-Ikhlas",
+ "bloque": "1-4",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-al-ikhlas.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/112-001-004.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"قُلْ","tr":"qul","es":"di","estado":"propuesta"},
+  {"pos":2,"ar":"هُوَ","tr":"huwa","es":"Él","estado":"propuesta"},
+  {"pos":3,"ar":"ٱللَّهُ","tr":"l·lahu","es":"es Alá","estado":"propuesta"},
+  {"pos":4,"ar":"أَحَدٌ","tr":"ahadun","es":"Uno","estado":"propuesta"}
+ ],
+ "2": [
+  {"pos":1,"ar":"ٱللَّهُ","tr":"al·lahu","es":"Alá","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلصَّمَدُ","tr":"l·samadu","es":"el Eterno","estado":"propuesta","revisar":"aṣ-ṣamad: «el Eterno, Aquel de quien todos dependen y que no depende de nadie»"}
+ ],
+ "3": [
+  {"pos":1,"ar":"لَمْ","tr":"lam","es":"no","estado":"propuesta"},
+  {"pos":2,"ar":"يَلِدْ","tr":"yalid","es":"engendró","estado":"propuesta"},
+  {"pos":3,"ar":"وَلَمْ","tr":"walam","es":"ni","estado":"propuesta"},
+  {"pos":4,"ar":"يُولَدْ","tr":"yulad","es":"fue engendrado","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"وَلَمْ","tr":"walam","es":"y no","estado":"propuesta"},
+  {"pos":2,"ar":"يَكُن","tr":"yakun","es":"hay","estado":"propuesta"},
+  {"pos":3,"ar":"لَّهُۥ","tr":"lahu","es":"para Él","estado":"propuesta"},
+  {"pos":4,"ar":"كُفُوًا","tr":"kufuwan","es":"equivalente","estado":"propuesta"},
+  {"pos":5,"ar":"أَحَدٌۢ","tr":"ahadun","es":"alguno","estado":"propuesta"}
+ ]
+ }
+}

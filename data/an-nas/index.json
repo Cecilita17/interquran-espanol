@@ -1,0 +1,15 @@
+{
+ "capitulo": 114,
+ "sura": "An-Nas",
+ "totalAleyas": 6,
+ "aleyasConGlosas": 6,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "114-001-006.json",
+   "desde": 1,
+   "hasta": 6
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "capitulo": 111,
+ "sura": "Al-Masad",
+ "bloque": "1-5",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-al-masad.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/111-001-005.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"تَبَّتْ","tr":"tabbat","es":"perezcan","estado":"propuesta"},
+  {"pos":2,"ar":"يَدَآ","tr":"yada","es":"las manos","estado":"propuesta"},
+  {"pos":3,"ar":"أَبِى","tr":"abi","es":"de Abu","estado":"propuesta"},
+  {"pos":4,"ar":"لَهَبٍۢ","tr":"lahabin","es":"Lahab","estado":"propuesta"},
+  {"pos":5,"ar":"وَتَبَّ","tr":"watabba","es":"y ha perecido","estado":"propuesta"}
+ ],
+ "2": [
+  {"pos":1,"ar":"مَآ","tr":"ma","es":"no","estado":"propuesta"},
+  {"pos":2,"ar":"أَغْنَىٰ","tr":"agna","es":"sirvieron","estado":"propuesta"},
+  {"pos":3,"ar":"عَنْهُ","tr":"'anhu","es":"a él","estado":"propuesta"},
+  {"pos":4,"ar":"مَالُهُۥ","tr":"maluhu","es":"sus bienes","estado":"propuesta"},
+  {"pos":5,"ar":"وَمَا","tr":"wama","es":"ni","estado":"propuesta"},
+  {"pos":6,"ar":"كَسَبَ","tr":"kasaba","es":"lo que adquirió","estado":"propuesta"}
+ ],
+ "3": [
+  {"pos":1,"ar":"سَيَصْلَىٰ","tr":"sayasla","es":"arderá","estado":"propuesta"},
+  {"pos":2,"ar":"نَارًۭا","tr":"naran","es":"en un fuego","estado":"propuesta"},
+  {"pos":3,"ar":"ذَاتَ","tr":"data","es":"de","estado":"propuesta"},
+  {"pos":4,"ar":"لَهَبٍۢ","tr":"lahabin","es":"llamas","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"وَٱمْرَأَتُهُۥ","tr":"wa·im'ra·atuhu","es":"y su mujer","estado":"propuesta"},
+  {"pos":2,"ar":"حَمَّالَةَ","tr":"hammalata","es":"la portadora","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلْحَطَبِ","tr":"l·hatabi","es":"de la leña","estado":"propuesta"}
+ ],
+ "5": [
+  {"pos":1,"ar":"فِى","tr":"fi","es":"en","estado":"propuesta"},
+  {"pos":2,"ar":"جِيدِهَا","tr":"jidiha","es":"su cuello","estado":"propuesta"},
+  {"pos":3,"ar":"حَبْلٌۭ","tr":"hablun","es":"una cuerda","estado":"propuesta"},
+  {"pos":4,"ar":"مِّن","tr":"min","es":"de","estado":"propuesta"},
+  {"pos":5,"ar":"مَّسَدٍۭ","tr":"masadin","es":"fibra de palma","estado":"propuesta"}
+ ]
+ }
+}

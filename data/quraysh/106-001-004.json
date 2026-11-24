@@ -1,0 +1,35 @@
+{
+ "capitulo": 106,
+ "sura": "Quraysh",
+ "bloque": "1-4",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-quraysh.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/106-001-004.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"لِإِيلَـٰفِ","tr":"liilafi","es":"por la costumbre","estado":"propuesta","revisar":"īlāf: «costumbre / seguridad / pacto» que facilitaba las caravanas de Quraysh; la conexión con la sura anterior es discutida"},
+  {"pos":2,"ar":"قُرَيْشٍ","tr":"qurayshin","es":"de Quraysh","estado":"propuesta"}
+ ],
+ "2": [
+  {"pos":1,"ar":"إِۦلَـٰفِهِمْ","tr":"ilafihim","es":"su costumbre","estado":"propuesta"},
+  {"pos":2,"ar":"رِحْلَةَ","tr":"rih'lata","es":"del viaje","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلشِّتَآءِ","tr":"l·shitai","es":"de invierno","estado":"propuesta"},
+  {"pos":4,"ar":"وَٱلصَّيْفِ","tr":"wal·sayfi","es":"y de verano","estado":"propuesta"}
+ ],
+ "3": [
+  {"pos":1,"ar":"فَلْيَعْبُدُوا۟","tr":"falya'budu","es":"que adoren pues","estado":"propuesta"},
+  {"pos":2,"ar":"رَبَّ","tr":"rabba","es":"al Señor","estado":"propuesta"},
+  {"pos":3,"ar":"هَـٰذَا","tr":"hada","es":"de esta","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلْبَيْتِ","tr":"l·bayti","es":"Casa","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"ٱلَّذِىٓ","tr":"alladi","es":"que","estado":"propuesta"},
+  {"pos":2,"ar":"أَطْعَمَهُم","tr":"at'amahum","es":"los alimentó","estado":"propuesta"},
+  {"pos":3,"ar":"مِّن","tr":"min","es":"contra","estado":"propuesta"},
+  {"pos":4,"ar":"جُوعٍۢ","tr":"ju'in","es":"el hambre","estado":"propuesta"},
+  {"pos":5,"ar":"وَءَامَنَهُم","tr":"waamanahum","es":"y les dio seguridad","estado":"propuesta"},
+  {"pos":6,"ar":"مِّنْ","tr":"min","es":"frente a","estado":"propuesta"},
+  {"pos":7,"ar":"خَوْفٍۭ","tr":"jawfin","es":"el miedo","estado":"propuesta"}
+ ]
+ }
+}

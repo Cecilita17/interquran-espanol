@@ -1,0 +1,6 @@
+{"fuente":"Quran.com API v4 (api.quran.com/api/v4/verses/by_chapter/114?words=true), campo text_uthmani; tokens char_type_name=word","descargado":"2026-11-24","capitulo":114,"aleyas":{"1":[{"pos":1,"ar":"قُلْ","translit":"qul"},{"pos":2,"ar":"أَعُوذُ","translit":"aʿūdhu"},{"pos":3,"ar":"بِرَبِّ","translit":"birabbi"},{"pos":4,"ar":"ٱلنَّاسِ","translit":"l-nāsi"}],
+"2":[{"pos":1,"ar":"مَلِكِ","translit":"maliki"},{"pos":2,"ar":"ٱلنَّاسِ","translit":"l-nāsi"}],
+"3":[{"pos":1,"ar":"إِلَـٰهِ","translit":"ilāhi"},{"pos":2,"ar":"ٱلنَّاسِ","translit":"l-nāsi"}],
+"4":[{"pos":1,"ar":"مِن","translit":"min"},{"pos":2,"ar":"شَرِّ","translit":"sharri"},{"pos":3,"ar":"ٱلْوَسْوَاسِ","translit":"l-waswāsi"},{"pos":4,"ar":"ٱلْخَنَّاسِ","translit":"l-khanāsi"}],
+"5":[{"pos":1,"ar":"ٱلَّذِى","translit":"alladhī"},{"pos":2,"ar":"يُوَسْوِسُ","translit":"yuwaswisu"},{"pos":3,"ar":"فِى","translit":"fī"},{"pos":4,"ar":"صُدُورِ","translit":"ṣudūri"},{"pos":5,"ar":"ٱلنَّاسِ","translit":"l-nāsi"}],
+"6":[{"pos":1,"ar":"مِنَ","translit":"mina"},{"pos":2,"ar":"ٱلْجِنَّةِ","translit":"l-jinati"},{"pos":3,"ar":"وَٱلنَّاسِ","translit":"wal-nāsi"}]}}

@@ -1,0 +1,15 @@
+{
+ "capitulo": 112,
+ "sura": "Al-Ikhlas",
+ "totalAleyas": 4,
+ "aleyasConGlosas": 4,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "112-001-004.json",
+   "desde": 1,
+   "hasta": 4
+  }
+ ]
+}

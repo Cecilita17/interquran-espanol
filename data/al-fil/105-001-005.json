@@ -1,0 +1,43 @@
+{
+ "capitulo": 105,
+ "sura": "Al-Fil",
+ "bloque": "1-5",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-al-fil.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/105-001-005.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"أَلَمْ","tr":"alam","es":"¿acaso no","estado":"propuesta"},
+  {"pos":2,"ar":"تَرَ","tr":"tara","es":"has visto","estado":"propuesta"},
+  {"pos":3,"ar":"كَيْفَ","tr":"kayfa","es":"cómo","estado":"propuesta"},
+  {"pos":4,"ar":"فَعَلَ","tr":"fa'ala","es":"actuó","estado":"propuesta"},
+  {"pos":5,"ar":"رَبُّكَ","tr":"rabbuka","es":"tu Señor","estado":"propuesta"},
+  {"pos":6,"ar":"بِأَصْحَـٰبِ","tr":"bi·ashabi","es":"con los compañeros","estado":"propuesta"},
+  {"pos":7,"ar":"ٱلْفِيلِ","tr":"l·fili","es":"del elefante?","estado":"propuesta"}
+ ],
+ "2": [
+  {"pos":1,"ar":"أَلَمْ","tr":"alam","es":"¿acaso no","estado":"propuesta"},
+  {"pos":2,"ar":"يَجْعَلْ","tr":"yaj'al","es":"hizo","estado":"propuesta"},
+  {"pos":3,"ar":"كَيْدَهُمْ","tr":"kaydahum","es":"que su artimaña","estado":"propuesta"},
+  {"pos":4,"ar":"فِى","tr":"fi","es":"acabara en","estado":"propuesta"},
+  {"pos":5,"ar":"تَضْلِيلٍۢ","tr":"tadlilin","es":"fracaso?","estado":"propuesta"}
+ ],
+ "3": [
+  {"pos":1,"ar":"وَأَرْسَلَ","tr":"wa·arsala","es":"y envió","estado":"propuesta"},
+  {"pos":2,"ar":"عَلَيْهِمْ","tr":"'alayhim","es":"contra ellos","estado":"propuesta"},
+  {"pos":3,"ar":"طَيْرًا","tr":"tayran","es":"aves","estado":"propuesta"},
+  {"pos":4,"ar":"أَبَابِيلَ","tr":"ababila","es":"en bandadas","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"تَرْمِيهِم","tr":"tarmihim","es":"que los apedreaban","estado":"propuesta"},
+  {"pos":2,"ar":"بِحِجَارَةٍۢ","tr":"bihijaratin","es":"con piedras","estado":"propuesta"},
+  {"pos":3,"ar":"مِّن","tr":"min","es":"de","estado":"propuesta"},
+  {"pos":4,"ar":"سِجِّيلٍۢ","tr":"sijjilin","es":"arcilla cocida","estado":"propuesta","revisar":"siǧǧīl: «arcilla cocida / barro endurecido»"}
+ ],
+ "5": [
+  {"pos":1,"ar":"فَجَعَلَهُمْ","tr":"faja'alahum","es":"y los dejó","estado":"propuesta"},
+  {"pos":2,"ar":"كَعَصْفٍۢ","tr":"ka'asfin","es":"como paja","estado":"propuesta"},
+  {"pos":3,"ar":"مَّأْكُولٍۭ","tr":"makulin","es":"comida","estado":"propuesta"}
+ ]
+ }
+}
