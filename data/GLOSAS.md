@@ -6,11 +6,22 @@ en `tools/suras.mjs` y en `FIXED_GLOSSES` de `index.html`. Método, formato, cri
 
 | Sura | Carpeta | Aleyas | Palabras |
 |---|---|---|---|
+| 1 Al-Fatiha | `data/al-fatiha/` | 7 | 29 |
 | 2 Al-Baqarah | `data/al-baqarah/` | 286 | 6.116 |
 | 3 Al-Imran | `data/al-imran/` | 200 | 3.481 |
 | 4 An-Nisa | `data/an-nisa/` | 176 | 3.747 |
 | 5 Al-Ma'ida | `data/al-maida/` | 120 | 2.804 |
 | 6 Al-An'am | `data/al-anam/` | 165 | 3.050 |
+| 35 Fatir | `data/fatir/` | 45 | 775 |
+| 36 Ya-Sin | `data/ya-sin/` | 83 | 725 |
+| 37 As-Saffat | `data/as-saffat/` | 182 | 860 |
+| 38 Sad | `data/sad/` | 88 | 733 |
+| 39 Az-Zumar | `data/az-zumar/` | 75 | 1172 |
+| 40 Ghafir | `data/ghafir/` | 85 | 1219 |
+| 41 Fussilat | `data/fussilat/` | 54 | 794 |
+| 42 Ash-Shura | `data/ash-shura/` | 53 | 860 |
+| 43 Az-Zukhruf | `data/az-zukhruf/` | 89 | 830 |
+| 44 Ad-Dukhan | `data/ad-dukhan/` | 59 | 346 |
 | 45 Al-Jathiya | `data/al-jathiya/` | 37 | 488 |
 | 46 Al-Ahqaf | `data/al-ahqaf/` | 35 | 643 |
 | 47 Muhammad | `data/muhammad/` | 38 | 539 |

@@ -2,8 +2,19 @@
  "capitulo": 35,
  "sura": "Fatir",
  "totalAleyas": 45,
- "aleyasConGlosas": 0,
+ "aleyasConGlosas": 45,
  "aleyasRevisadas": 0,
  "estadoRevision": "propuesta (revisión humana en curso)",
- "bloques": []
+ "bloques": [
+  {
+   "archivo": "35-001-023.json",
+   "desde": 1,
+   "hasta": 23
+  },
+  {
+   "archivo": "35-024-045.json",
+   "desde": 24,
+   "hasta": 45
+  }
+ ]
 }
