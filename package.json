@@ -1,0 +1,9 @@
+{
+  "name": "interquran-espanol",
+  "private": true,
+  "type": "module",
+  "description": "InterQuran Español: lector interlineal estático con funciones serverless en /api.",
+  "dependencies": {
+    "@andresaya/edge-tts": "1.9.1"
+  }
+}
