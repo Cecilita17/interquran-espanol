@@ -2,8 +2,24 @@
  "capitulo": 37,
  "sura": "As-Saffat",
  "totalAleyas": 182,
- "aleyasConGlosas": 0,
+ "aleyasConGlosas": 182,
  "aleyasRevisadas": 0,
  "estadoRevision": "propuesta (revisión humana en curso)",
- "bloques": []
+ "bloques": [
+  {
+   "archivo": "37-001-060.json",
+   "desde": 1,
+   "hasta": 60
+  },
+  {
+   "archivo": "37-061-122.json",
+   "desde": 61,
+   "hasta": 122
+  },
+  {
+   "archivo": "37-123-182.json",
+   "desde": 123,
+   "hasta": 182
+  }
+ ]
 }
