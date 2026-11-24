@@ -1,0 +1,259 @@
+{
+  "chapter": 2,
+  "status": "draft-needs-alignment-review",
+  "reviewedVerses": "11-15",
+  "sourceArabic": "Quran.com: al-baqara/11-15",
+  "verses": {
+    "11": [
+      {
+        "ar": "وَإِذَا",
+        "es": "y cuando"
+      },
+      {
+        "ar": "قِيلَ",
+        "es": "se dice"
+      },
+      {
+        "ar": "لَهُمْ",
+        "es": "a ellos"
+      },
+      {
+        "ar": "لَا",
+        "es": "no"
+      },
+      {
+        "ar": "تُفْسِدُوا",
+        "es": "causen corrupción"
+      },
+      {
+        "ar": "فِي",
+        "es": "en"
+      },
+      {
+        "ar": "الْأَرْضِ",
+        "es": "la tierra"
+      },
+      {
+        "ar": "قَالُوا",
+        "es": "dicen"
+      },
+      {
+        "ar": "إِنَّمَا",
+        "es": "tan solo"
+      },
+      {
+        "ar": "نَحْنُ",
+        "es": "nosotros"
+      },
+      {
+        "ar": "مُصْلِحُونَ",
+        "es": "hacemos el bien"
+      }
+    ],
+    "12": [
+      {
+        "ar": "أَلَا",
+        "es": "ciertamente"
+      },
+      {
+        "ar": "إِنَّهُمْ",
+        "es": "ellos, en verdad"
+      },
+      {
+        "ar": "هُمُ",
+        "es": "son"
+      },
+      {
+        "ar": "الْمُفْسِدُونَ",
+        "es": "los corruptores"
+      },
+      {
+        "ar": "وَلَٰكِن",
+        "es": "pero"
+      },
+      {
+        "ar": "لَا",
+        "es": "no"
+      },
+      {
+        "ar": "يَشْعُرُونَ",
+        "es": "se dan cuenta"
+      }
+    ],
+    "13": [
+      {
+        "ar": "وَإِذَا",
+        "es": "y cuando"
+      },
+      {
+        "ar": "قِيلَ",
+        "es": "se dice"
+      },
+      {
+        "ar": "لَهُمْ",
+        "es": "a ellos"
+      },
+      {
+        "ar": "آمِنُوا",
+        "es": "crean"
+      },
+      {
+        "ar": "كَمَا",
+        "es": "como"
+      },
+      {
+        "ar": "آمَنَ",
+        "es": "han creído"
+      },
+      {
+        "ar": "النَّاسُ",
+        "es": "la gente"
+      },
+      {
+        "ar": "قَالُوا",
+        "es": "dicen"
+      },
+      {
+        "ar": "أَنُؤْمِنُ",
+        "es": "¿acaso creeremos?"
+      },
+      {
+        "ar": "كَمَا",
+        "es": "como"
+      },
+      {
+        "ar": "آمَنَ",
+        "es": "han creído"
+      },
+      {
+        "ar": "السُّفَهَاءُ",
+        "es": "los insensatos"
+      },
+      {
+        "ar": "أَلَا",
+        "es": "ciertamente"
+      },
+      {
+        "ar": "إِنَّهُمْ",
+        "es": "ellos, en verdad"
+      },
+      {
+        "ar": "هُمُ",
+        "es": "son"
+      },
+      {
+        "ar": "السُّفَهَاءُ",
+        "es": "los insensatos"
+      },
+      {
+        "ar": "وَلَٰكِن",
+        "es": "pero"
+      },
+      {
+        "ar": "لَا",
+        "es": "no"
+      },
+      {
+        "ar": "يَعْلَمُونَ",
+        "es": "saben"
+      }
+    ],
+    "14": [
+      {
+        "ar": "وَإِذَا",
+        "es": "y cuando"
+      },
+      {
+        "ar": "لَقُوا",
+        "es": "se encuentran con"
+      },
+      {
+        "ar": "الَّذِينَ",
+        "es": "quienes"
+      },
+      {
+        "ar": "آمَنُوا",
+        "es": "creen"
+      },
+      {
+        "ar": "قَالُوا",
+        "es": "dicen"
+      },
+      {
+        "ar": "آمَنَّا",
+        "es": "creemos"
+      },
+      {
+        "ar": "وَإِذَا",
+        "es": "pero cuando"
+      },
+      {
+        "ar": "خَلَوْا",
+        "es": "quedan a solas"
+      },
+      {
+        "ar": "إِلَىٰ",
+        "es": "con"
+      },
+      {
+        "ar": "شَيَاطِينِهِمْ",
+        "es": "sus demonios"
+      },
+      {
+        "ar": "قَالُوا",
+        "es": "dicen"
+      },
+      {
+        "ar": "إِنَّا",
+        "es": "ciertamente nosotros"
+      },
+      {
+        "ar": "مَعَكُمْ",
+        "es": "estamos con ustedes"
+      },
+      {
+        "ar": "إِنَّمَا",
+        "es": "tan solo"
+      },
+      {
+        "ar": "نَحْنُ",
+        "es": "nosotros"
+      },
+      {
+        "ar": "مُسْتَهْزِئُونَ",
+        "es": "nos burlamos"
+      }
+    ],
+    "15": [
+      {
+        "ar": "اللَّهُ",
+        "es": "Alá"
+      },
+      {
+        "ar": "يَسْتَهْزِئُ",
+        "es": "responde a sus burlas"
+      },
+      {
+        "ar": "بِهِمْ",
+        "es": "contra ellos"
+      },
+      {
+        "ar": "وَيَمُدُّهُمْ",
+        "es": "y los deja continuar"
+      },
+      {
+        "ar": "فِي",
+        "es": "en"
+      },
+      {
+        "ar": "طُغْيَانِهِمْ",
+        "es": "su rebeldía"
+      },
+      {
+        "ar": "يَعْمَهُونَ",
+        "es": "vagando ciegamente"
+      }
+    ]
+  },
+  "note": "Glosas originales para estudio; requieren confrontación con el texto Uthmani y revisión final de alineación."
+}
