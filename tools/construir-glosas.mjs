@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// Genera los glosarios estáticos de Al-Baqarah (data/al-baqarah/*.json) a partir de
-// los borradores de autoría en tools/glosas-es/*.txt y de la segmentación de
-// referencia de Quran.com guardada en data/fuentes/quran-com-al-baqarah.json.
+// Genera los glosarios estáticos (data/<sura>/*.json) de cada sura de tools/suras.mjs
+// a partir de los borradores de autoría tools/glosas-es/<capítulo>-NNN-NNN.txt y de la
+// segmentación de referencia de Quran.com guardada en data/fuentes/quran-com-<sura>.json.
 //
 // Formato de cada línea de borrador:
 //   16: aquellos | son quienes | compraron | ...
@@ -12,12 +12,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { SURAS } from './suras.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC_DIR = path.join(root, 'tools/glosas-es');
-const OUT_DIR = path.join(root, 'data/al-baqarah');
-const source = JSON.parse(fs.readFileSync(path.join(root, 'data/fuentes/quran-com-al-baqarah.json'), 'utf8'));
-// Revisión humana registrada: { "30": { "revisor": "Nombre", "fecha": "AAAA-MM-DD" } }.
+// Revisión humana registrada: { "2:30": { "revisor": "Nombre", "fecha": "AAAA-MM-DD" } }.
 // Sólo una persona que haya revisado la aleya completa debe añadirla aquí.
 const REVIEWS_FILE = path.join(root, 'tools/glosas-es/revisiones.json');
 const reviews = fs.existsSync(REVIEWS_FILE) ? JSON.parse(fs.readFileSync(REVIEWS_FILE, 'utf8')) : {};
@@ -59,12 +58,17 @@ function format(out) {
   return `${head},\n "aleyas": {\n${body}\n }\n}\n`;
 }
 
-function build() {
-  const files = fs.readdirSync(SRC_DIR).filter(f => /^2-\d{3}-\d{3}\.txt$/.test(f)).sort();
+export function build(chapter) {
+  const { slug, nombre, aleyas: total } = SURAS[chapter];
+  const OUT_DIR = path.join(root, 'data', slug);
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const source = JSON.parse(fs.readFileSync(path.join(root, `data/fuentes/quran-com-${slug}.json`), 'utf8'));
+  const fileRe = new RegExp(`^${chapter}-(\\d{3})-(\\d{3})\\.txt$`);
+  const files = fs.readdirSync(SRC_DIR).filter(f => fileRe.test(f)).sort();
   const errors = [];
   const blocks = [];
   for (const file of files) {
-    const [, from, to] = file.match(/^2-(\d{3})-(\d{3})\.txt$/).map(Number);
+    const [, from, to] = file.match(fileRe).map(Number);
     const { verses, errors: e } = parseDraft(fs.readFileSync(path.join(SRC_DIR, file), 'utf8'), file);
     errors.push(...e);
     const aleyas = {};
@@ -73,11 +77,11 @@ function build() {
       const ref = source.aleyas[num];
       if (!ref) { errors.push(`${file}: aleya ${num} no existe en la fuente`); continue; }
       if (cells.length !== ref.length) {
-        errors.push(`${file}: 2:${num} tiene ${cells.length} glosas; Quran.com tiene ${ref.length} palabras`);
+        errors.push(`${file}: ${chapter}:${num} tiene ${cells.length} glosas; Quran.com tiene ${ref.length} palabras`);
         continue;
       }
       aleyas[num] = ref.map((w, i) => {
-        const rev = reviews[num];
+        const rev = reviews[`${chapter}:${num}`];
         const entry = { pos: w.pos, ar: w.ar, tr: trES(w.translit), es: cells[i].es, estado: rev ? 'revisada' : 'propuesta' };
         if (rev) { entry.revisor = rev.revisor; entry.fecha = rev.fecha; }
         if (cells[i].revisar) entry.revisar = cells[i].revisar;
@@ -88,10 +92,10 @@ function build() {
     const missing = [];
     for (let v = from; v <= to; v++) if (!aleyas[v]) missing.push(v);
     const out = {
-      capitulo: 2,
-      sura: 'Al-Baqarah',
+      capitulo: chapter,
+      sura: nombre,
       bloque: `${from}-${to}`,
-      segmentacion: 'Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-al-baqarah.json',
+      segmentacion: `Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-${slug}.json`,
       estadoRevision: 'propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con "revisar" tienen dudas de interpretación señaladas.',
       generado: 'tools/construir-glosas.mjs desde tools/glosas-es/' + file,
       aleyas,
@@ -99,18 +103,19 @@ function build() {
     fs.writeFileSync(path.join(OUT_DIR, name), format(out));
     blocks.push({ archivo: name, desde: from, hasta: to, aleyas: Object.keys(aleyas).map(Number), faltan: missing });
   }
-  for (const [v, r] of Object.entries(reviews)) {
-    if (!source.aleyas[v]) errors.push(`revisiones.json: la aleya ${v} no existe`);
-    if (!r || typeof r.revisor !== 'string' || !r.revisor.trim() || !/^\d{4}-\d{2}-\d{2}$/.test(r.fecha || '')) errors.push(`revisiones.json: 2:${v} necesita "revisor" y "fecha" (AAAA-MM-DD)`);
+  const own = Object.entries(reviews).filter(([k]) => k.split(':')[0] === String(chapter));
+  for (const [k, r] of own) {
+    if (!source.aleyas[k.split(':')[1]]) errors.push(`revisiones.json: la aleya ${k} no existe`);
+    if (!r || typeof r.revisor !== 'string' || !r.revisor.trim() || !/^\d{4}-\d{2}-\d{2}$/.test(r.fecha || '')) errors.push(`revisiones.json: ${k} necesita "revisor" y "fecha" (AAAA-MM-DD)`);
   }
   const covered = new Set(blocks.flatMap(b => b.aleyas));
   const index = {
-    capitulo: 2,
-    sura: 'Al-Baqarah',
-    totalAleyas: 286,
+    capitulo: chapter,
+    sura: nombre,
+    totalAleyas: total,
     aleyasConGlosas: covered.size,
-    aleyasRevisadas: Object.keys(reviews).length,
-    estadoRevision: Object.keys(reviews).length === 286 ? 'revisada' : 'propuesta (revisión humana en curso)',
+    aleyasRevisadas: own.length,
+    estadoRevision: own.length === total ? 'revisada' : 'propuesta (revisión humana en curso)',
     bloques: blocks.map(({ archivo, desde, hasta }) => ({ archivo, desde, hasta })),
   };
   fs.writeFileSync(path.join(OUT_DIR, 'index.json'), JSON.stringify(index, null, 1) + '\n');
@@ -118,8 +123,12 @@ function build() {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  fs.mkdirSync(OUT_DIR, { recursive: true });
-  const { errors, covered } = build();
-  console.log(`Aleyas con glosas: ${covered.size}/286`);
+  const errors = [];
+  for (const [k, invalid] of Object.entries(reviews)) if (!/^\d+:\d+$/.test(k) || !SURAS[k.split(':')[0]]) errors.push(`revisiones.json: clave «${k}» inválida (usar "capítulo:aleya")`);
+  for (const chapter of Object.keys(SURAS).map(Number)) {
+    const r = build(chapter);
+    console.log(`${SURAS[chapter].nombre}: ${r.covered.size}/${SURAS[chapter].aleyas} aleyas con glosas`);
+    errors.push(...r.errors);
+  }
   if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
 }
