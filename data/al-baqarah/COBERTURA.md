@@ -11,10 +11,10 @@ _Generado por `node tools/validar-glosas.mjs --informe`._
 
 ## Estado de revisión
 
-Todas las glosas fueron redactadas con asistencia de IA a partir del texto árabe, palabra por palabra,
+Las glosas fueron redactadas con asistencia de IA a partir del texto árabe, palabra por palabra,
 tomando como referencia contextual traducciones españolas reconocidas (Cortés, Isa García, Melara Navío)
-y la segmentación de Quran.com. **Ninguna ha sido revisada todavía por una persona**: su estado es
-`propuesta`. Para marcar una palabra como revisada, cambiar `estado` a `revisada` e indicar `revisor`.
+y la segmentación de Quran.com. Las que no figuran como revisadas están en estado `propuesta`.
+La revisión humana se registra por aleya en `tools/glosas-es/revisiones.json`.
 
 ## Glosas que necesitan revisión humana
 

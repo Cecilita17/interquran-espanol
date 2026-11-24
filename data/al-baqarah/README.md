@@ -51,7 +51,7 @@ Los JSON se generan: para corregir una glosa, editar el `.txt` correspondiente y
 Todas las glosas tienen `estado: "propuesta"`: fueron redactadas con asistencia de IA y verificadas
 automáticamente (alineación, segmentación, formato), **pero no han sido revisadas por una persona**.
 La revisión se registra por aleya en `tools/glosas-es/revisiones.json`
-(`{"30": {"revisor": "Nombre", "fecha": "AAAA-MM-DD"}}`); al construir, todas las palabras de esa
+(`{"2:30": {"revisor": "Nombre", "fecha": "AAAA-MM-DD"}}`, clave «capítulo:aleya»); al construir, todas las palabras de esa
 aleya pasan a `estado: "revisada"` con `revisor` y `fecha`. El validador rechaza una palabra
 `revisada` sin revisor. Las correcciones de glosas se hacen en los `.txt`.
 
@@ -73,7 +73,8 @@ registrada como revisada; el lector lo indica en su línea de estado.
 
 ```sh
 node tools/construir-glosas.mjs                          # regenerar JSON
-node tools/validar-glosas.mjs --informe                  # validar y regenerar COBERTURA.md
+node tools/validar-glosas.mjs --informe                  # validar todas las suras y regenerar COBERTURA.md
+node tools/validar-glosas.mjs --sura 2                   # validar sólo una sura
 NODE_USE_ENV_PROXY=1 node tools/validar-glosas.mjs --online   # comparar además con Quran.com en vivo
-node tools/probar-lector.mjs [URL] [--sin-qdc]           # probar el lector (local o desplegado)
+node tools/probar-lector.mjs [URL] [--sura N] [--sin-qdc]  # probar el lector (local o desplegado)
 ```

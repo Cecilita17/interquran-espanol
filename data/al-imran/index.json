@@ -2,7 +2,7 @@
  "capitulo": 3,
  "sura": "Al-Imran",
  "totalAleyas": 200,
- "aleyasConGlosas": 180,
+ "aleyasConGlosas": 200,
  "aleyasRevisadas": 0,
  "estadoRevision": "propuesta (revisión humana en curso)",
  "bloques": [
@@ -50,6 +50,11 @@
    "archivo": "3-161-180.json",
    "desde": 161,
    "hasta": 180
+  },
+  {
+   "archivo": "3-181-200.json",
+   "desde": 181,
+   "hasta": 200
   }
  ]
 }
