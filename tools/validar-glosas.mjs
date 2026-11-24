@@ -50,8 +50,9 @@ if (args.has('--online')) {
 // 2. Manifiesto y bloques.
 const index = readJSON('data/al-baqarah/index.json');
 const placeholders = /^(—|-|–|\?|\.\.\.|…|undefined|null|nan|n\/a|traduciendo…?|ver traducción de la aleya)$/i;
-const placeholderAnywhere = /(undefined|\bnull\b|ver traducción de la aleya|traduciendo…|TODO|XXX|\[\?)/i;
-const english = /\b(the|of|and|they|them|their|who|which|those|indeed|verily|is|are|was|were|will|would|you|your|we|our|with|from|for|that|this|what|allah|lord|believe[ds]?|people|it|he|his|him|she|her)\b/i;
+const placeholderAnywhere = /(undefined|\bnull\b|ver traducción de la aleya|traduciendo…|\[\?)/i;
+const devMarkers = /\b(TODO|XXX|FIXME)\b/;
+const english = /\b(the|of|and|they|them|their|who|which|those|indeed|verily|is|are|was|were|will|would|you|your|we|our|with|from|for|that|this|what|allah|lord|believe[ds]?|people|it|his|him|she|her)\b/i;
 const verses = new Map();
 const reviewFlags = [];
 if (index) {
@@ -92,7 +93,7 @@ for (let v = 1; v <= 286; v++) {
     const es = typeof w.es === 'string' ? w.es.trim() : '';
     if (!es) fail(`${at}: glosa vacía`);
     else {
-      if (placeholders.test(es) || placeholderAnywhere.test(es)) fail(`${at}: placeholder en la glosa («${es}»)`);
+      if (placeholders.test(es) || placeholderAnywhere.test(es) || devMarkers.test(es)) fail(`${at}: placeholder en la glosa («${es}»)`);
       if (english.test(es)) fail(`${at}: posible glosa en inglés («${es}»)`);
       if (/[؀-ۿ]/.test(es)) fail(`${at}: la glosa contiene árabe`);
     }
