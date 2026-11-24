@@ -4,6 +4,8 @@
 //   node tools/validar-glosas.mjs --parcial  -> sólo valida las aleyas presentes (trabajo por bloques)
 //   node tools/validar-glosas.mjs --online   -> además compara la copia local con Quran.com en vivo
 //   node tools/validar-glosas.mjs --informe  -> además escribe data/al-baqarah/COBERTURA.md
+//   node tools/validar-glosas.mjs --publicacion -> además exige que las aleyas con dudas señaladas
+//                                               estén revisadas por una persona (criterio para publicar)
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -110,6 +112,11 @@ for (let v = 1; v <= 286; v++) {
   if (prevVerse && words.length > 3 && prevVerse.words.map(w => w.es).join('|') === words.map(w => w.es).join('|')) fail(`${where}: glosas idénticas a 2:${v - 1} (¿copia accidental?)`);
 }
 if (missing.length && !PARTIAL) fail(`Faltan ${missing.length} aleyas: ${compress(missing)}`);
+if (args.has('--publicacion')) {
+  const unreviewed = [...new Set(reviewFlags.map(f => f.v))].filter(v => !verses.get(v).words.every(w => w.estado === 'revisada'));
+  if (unreviewed.length) fail(`Criterio de publicación no cumplido: ${unreviewed.length} aleyas con dudas sin revisión humana (${compress(unreviewed)})`);
+  else console.log('✓ Todas las aleyas con dudas señaladas están revisadas por una persona');
+}
 
 // 4. Los JSON generados coinciden con los borradores de autoría.
 const draftDir = path.join(root, 'tools/glosas-es');

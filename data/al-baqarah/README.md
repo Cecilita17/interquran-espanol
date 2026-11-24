@@ -60,6 +60,13 @@ donde se aprueba cada aleya, se corrigen glosas y se anotan dudas. Esas decision
 después a los `.txt` y a `revisiones.json`, y se vuelven a ejecutar la construcción y la validación. Las glosas de 2:1–2:15 que existían antes también se
 revisaron y se reclasificaron como propuesta, porque tampoco tenían revisión humana registrada.
 
+## Criterio de publicación
+
+Se publica (push a `main` y despliegue) cuando las 30 aleyas con dudas señaladas están revisadas por
+una persona y registradas en `revisiones.json`. El resto de las aleyas puede publicarse en estado
+`propuesta`; el lector indica cuántas siguen pendientes de revisión humana. Comprobarlo con
+`node tools/validar-glosas.mjs --publicacion`.
+
 ## Comandos
 
 ```sh
