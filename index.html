@@ -17,27 +17,38 @@ async function openChapter(n,first=0){stop();state.chapter=n;state.i=first;view(
 
 async function applyFixedGlosses(chapter){
  if(chapter!==2)return;
- try{
-  const response=await fetch('/data/al-baqarah-es.json',{cache:'no-store'});
-  if(!response.ok)throw new Error('Glosario fijo no disponible');
-  const book=await response.json();
-  for(const [verseNumber,entries] of Object.entries(book.verses||{})){
-   const verse=state.verses[Number(verseNumber)-1];
-   if(!verse||!Array.isArray(entries))continue;
-   // No mezclar glosas y transcripciones de distintas posiciones.
-   // Si los datos remotos cambian, el árabe y el español manuales permanecen juntos.
-   const previous=verse.words||[];
-   verse.words=entries.map((entry,i)=>({
-    ar:entry.ar,es:entry.es,
-    tr:previous.length===entries.length?previous[i].tr:''
-   }));
-  }
-  $('status').textContent='Al-Baqarah: glosas manuales en español, guardadas en la aplicación (2:1–10)';
- }catch(e){
-  $('status').textContent='No se pudo cargar el glosario fijo. Revisá la conexión.';
+ const normalize=s=>String(s||'').normalize('NFKC')
+  .replace(/[\u064B-\u065F\u0670\u06D6-\u06ED\u0640]/g,'')
+  .replace(/[إأآٱ]/g,'ا').replace(/ى/g,'ي').replace(/ؤ/g,'و')
+  .replace(/ئ/g,'ي').replace(/ة/g,'ه')
+  .replace(/[^\u0621-\u064A]/g,'');
+ let applied=0,skipped=0;
+ for(const path of ['/data/al-baqarah-es.json','/data/al-baqarah-es-11-15.json']){
+  try{
+   const response=await fetch(path,{cache:'no-store'});
+   if(!response.ok)throw new Error('Archivo no disponible: '+path);
+   const book=await response.json();
+   for(const [verseNumber,entries] of Object.entries(book.verses||{})){
+    const verse=state.verses[Number(verseNumber)-1];
+    if(!verse||!Array.isArray(entries)||!entries.length){skipped++;continue}
+    // Never attach a word gloss to a different Arabic token.
+    const previous=verse.words||[];
+    const base=String(verse.ar||'').split(/\s+/).map(normalize).filter(Boolean);
+    const valid=entries.every(x=>x&&x.ar&&x.es&&typeof x.es==='string');
+    const matches=(previous.length===entries.length &&
+      previous.every((w,i)=>normalize(w.ar)===normalize(entries[i].ar))) ||
+      (base.length===entries.length &&
+      base.every((w,i)=>w===normalize(entries[i].ar)));
+    if(!valid||!matches){skipped++;continue}
+    verse.words=entries.map((entry,i)=>({
+     ar:entry.ar,es:entry.es,tr:previous.length===entries.length?previous[i].tr:''
+    }));
+    applied++;
+   }
+  }catch(e){console.warn('Glosario fijo no disponible:',path,e)}
  }
- // No presentar una traducción automática como si fuera una glosa revisada.
  state.verses.forEach(v=>v.words.forEach(w=>{if(!w.es)w.es='—'}));
+ $('status').textContent='Al-Baqarah: '+applied+' aleyas con glosas fijas en español'+(skipped?' · '+skipped+' requieren revisión de alineación':'');
 }
 
 async function translateGlosses(chapter){
