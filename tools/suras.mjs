@@ -6,6 +6,7 @@ export const SURAS = {
   2: { slug: 'al-baqarah', nombre: 'Al-Baqarah', aleyas: 286 },
   3: { slug: 'al-imran', nombre: 'Al-Imran', aleyas: 200 },
   4: { slug: 'an-nisa', nombre: 'An-Nisa', aleyas: 176 },
+  5: { slug: 'al-maida', nombre: "Al-Ma'ida", aleyas: 120 },
   105: { slug: 'al-fil', nombre: 'Al-Fil', aleyas: 5 },
   106: { slug: 'quraysh', nombre: 'Quraysh', aleyas: 4 },
   107: { slug: 'al-maun', nombre: "Al-Ma'un", aleyas: 7 },
