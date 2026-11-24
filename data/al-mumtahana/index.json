@@ -1,0 +1,15 @@
+{
+ "capitulo": 60,
+ "sura": "Al-Mumtahana",
+ "totalAleyas": 13,
+ "aleyasConGlosas": 13,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "60-001-013.json",
+   "desde": 1,
+   "hasta": 13
+  }
+ ]
+}

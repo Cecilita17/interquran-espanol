@@ -11,6 +11,16 @@ en `tools/suras.mjs` y en `FIXED_GLOSSES` de `index.html`. Método, formato, cri
 | 4 An-Nisa | `data/an-nisa/` | 176 | 3.747 |
 | 5 Al-Ma'ida | `data/al-maida/` | 120 | 2.804 |
 | 6 Al-An'am | `data/al-anam/` | 165 | 3.050 |
+| 55 Ar-Rahman | `data/ar-rahman/` | 78 | 351 |
+| 56 Al-Waqi'a | `data/al-waqia/` | 96 | 379 |
+| 57 Al-Hadid | `data/al-hadid/` | 29 | 574 |
+| 58 Al-Mujadila | `data/al-mujadila/` | 22 | 472 |
+| 59 Al-Hashr | `data/al-hashr/` | 24 | 445 |
+| 60 Al-Mumtahana | `data/al-mumtahana/` | 13 | 348 |
+| 61 As-Saff | `data/as-saff/` | 14 | 221 |
+| 62 Al-Jumu'a | `data/al-jumua/` | 11 | 175 |
+| 63 Al-Munafiqun | `data/al-munafiqun/` | 11 | 180 |
+| 64 At-Taghabun | `data/at-taghabun/` | 18 | 241 |
 | 65 At-Talaq | `data/at-talaq/` | 12 | 287 |
 | 66 At-Tahrim | `data/at-tahrim/` | 12 | 249 |
 | 67 Al-Mulk | `data/al-mulk/` | 30 | 333 |

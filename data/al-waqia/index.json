@@ -1,0 +1,15 @@
+{
+ "capitulo": 56,
+ "sura": "Al-Waqi'a",
+ "totalAleyas": 96,
+ "aleyasConGlosas": 96,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "56-001-096.json",
+   "desde": 1,
+   "hasta": 96
+  }
+ ]
+}

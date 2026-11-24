@@ -1,0 +1,15 @@
+{
+ "capitulo": 58,
+ "sura": "Al-Mujadila",
+ "totalAleyas": 22,
+ "aleyasConGlosas": 22,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "58-001-022.json",
+   "desde": 1,
+   "hasta": 22
+  }
+ ]
+}

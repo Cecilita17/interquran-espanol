@@ -1,0 +1,15 @@
+{
+ "capitulo": 61,
+ "sura": "As-Saff",
+ "totalAleyas": 14,
+ "aleyasConGlosas": 14,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "61-001-014.json",
+   "desde": 1,
+   "hasta": 14
+  }
+ ]
+}
