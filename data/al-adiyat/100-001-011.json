@@ -1,0 +1,72 @@
+{
+ "capitulo": 100,
+ "sura": "Al-Adiyat",
+ "bloque": "1-11",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-al-adiyat.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/100-001-011.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"وَٱلْعَـٰدِيَـٰتِ","tr":"wal·'adiyati","es":"¡por las que corren","estado":"propuesta","revisar":"al-ʿādiyāt: se entiende por lo general como los caballos de guerra; otras interpretaciones las ven como camellos de peregrinos"},
+  {"pos":2,"ar":"ضَبْحًۭا","tr":"dabhan","es":"jadeando!","estado":"propuesta"}
+ ],
+ "2": [
+  {"pos":1,"ar":"فَٱلْمُورِيَـٰتِ","tr":"fal·muriyati","es":"y las que sacan","estado":"propuesta"},
+  {"pos":2,"ar":"قَدْحًۭا","tr":"qadan","es":"chispas","estado":"propuesta"}
+ ],
+ "3": [
+  {"pos":1,"ar":"فَٱلْمُغِيرَٰتِ","tr":"fal·mugirati","es":"y las que asaltan","estado":"propuesta"},
+  {"pos":2,"ar":"صُبْحًۭا","tr":"sub'han","es":"al amanecer","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"فَأَثَرْنَ","tr":"fa·azarna","es":"y levantan","estado":"propuesta"},
+  {"pos":2,"ar":"بِهِۦ","tr":"bihi","es":"con ello","estado":"propuesta"},
+  {"pos":3,"ar":"نَقْعًۭا","tr":"naq'an","es":"polvo","estado":"propuesta"}
+ ],
+ "5": [
+  {"pos":1,"ar":"فَوَسَطْنَ","tr":"fawasatna","es":"y penetran","estado":"propuesta"},
+  {"pos":2,"ar":"بِهِۦ","tr":"bihi","es":"con ello","estado":"propuesta"},
+  {"pos":3,"ar":"جَمْعًا","tr":"jam'an","es":"en medio de la multitud","estado":"propuesta"}
+ ],
+ "6": [
+  {"pos":1,"ar":"إِنَّ","tr":"inna","es":"ciertamente","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلْإِنسَـٰنَ","tr":"l·insana","es":"el ser humano","estado":"propuesta"},
+  {"pos":3,"ar":"لِرَبِّهِۦ","tr":"lirabbihi","es":"para su Señor","estado":"propuesta"},
+  {"pos":4,"ar":"لَكَنُودٌۭ","tr":"lakanudun","es":"es sin duda ingrato","estado":"propuesta"}
+ ],
+ "7": [
+  {"pos":1,"ar":"وَإِنَّهُۥ","tr":"wa·innahu","es":"y ciertamente él","estado":"propuesta"},
+  {"pos":2,"ar":"عَلَىٰ","tr":"'ala","es":"sobre","estado":"propuesta"},
+  {"pos":3,"ar":"ذَٰلِكَ","tr":"dalika","es":"eso","estado":"propuesta"},
+  {"pos":4,"ar":"لَشَهِيدٌۭ","tr":"lashahidun","es":"es sin duda testigo","estado":"propuesta"}
+ ],
+ "8": [
+  {"pos":1,"ar":"وَإِنَّهُۥ","tr":"wa·innahu","es":"y ciertamente él","estado":"propuesta"},
+  {"pos":2,"ar":"لِحُبِّ","tr":"lihubbi","es":"por amor a","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلْخَيْرِ","tr":"l·jayri","es":"los bienes","estado":"propuesta"},
+  {"pos":4,"ar":"لَشَدِيدٌ","tr":"lashadidun","es":"es sin duda vehemente","estado":"propuesta"}
+ ],
+ "9": [
+  {"pos":1,"ar":"۞ أَفَلَا","tr":"afala","es":"¿acaso no","estado":"propuesta"},
+  {"pos":2,"ar":"يَعْلَمُ","tr":"ya'lamu","es":"sabe","estado":"propuesta"},
+  {"pos":3,"ar":"إِذَا","tr":"ida","es":"cuando","estado":"propuesta"},
+  {"pos":4,"ar":"بُعْثِرَ","tr":"bu''zira","es":"sea removido","estado":"propuesta"},
+  {"pos":5,"ar":"مَا","tr":"ma","es":"lo que","estado":"propuesta"},
+  {"pos":6,"ar":"فِى","tr":"fi","es":"hay en","estado":"propuesta"},
+  {"pos":7,"ar":"ٱلْقُبُورِ","tr":"l·quburi","es":"las tumbas?","estado":"propuesta"}
+ ],
+ "10": [
+  {"pos":1,"ar":"وَحُصِّلَ","tr":"wahussila","es":"y sea sacado a la luz","estado":"propuesta"},
+  {"pos":2,"ar":"مَا","tr":"ma","es":"lo que","estado":"propuesta"},
+  {"pos":3,"ar":"فِى","tr":"fi","es":"hay en","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلصُّدُورِ","tr":"l·suduri","es":"los pechos","estado":"propuesta"}
+ ],
+ "11": [
+  {"pos":1,"ar":"إِنَّ","tr":"inna","es":"ciertamente","estado":"propuesta"},
+  {"pos":2,"ar":"رَبَّهُم","tr":"rabbahum","es":"su Señor","estado":"propuesta"},
+  {"pos":3,"ar":"بِهِمْ","tr":"bihim","es":"de ellos","estado":"propuesta"},
+  {"pos":4,"ar":"يَوْمَئِذٍۢ","tr":"yawma·idin","es":"ese día","estado":"propuesta"},
+  {"pos":5,"ar":"لَّخَبِيرٌۢ","tr":"lajabirun","es":"está sin duda bien informado","estado":"propuesta"}
+ ]
+ }
+}

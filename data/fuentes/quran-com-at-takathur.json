@@ -1,0 +1,8 @@
+{"fuente":"Quran.com API v4 (api.quran.com/api/v4/verses/by_chapter/102?words=true), campo text_uthmani; tokens char_type_name=word","descargado":"2026-11-24","capitulo":102,"aleyas":{"1":[{"pos":1,"ar":"أَلْهَىٰكُمُ","translit":"alhākumu"},{"pos":2,"ar":"ٱلتَّكَاثُرُ","translit":"l-takāthuru"}],
+"2":[{"pos":1,"ar":"حَتَّىٰ","translit":"ḥattā"},{"pos":2,"ar":"زُرْتُمُ","translit":"zur'tumu"},{"pos":3,"ar":"ٱلْمَقَابِرَ","translit":"l-maqābira"}],
+"3":[{"pos":1,"ar":"كَلَّا","translit":"kallā"},{"pos":2,"ar":"سَوْفَ","translit":"sawfa"},{"pos":3,"ar":"تَعْلَمُونَ","translit":"taʿlamūna"}],
+"4":[{"pos":1,"ar":"ثُمَّ","translit":"thumma"},{"pos":2,"ar":"كَلَّا","translit":"kallā"},{"pos":3,"ar":"سَوْفَ","translit":"sawfa"},{"pos":4,"ar":"تَعْلَمُونَ","translit":"taʿlamūna"}],
+"5":[{"pos":1,"ar":"كَلَّا","translit":"kallā"},{"pos":2,"ar":"لَوْ","translit":"law"},{"pos":3,"ar":"تَعْلَمُونَ","translit":"taʿlamūna"},{"pos":4,"ar":"عِلْمَ","translit":"ʿil'ma"},{"pos":5,"ar":"ٱلْيَقِينِ","translit":"l-yaqīni"}],
+"6":[{"pos":1,"ar":"لَتَرَوُنَّ","translit":"latarawunna"},{"pos":2,"ar":"ٱلْجَحِيمَ","translit":"l-jaḥīma"}],
+"7":[{"pos":1,"ar":"ثُمَّ","translit":"thumma"},{"pos":2,"ar":"لَتَرَوُنَّهَا","translit":"latarawunnahā"},{"pos":3,"ar":"عَيْنَ","translit":"ʿayna"},{"pos":4,"ar":"ٱلْيَقِينِ","translit":"l-yaqīni"}],
+"8":[{"pos":1,"ar":"ثُمَّ","translit":"thumma"},{"pos":2,"ar":"لَتُسْـَٔلُنَّ","translit":"latus'alunna"},{"pos":3,"ar":"يَوْمَئِذٍ","translit":"yawma-idhin"},{"pos":4,"ar":"عَنِ","translit":"ʿani"},{"pos":5,"ar":"ٱلنَّعِيمِ","translit":"l-naʿīmi"}]}}

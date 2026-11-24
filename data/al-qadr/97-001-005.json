@@ -1,0 +1,50 @@
+{
+ "capitulo": 97,
+ "sura": "Al-Qadr",
+ "bloque": "1-5",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-al-qadr.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/97-001-005.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"إِنَّآ","tr":"inna","es":"ciertamente Nosotros","estado":"propuesta"},
+  {"pos":2,"ar":"أَنزَلْنَـٰهُ","tr":"anzalnahu","es":"lo hicimos descender","estado":"propuesta"},
+  {"pos":3,"ar":"فِى","tr":"fi","es":"en","estado":"propuesta"},
+  {"pos":4,"ar":"لَيْلَةِ","tr":"laylati","es":"la noche","estado":"propuesta"},
+  {"pos":5,"ar":"ٱلْقَدْرِ","tr":"l·qadri","es":"del Decreto","estado":"propuesta","revisar":"laylat al-qadr: «noche del Decreto / del Poder / de la Determinación»"}
+ ],
+ "2": [
+  {"pos":1,"ar":"وَمَآ","tr":"wama","es":"¿y qué","estado":"propuesta"},
+  {"pos":2,"ar":"أَدْرَىٰكَ","tr":"adraka","es":"te hará saber","estado":"propuesta"},
+  {"pos":3,"ar":"مَا","tr":"ma","es":"qué es","estado":"propuesta"},
+  {"pos":4,"ar":"لَيْلَةُ","tr":"laylatu","es":"la noche","estado":"propuesta"},
+  {"pos":5,"ar":"ٱلْقَدْرِ","tr":"l·qadri","es":"del Decreto?","estado":"propuesta"}
+ ],
+ "3": [
+  {"pos":1,"ar":"لَيْلَةُ","tr":"laylatu","es":"la noche","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلْقَدْرِ","tr":"l·qadri","es":"del Decreto","estado":"propuesta"},
+  {"pos":3,"ar":"خَيْرٌۭ","tr":"jayrun","es":"es mejor","estado":"propuesta"},
+  {"pos":4,"ar":"مِّنْ","tr":"min","es":"que","estado":"propuesta"},
+  {"pos":5,"ar":"أَلْفِ","tr":"alfi","es":"mil","estado":"propuesta"},
+  {"pos":6,"ar":"شَهْرٍۢ","tr":"shahrin","es":"meses","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"تَنَزَّلُ","tr":"tanazzalu","es":"descienden","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلْمَلَـٰٓئِكَةُ","tr":"l·malaikatu","es":"los ángeles","estado":"propuesta"},
+  {"pos":3,"ar":"وَٱلرُّوحُ","tr":"wal·ruhu","es":"y el Espíritu","estado":"propuesta"},
+  {"pos":4,"ar":"فِيهَا","tr":"fiha","es":"en ella","estado":"propuesta"},
+  {"pos":5,"ar":"بِإِذْنِ","tr":"bi·id'ni","es":"con permiso","estado":"propuesta"},
+  {"pos":6,"ar":"رَبِّهِم","tr":"rabbihim","es":"de su Señor","estado":"propuesta"},
+  {"pos":7,"ar":"مِّن","tr":"min","es":"por","estado":"propuesta"},
+  {"pos":8,"ar":"كُلِّ","tr":"kulli","es":"todo","estado":"propuesta"},
+  {"pos":9,"ar":"أَمْرٍۢ","tr":"amrin","es":"asunto","estado":"propuesta"}
+ ],
+ "5": [
+  {"pos":1,"ar":"سَلَـٰمٌ","tr":"salamun","es":"paz","estado":"propuesta"},
+  {"pos":2,"ar":"هِىَ","tr":"hiya","es":"es ella","estado":"propuesta"},
+  {"pos":3,"ar":"حَتَّىٰ","tr":"hatta","es":"hasta","estado":"propuesta"},
+  {"pos":4,"ar":"مَطْلَعِ","tr":"matla'i","es":"la salida","estado":"propuesta"},
+  {"pos":5,"ar":"ٱلْفَجْرِ","tr":"l·fajri","es":"del alba","estado":"propuesta"}
+ ]
+ }
+}

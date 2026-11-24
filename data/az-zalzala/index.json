@@ -1,0 +1,15 @@
+{
+ "capitulo": 99,
+ "sura": "Az-Zalzala",
+ "totalAleyas": 8,
+ "aleyasConGlosas": 8,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "99-001-008.json",
+   "desde": 1,
+   "hasta": 8
+  }
+ ]
+}

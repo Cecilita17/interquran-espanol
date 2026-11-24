@@ -1,0 +1,62 @@
+{
+ "capitulo": 99,
+ "sura": "Az-Zalzala",
+ "bloque": "1-8",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-az-zalzala.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/99-001-008.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"إِذَا","tr":"ida","es":"cuando","estado":"propuesta"},
+  {"pos":2,"ar":"زُلْزِلَتِ","tr":"zul'zilati","es":"sea sacudida","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلْأَرْضُ","tr":"l·ardu","es":"la tierra","estado":"propuesta"},
+  {"pos":4,"ar":"زِلْزَالَهَا","tr":"zil'zalaha","es":"con su terremoto","estado":"propuesta"}
+ ],
+ "2": [
+  {"pos":1,"ar":"وَأَخْرَجَتِ","tr":"wa·ajrajati","es":"y saque","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلْأَرْضُ","tr":"l·ardu","es":"la tierra","estado":"propuesta"},
+  {"pos":3,"ar":"أَثْقَالَهَا","tr":"azqalaha","es":"sus cargas","estado":"propuesta"}
+ ],
+ "3": [
+  {"pos":1,"ar":"وَقَالَ","tr":"waqala","es":"y diga","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلْإِنسَـٰنُ","tr":"l·insanu","es":"el ser humano","estado":"propuesta"},
+  {"pos":3,"ar":"مَا","tr":"ma","es":"¿qué","estado":"propuesta"},
+  {"pos":4,"ar":"لَهَا","tr":"laha","es":"le pasa?","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"يَوْمَئِذٍۢ","tr":"yawma·idin","es":"ese día","estado":"propuesta"},
+  {"pos":2,"ar":"تُحَدِّثُ","tr":"tuhaddizu","es":"contará","estado":"propuesta"},
+  {"pos":3,"ar":"أَخْبَارَهَا","tr":"ajbaraha","es":"sus noticias","estado":"propuesta"}
+ ],
+ "5": [
+  {"pos":1,"ar":"بِأَنَّ","tr":"bi·anna","es":"porque","estado":"propuesta"},
+  {"pos":2,"ar":"رَبَّكَ","tr":"rabbaka","es":"tu Señor","estado":"propuesta"},
+  {"pos":3,"ar":"أَوْحَىٰ","tr":"awha","es":"le ha inspirado","estado":"propuesta"},
+  {"pos":4,"ar":"لَهَا","tr":"laha","es":"a ella","estado":"propuesta"}
+ ],
+ "6": [
+  {"pos":1,"ar":"يَوْمَئِذٍۢ","tr":"yawma·idin","es":"ese día","estado":"propuesta"},
+  {"pos":2,"ar":"يَصْدُرُ","tr":"yasduru","es":"saldrán","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلنَّاسُ","tr":"l·nasu","es":"los hombres","estado":"propuesta"},
+  {"pos":4,"ar":"أَشْتَاتًۭا","tr":"ashtatan","es":"en grupos dispersos","estado":"propuesta"},
+  {"pos":5,"ar":"لِّيُرَوْا۟","tr":"liyuraw","es":"para que se les muestren","estado":"propuesta"},
+  {"pos":6,"ar":"أَعْمَـٰلَهُمْ","tr":"a'malahum","es":"sus obras","estado":"propuesta"}
+ ],
+ "7": [
+  {"pos":1,"ar":"فَمَن","tr":"faman","es":"así que quien","estado":"propuesta"},
+  {"pos":2,"ar":"يَعْمَلْ","tr":"ya'mal","es":"haga","estado":"propuesta"},
+  {"pos":3,"ar":"مِثْقَالَ","tr":"miz'qala","es":"el peso","estado":"propuesta"},
+  {"pos":4,"ar":"ذَرَّةٍ","tr":"darratin","es":"de una partícula","estado":"propuesta"},
+  {"pos":5,"ar":"خَيْرًۭا","tr":"jayran","es":"de bien","estado":"propuesta"},
+  {"pos":6,"ar":"يَرَهُۥ","tr":"yarahu","es":"lo verá","estado":"propuesta"}
+ ],
+ "8": [
+  {"pos":1,"ar":"وَمَن","tr":"waman","es":"y quien","estado":"propuesta"},
+  {"pos":2,"ar":"يَعْمَلْ","tr":"ya'mal","es":"haga","estado":"propuesta"},
+  {"pos":3,"ar":"مِثْقَالَ","tr":"miz'qala","es":"el peso","estado":"propuesta"},
+  {"pos":4,"ar":"ذَرَّةٍۢ","tr":"darratin","es":"de una partícula","estado":"propuesta"},
+  {"pos":5,"ar":"شَرًّۭا","tr":"sharran","es":"de mal","estado":"propuesta"},
+  {"pos":6,"ar":"يَرَهُۥ","tr":"yarahu","es":"lo verá","estado":"propuesta"}
+ ]
+ }
+}

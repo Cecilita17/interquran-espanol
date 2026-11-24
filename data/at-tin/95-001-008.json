@@ -1,0 +1,60 @@
+{
+ "capitulo": 95,
+ "sura": "At-Tin",
+ "bloque": "1-8",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-at-tin.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/95-001-008.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"وَٱلتِّينِ","tr":"wal·tini","es":"¡por el higo","estado":"propuesta","revisar":"al-tīn wa-l-zaytūn: «el higo y el olivo»; se entienden como los frutos, o como lugares (monte de los olivos, etc.), según los exegetas"},
+  {"pos":2,"ar":"وَٱلزَّيْتُونِ","tr":"wal·zaytuni","es":"y el olivo!","estado":"propuesta"}
+ ],
+ "2": [
+  {"pos":1,"ar":"وَطُورِ","tr":"waturi","es":"y por el monte","estado":"propuesta"},
+  {"pos":2,"ar":"سِينِينَ","tr":"sinina","es":"Sinaí","estado":"propuesta"}
+ ],
+ "3": [
+  {"pos":1,"ar":"وَهَـٰذَا","tr":"wahada","es":"y por esta","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلْبَلَدِ","tr":"l·baladi","es":"ciudad","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلْأَمِينِ","tr":"l·amini","es":"segura","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"لَقَدْ","tr":"laqad","es":"ciertamente","estado":"propuesta"},
+  {"pos":2,"ar":"خَلَقْنَا","tr":"jalaqna","es":"creamos","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلْإِنسَـٰنَ","tr":"l·insana","es":"al ser humano","estado":"propuesta"},
+  {"pos":4,"ar":"فِىٓ","tr":"fi","es":"en","estado":"propuesta"},
+  {"pos":5,"ar":"أَحْسَنِ","tr":"ahsani","es":"la mejor","estado":"propuesta"},
+  {"pos":6,"ar":"تَقْوِيمٍۢ","tr":"taqwimin","es":"forma","estado":"propuesta"}
+ ],
+ "5": [
+  {"pos":1,"ar":"ثُمَّ","tr":"zumma","es":"luego","estado":"propuesta"},
+  {"pos":2,"ar":"رَدَدْنَـٰهُ","tr":"radadnahu","es":"lo devolvimos","estado":"propuesta"},
+  {"pos":3,"ar":"أَسْفَلَ","tr":"asfala","es":"al más bajo","estado":"propuesta"},
+  {"pos":4,"ar":"سَـٰفِلِينَ","tr":"safilina","es":"de los bajos","estado":"propuesta"}
+ ],
+ "6": [
+  {"pos":1,"ar":"إِلَّا","tr":"illa","es":"salvo","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلَّذِينَ","tr":"alladina","es":"quienes","estado":"propuesta"},
+  {"pos":3,"ar":"ءَامَنُوا۟","tr":"amanu","es":"creen","estado":"propuesta"},
+  {"pos":4,"ar":"وَعَمِلُوا۟","tr":"wa'amilu","es":"y hacen","estado":"propuesta"},
+  {"pos":5,"ar":"ٱلصَّـٰلِحَـٰتِ","tr":"l·salihati","es":"las buenas obras","estado":"propuesta"},
+  {"pos":6,"ar":"فَلَهُمْ","tr":"falahum","es":"pues ellos","estado":"propuesta"},
+  {"pos":7,"ar":"أَجْرٌ","tr":"ajrun","es":"tendrán una recompensa","estado":"propuesta"},
+  {"pos":8,"ar":"غَيْرُ","tr":"gayru","es":"sin","estado":"propuesta"},
+  {"pos":9,"ar":"مَمْنُونٍۢ","tr":"mamnunin","es":"interrupción","estado":"propuesta"}
+ ],
+ "7": [
+  {"pos":1,"ar":"فَمَا","tr":"fama","es":"¿entonces qué","estado":"propuesta"},
+  {"pos":2,"ar":"يُكَذِّبُكَ","tr":"yukadibuka","es":"te hace desmentir","estado":"propuesta"},
+  {"pos":3,"ar":"بَعْدُ","tr":"ba'du","es":"después","estado":"propuesta"},
+  {"pos":4,"ar":"بِٱلدِّينِ","tr":"bil·dini","es":"del juicio?","estado":"propuesta"}
+ ],
+ "8": [
+  {"pos":1,"ar":"أَلَيْسَ","tr":"alaysa","es":"¿acaso no es","estado":"propuesta"},
+  {"pos":2,"ar":"ٱللَّهُ","tr":"l·lahu","es":"Alá","estado":"propuesta"},
+  {"pos":3,"ar":"بِأَحْكَمِ","tr":"bi·ahkami","es":"el más justo","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلْحَـٰكِمِينَ","tr":"l·hakimina","es":"de los jueces?","estado":"propuesta"}
+ ]
+ }
+}

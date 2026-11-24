@@ -1,0 +1,15 @@
+{
+ "capitulo": 104,
+ "sura": "Al-Humaza",
+ "totalAleyas": 9,
+ "aleyasConGlosas": 9,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "104-001-009.json",
+   "desde": 1,
+   "hasta": 9
+  }
+ ]
+}

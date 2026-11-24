@@ -1,0 +1,30 @@
+{
+ "capitulo": 103,
+ "sura": "Al-Asr",
+ "bloque": "1-3",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-al-asr.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/103-001-003.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"وَٱلْعَصْرِ","tr":"wal·'asri","es":"¡por el tiempo!","estado":"propuesta","revisar":"al-ʿaṣr: «el tiempo / la época / la tarde»; el sentido exacto es discutido"}
+ ],
+ "2": [
+  {"pos":1,"ar":"إِنَّ","tr":"inna","es":"ciertamente","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلْإِنسَـٰنَ","tr":"l·insana","es":"el ser humano","estado":"propuesta"},
+  {"pos":3,"ar":"لَفِى","tr":"lafi","es":"está sin duda en","estado":"propuesta"},
+  {"pos":4,"ar":"خُسْرٍ","tr":"jus'rin","es":"pérdida","estado":"propuesta"}
+ ],
+ "3": [
+  {"pos":1,"ar":"إِلَّا","tr":"illa","es":"salvo","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلَّذِينَ","tr":"alladina","es":"quienes","estado":"propuesta"},
+  {"pos":3,"ar":"ءَامَنُوا۟","tr":"amanu","es":"creen","estado":"propuesta"},
+  {"pos":4,"ar":"وَعَمِلُوا۟","tr":"wa'amilu","es":"y hacen","estado":"propuesta"},
+  {"pos":5,"ar":"ٱلصَّـٰلِحَـٰتِ","tr":"l·salihati","es":"las buenas obras","estado":"propuesta"},
+  {"pos":6,"ar":"وَتَوَاصَوْا۟","tr":"watawasaw","es":"y se exhortan","estado":"propuesta"},
+  {"pos":7,"ar":"بِٱلْحَقِّ","tr":"bil·haqi","es":"a la verdad","estado":"propuesta"},
+  {"pos":8,"ar":"وَتَوَاصَوْا۟","tr":"watawasaw","es":"y se exhortan","estado":"propuesta"},
+  {"pos":9,"ar":"بِٱلصَّبْرِ","tr":"bil·sabri","es":"a la paciencia","estado":"propuesta"}
+ ]
+ }
+}

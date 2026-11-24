@@ -1,0 +1,54 @@
+{
+ "capitulo": 102,
+ "sura": "At-Takathur",
+ "bloque": "1-8",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-at-takathur.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/102-001-008.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"أَلْهَىٰكُمُ","tr":"alhakumu","es":"los distrae","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلتَّكَاثُرُ","tr":"l·takazuru","es":"la rivalidad por acumular","estado":"propuesta"}
+ ],
+ "2": [
+  {"pos":1,"ar":"حَتَّىٰ","tr":"hatta","es":"hasta que","estado":"propuesta"},
+  {"pos":2,"ar":"زُرْتُمُ","tr":"zur'tumu","es":"visiten","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلْمَقَابِرَ","tr":"l·maqabira","es":"las tumbas","estado":"propuesta"}
+ ],
+ "3": [
+  {"pos":1,"ar":"كَلَّا","tr":"kalla","es":"¡no!","estado":"propuesta"},
+  {"pos":2,"ar":"سَوْفَ","tr":"sawfa","es":"pronto","estado":"propuesta"},
+  {"pos":3,"ar":"تَعْلَمُونَ","tr":"ta'lamuna","es":"sabrán","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"ثُمَّ","tr":"zumma","es":"luego","estado":"propuesta"},
+  {"pos":2,"ar":"كَلَّا","tr":"kalla","es":"¡no!","estado":"propuesta"},
+  {"pos":3,"ar":"سَوْفَ","tr":"sawfa","es":"pronto","estado":"propuesta"},
+  {"pos":4,"ar":"تَعْلَمُونَ","tr":"ta'lamuna","es":"sabrán","estado":"propuesta"}
+ ],
+ "5": [
+  {"pos":1,"ar":"كَلَّا","tr":"kalla","es":"¡no!","estado":"propuesta"},
+  {"pos":2,"ar":"لَوْ","tr":"law","es":"si","estado":"propuesta"},
+  {"pos":3,"ar":"تَعْلَمُونَ","tr":"ta'lamuna","es":"supieran","estado":"propuesta"},
+  {"pos":4,"ar":"عِلْمَ","tr":"'il'ma","es":"con ciencia","estado":"propuesta"},
+  {"pos":5,"ar":"ٱلْيَقِينِ","tr":"l·yaqini","es":"de la certeza","estado":"propuesta"}
+ ],
+ "6": [
+  {"pos":1,"ar":"لَتَرَوُنَّ","tr":"latarawunna","es":"sin duda verán","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلْجَحِيمَ","tr":"l·jahima","es":"el Infierno","estado":"propuesta"}
+ ],
+ "7": [
+  {"pos":1,"ar":"ثُمَّ","tr":"zumma","es":"luego","estado":"propuesta"},
+  {"pos":2,"ar":"لَتَرَوُنَّهَا","tr":"latarawunnaha","es":"sin duda lo verán","estado":"propuesta"},
+  {"pos":3,"ar":"عَيْنَ","tr":"'ayna","es":"con el ojo","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلْيَقِينِ","tr":"l·yaqini","es":"de la certeza","estado":"propuesta"}
+ ],
+ "8": [
+  {"pos":1,"ar":"ثُمَّ","tr":"zumma","es":"luego","estado":"propuesta"},
+  {"pos":2,"ar":"لَتُسْـَٔلُنَّ","tr":"latus'alunna","es":"sin duda se les preguntará","estado":"propuesta"},
+  {"pos":3,"ar":"يَوْمَئِذٍ","tr":"yawma·idin","es":"ese día","estado":"propuesta"},
+  {"pos":4,"ar":"عَنِ","tr":"'ani","es":"sobre","estado":"propuesta"},
+  {"pos":5,"ar":"ٱلنَّعِيمِ","tr":"l·na'imi","es":"las delicias","estado":"propuesta"}
+ ]
+ }
+}

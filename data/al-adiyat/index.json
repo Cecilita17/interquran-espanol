@@ -1,0 +1,15 @@
+{
+ "capitulo": 100,
+ "sura": "Al-Adiyat",
+ "totalAleyas": 11,
+ "aleyasConGlosas": 11,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "100-001-011.json",
+   "desde": 1,
+   "hasta": 11
+  }
+ ]
+}

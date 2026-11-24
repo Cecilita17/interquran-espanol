@@ -1,0 +1,61 @@
+{
+ "capitulo": 104,
+ "sura": "Al-Humaza",
+ "bloque": "1-9",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-al-humaza.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/104-001-009.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"وَيْلٌۭ","tr":"waylun","es":"¡ay","estado":"propuesta"},
+  {"pos":2,"ar":"لِّكُلِّ","tr":"likulli","es":"de todo","estado":"propuesta"},
+  {"pos":3,"ar":"هُمَزَةٍۢ","tr":"humazatin","es":"difamador","estado":"propuesta","revisar":"humaza / lumaza: «difamador / calumniador / burlón»; el matiz entre ambos términos es discutido"},
+  {"pos":4,"ar":"لُّمَزَةٍ","tr":"lumazatin","es":"burlón!","estado":"propuesta"}
+ ],
+ "2": [
+  {"pos":1,"ar":"ٱلَّذِى","tr":"alladi","es":"el que","estado":"propuesta"},
+  {"pos":2,"ar":"جَمَعَ","tr":"jama'a","es":"acumuló","estado":"propuesta"},
+  {"pos":3,"ar":"مَالًۭا","tr":"malan","es":"riqueza","estado":"propuesta"},
+  {"pos":4,"ar":"وَعَدَّدَهُۥ","tr":"wa'addadahu","es":"y la contó","estado":"propuesta"}
+ ],
+ "3": [
+  {"pos":1,"ar":"يَحْسَبُ","tr":"yahsabu","es":"piensa","estado":"propuesta"},
+  {"pos":2,"ar":"أَنَّ","tr":"anna","es":"que","estado":"propuesta"},
+  {"pos":3,"ar":"مَالَهُۥٓ","tr":"malahu","es":"su riqueza","estado":"propuesta"},
+  {"pos":4,"ar":"أَخْلَدَهُۥ","tr":"ajladahu","es":"lo hará eterno","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"كَلَّا ۖ","tr":"kalla","es":"¡no!","estado":"propuesta"},
+  {"pos":2,"ar":"لَيُنۢبَذَنَّ","tr":"layunbadanna","es":"será arrojado sin duda","estado":"propuesta"},
+  {"pos":3,"ar":"فِى","tr":"fi","es":"a","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلْحُطَمَةِ","tr":"l·hutamati","es":"la Quebrantadora (al-Hutama)","estado":"propuesta"}
+ ],
+ "5": [
+  {"pos":1,"ar":"وَمَآ","tr":"wama","es":"¿y qué","estado":"propuesta"},
+  {"pos":2,"ar":"أَدْرَىٰكَ","tr":"adraka","es":"te hará saber","estado":"propuesta"},
+  {"pos":3,"ar":"مَا","tr":"ma","es":"qué es","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلْحُطَمَةُ","tr":"l·hutamatu","es":"la Quebrantadora?","estado":"propuesta"}
+ ],
+ "6": [
+  {"pos":1,"ar":"نَارُ","tr":"naru","es":"fuego","estado":"propuesta"},
+  {"pos":2,"ar":"ٱللَّهِ","tr":"l·lahi","es":"de Alá","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلْمُوقَدَةُ","tr":"l·muqadatu","es":"encendido","estado":"propuesta"}
+ ],
+ "7": [
+  {"pos":1,"ar":"ٱلَّتِى","tr":"allati","es":"que","estado":"propuesta"},
+  {"pos":2,"ar":"تَطَّلِعُ","tr":"tattali'u","es":"se eleva","estado":"propuesta"},
+  {"pos":3,"ar":"عَلَى","tr":"'ala","es":"sobre","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلْأَفْـِٔدَةِ","tr":"l·afidati","es":"los corazones","estado":"propuesta"}
+ ],
+ "8": [
+  {"pos":1,"ar":"إِنَّهَا","tr":"innaha","es":"ciertamente ella","estado":"propuesta"},
+  {"pos":2,"ar":"عَلَيْهِم","tr":"'alayhim","es":"sobre ellos","estado":"propuesta"},
+  {"pos":3,"ar":"مُّؤْصَدَةٌۭ","tr":"mu'sadatun","es":"está cerrada","estado":"propuesta"}
+ ],
+ "9": [
+  {"pos":1,"ar":"فِى","tr":"fi","es":"en","estado":"propuesta"},
+  {"pos":2,"ar":"عَمَدٍۢ","tr":"'amadin","es":"columnas","estado":"propuesta"},
+  {"pos":3,"ar":"مُّمَدَّدَةٍۭ","tr":"mumaddadatin","es":"extendidas","estado":"propuesta"}
+ ]
+ }
+}

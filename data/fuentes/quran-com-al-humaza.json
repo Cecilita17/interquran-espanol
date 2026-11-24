@@ -1,0 +1,9 @@
+{"fuente":"Quran.com API v4 (api.quran.com/api/v4/verses/by_chapter/104?words=true), campo text_uthmani; tokens char_type_name=word","descargado":"2026-11-24","capitulo":104,"aleyas":{"1":[{"pos":1,"ar":"وَيْلٌۭ","translit":"waylun"},{"pos":2,"ar":"لِّكُلِّ","translit":"likulli"},{"pos":3,"ar":"هُمَزَةٍۢ","translit":"humazatin"},{"pos":4,"ar":"لُّمَزَةٍ","translit":"lumazatin"}],
+"2":[{"pos":1,"ar":"ٱلَّذِى","translit":"alladhī"},{"pos":2,"ar":"جَمَعَ","translit":"jamaʿa"},{"pos":3,"ar":"مَالًۭا","translit":"mālan"},{"pos":4,"ar":"وَعَدَّدَهُۥ","translit":"waʿaddadahu"}],
+"3":[{"pos":1,"ar":"يَحْسَبُ","translit":"yaḥsabu"},{"pos":2,"ar":"أَنَّ","translit":"anna"},{"pos":3,"ar":"مَالَهُۥٓ","translit":"mālahu"},{"pos":4,"ar":"أَخْلَدَهُۥ","translit":"akhladahu"}],
+"4":[{"pos":1,"ar":"كَلَّا ۖ","translit":"kallā"},{"pos":2,"ar":"لَيُنۢبَذَنَّ","translit":"layunbadhanna"},{"pos":3,"ar":"فِى","translit":"fī"},{"pos":4,"ar":"ٱلْحُطَمَةِ","translit":"l-ḥuṭamati"}],
+"5":[{"pos":1,"ar":"وَمَآ","translit":"wamā"},{"pos":2,"ar":"أَدْرَىٰكَ","translit":"adrāka"},{"pos":3,"ar":"مَا","translit":"mā"},{"pos":4,"ar":"ٱلْحُطَمَةُ","translit":"l-ḥuṭamatu"}],
+"6":[{"pos":1,"ar":"نَارُ","translit":"nāru"},{"pos":2,"ar":"ٱللَّهِ","translit":"l-lahi"},{"pos":3,"ar":"ٱلْمُوقَدَةُ","translit":"l-mūqadatu"}],
+"7":[{"pos":1,"ar":"ٱلَّتِى","translit":"allatī"},{"pos":2,"ar":"تَطَّلِعُ","translit":"taṭṭaliʿu"},{"pos":3,"ar":"عَلَى","translit":"ʿalā"},{"pos":4,"ar":"ٱلْأَفْـِٔدَةِ","translit":"l-afidati"}],
+"8":[{"pos":1,"ar":"إِنَّهَا","translit":"innahā"},{"pos":2,"ar":"عَلَيْهِم","translit":"ʿalayhim"},{"pos":3,"ar":"مُّؤْصَدَةٌۭ","translit":"mu'ṣadatun"}],
+"9":[{"pos":1,"ar":"فِى","translit":"fī"},{"pos":2,"ar":"عَمَدٍۢ","translit":"ʿamadin"},{"pos":3,"ar":"مُّمَدَّدَةٍۭ","translit":"mumaddadatin"}]}}

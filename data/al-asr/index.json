@@ -1,0 +1,15 @@
+{
+ "capitulo": 103,
+ "sura": "Al-Asr",
+ "totalAleyas": 3,
+ "aleyasConGlosas": 3,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "103-001-003.json",
+   "desde": 1,
+   "hasta": 3
+  }
+ ]
+}

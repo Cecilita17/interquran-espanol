@@ -1,0 +1,11 @@
+{"fuente":"Quran.com API v4 (api.quran.com/api/v4/verses/by_chapter/100?words=true), campo text_uthmani; tokens char_type_name=word","descargado":"2026-11-24","capitulo":100,"aleyas":{"1":[{"pos":1,"ar":"وَٱلْعَـٰدِيَـٰتِ","translit":"wal-ʿādiyāti"},{"pos":2,"ar":"ضَبْحًۭا","translit":"ḍabḥan"}],
+"2":[{"pos":1,"ar":"فَٱلْمُورِيَـٰتِ","translit":"fal-mūriyāti"},{"pos":2,"ar":"قَدْحًۭا","translit":"qadḥan"}],
+"3":[{"pos":1,"ar":"فَٱلْمُغِيرَٰتِ","translit":"fal-mughīrāti"},{"pos":2,"ar":"صُبْحًۭا","translit":"ṣub'ḥan"}],
+"4":[{"pos":1,"ar":"فَأَثَرْنَ","translit":"fa-atharna"},{"pos":2,"ar":"بِهِۦ","translit":"bihi"},{"pos":3,"ar":"نَقْعًۭا","translit":"naqʿan"}],
+"5":[{"pos":1,"ar":"فَوَسَطْنَ","translit":"fawasaṭna"},{"pos":2,"ar":"بِهِۦ","translit":"bihi"},{"pos":3,"ar":"جَمْعًا","translit":"jamʿan"}],
+"6":[{"pos":1,"ar":"إِنَّ","translit":"inna"},{"pos":2,"ar":"ٱلْإِنسَـٰنَ","translit":"l-insāna"},{"pos":3,"ar":"لِرَبِّهِۦ","translit":"lirabbihi"},{"pos":4,"ar":"لَكَنُودٌۭ","translit":"lakanūdun"}],
+"7":[{"pos":1,"ar":"وَإِنَّهُۥ","translit":"wa-innahu"},{"pos":2,"ar":"عَلَىٰ","translit":"ʿalā"},{"pos":3,"ar":"ذَٰلِكَ","translit":"dhālika"},{"pos":4,"ar":"لَشَهِيدٌۭ","translit":"lashahīdun"}],
+"8":[{"pos":1,"ar":"وَإِنَّهُۥ","translit":"wa-innahu"},{"pos":2,"ar":"لِحُبِّ","translit":"liḥubbi"},{"pos":3,"ar":"ٱلْخَيْرِ","translit":"l-khayri"},{"pos":4,"ar":"لَشَدِيدٌ","translit":"lashadīdun"}],
+"9":[{"pos":1,"ar":"۞ أَفَلَا","translit":"afalā"},{"pos":2,"ar":"يَعْلَمُ","translit":"yaʿlamu"},{"pos":3,"ar":"إِذَا","translit":"idhā"},{"pos":4,"ar":"بُعْثِرَ","translit":"buʿ'thira"},{"pos":5,"ar":"مَا","translit":"mā"},{"pos":6,"ar":"فِى","translit":"fī"},{"pos":7,"ar":"ٱلْقُبُورِ","translit":"l-qubūri"}],
+"10":[{"pos":1,"ar":"وَحُصِّلَ","translit":"waḥuṣṣila"},{"pos":2,"ar":"مَا","translit":"mā"},{"pos":3,"ar":"فِى","translit":"fī"},{"pos":4,"ar":"ٱلصُّدُورِ","translit":"l-ṣudūri"}],
+"11":[{"pos":1,"ar":"إِنَّ","translit":"inna"},{"pos":2,"ar":"رَبَّهُم","translit":"rabbahum"},{"pos":3,"ar":"بِهِمْ","translit":"bihim"},{"pos":4,"ar":"يَوْمَئِذٍۢ","translit":"yawma-idhin"},{"pos":5,"ar":"لَّخَبِيرٌۢ","translit":"lakhabīrun"}]}}

@@ -1,0 +1,68 @@
+{
+ "capitulo": 101,
+ "sura": "Al-Qari'a",
+ "bloque": "1-11",
+ "segmentacion": "Quran.com (texto Uthmani, API v4); ver data/fuentes/quran-com-al-qaria.json",
+ "estadoRevision": "propuesta: glosas redactadas con asistencia de IA a partir del árabe y cotejadas con traducciones españolas reconocidas; pendientes de revisión humana. Las palabras con \"revisar\" tienen dudas de interpretación señaladas.",
+ "generado": "tools/construir-glosas.mjs desde tools/glosas-es/101-001-011.txt",
+ "aleyas": {
+ "1": [
+  {"pos":1,"ar":"ٱلْقَارِعَةُ","tr":"al·qari'atu","es":"la Calamidad","estado":"propuesta","revisar":"al-qāriʿa: «la que golpea / la Calamidad»; nombre del Día del Juicio"}
+ ],
+ "2": [
+  {"pos":1,"ar":"مَا","tr":"ma","es":"¿qué es","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلْقَارِعَةُ","tr":"l·qari'atu","es":"la Calamidad?","estado":"propuesta"}
+ ],
+ "3": [
+  {"pos":1,"ar":"وَمَآ","tr":"wama","es":"¿y qué","estado":"propuesta"},
+  {"pos":2,"ar":"أَدْرَىٰكَ","tr":"adraka","es":"te hará saber","estado":"propuesta"},
+  {"pos":3,"ar":"مَا","tr":"ma","es":"qué es","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلْقَارِعَةُ","tr":"l·qari'atu","es":"la Calamidad?","estado":"propuesta"}
+ ],
+ "4": [
+  {"pos":1,"ar":"يَوْمَ","tr":"yawma","es":"el día","estado":"propuesta"},
+  {"pos":2,"ar":"يَكُونُ","tr":"yakunu","es":"en que sean","estado":"propuesta"},
+  {"pos":3,"ar":"ٱلنَّاسُ","tr":"l·nasu","es":"los hombres","estado":"propuesta"},
+  {"pos":4,"ar":"كَٱلْفَرَاشِ","tr":"kal·farashi","es":"como mariposas","estado":"propuesta"},
+  {"pos":5,"ar":"ٱلْمَبْثُوثِ","tr":"l·mabzuzi","es":"esparcidas","estado":"propuesta"}
+ ],
+ "5": [
+  {"pos":1,"ar":"وَتَكُونُ","tr":"watakunu","es":"y serán","estado":"propuesta"},
+  {"pos":2,"ar":"ٱلْجِبَالُ","tr":"l·jibalu","es":"las montañas","estado":"propuesta"},
+  {"pos":3,"ar":"كَٱلْعِهْنِ","tr":"kal·'ih'ni","es":"como lana","estado":"propuesta"},
+  {"pos":4,"ar":"ٱلْمَنفُوشِ","tr":"l·manfushi","es":"cardada","estado":"propuesta"}
+ ],
+ "6": [
+  {"pos":1,"ar":"فَأَمَّا","tr":"fa·amma","es":"pues en cuanto a","estado":"propuesta"},
+  {"pos":2,"ar":"مَن","tr":"man","es":"quien","estado":"propuesta"},
+  {"pos":3,"ar":"ثَقُلَتْ","tr":"zaqulat","es":"pesen","estado":"propuesta"},
+  {"pos":4,"ar":"مَوَٰزِينُهُۥ","tr":"mawazinuhu","es":"sus balanzas","estado":"propuesta"}
+ ],
+ "7": [
+  {"pos":1,"ar":"فَهُوَ","tr":"fahuwa","es":"entonces él","estado":"propuesta"},
+  {"pos":2,"ar":"فِى","tr":"fi","es":"estará en","estado":"propuesta"},
+  {"pos":3,"ar":"عِيشَةٍۢ","tr":"'ishatin","es":"una vida","estado":"propuesta"},
+  {"pos":4,"ar":"رَّاضِيَةٍۢ","tr":"radiyatin","es":"placentera","estado":"propuesta"}
+ ],
+ "8": [
+  {"pos":1,"ar":"وَأَمَّا","tr":"wa·amma","es":"y en cuanto a","estado":"propuesta"},
+  {"pos":2,"ar":"مَنْ","tr":"man","es":"quien","estado":"propuesta"},
+  {"pos":3,"ar":"خَفَّتْ","tr":"jaffat","es":"sean ligeras","estado":"propuesta"},
+  {"pos":4,"ar":"مَوَٰزِينُهُۥ","tr":"mawazinuhu","es":"sus balanzas","estado":"propuesta"}
+ ],
+ "9": [
+  {"pos":1,"ar":"فَأُمُّهُۥ","tr":"fa·ummuhu","es":"entonces su madre","estado":"propuesta","revisar":"ummuhu: «su madre»; expresión idiomática (su morada o destino) discutida por los exegetas"},
+  {"pos":2,"ar":"هَاوِيَةٌۭ","tr":"hawiyatun","es":"será el abismo","estado":"propuesta"}
+ ],
+ "10": [
+  {"pos":1,"ar":"وَمَآ","tr":"wama","es":"¿y qué","estado":"propuesta"},
+  {"pos":2,"ar":"أَدْرَىٰكَ","tr":"adraka","es":"te hará saber","estado":"propuesta"},
+  {"pos":3,"ar":"مَا","tr":"ma","es":"qué","estado":"propuesta"},
+  {"pos":4,"ar":"هِيَهْ","tr":"hiyah","es":"es ella?","estado":"propuesta"}
+ ],
+ "11": [
+  {"pos":1,"ar":"نَارٌ","tr":"narun","es":"un fuego","estado":"propuesta"},
+  {"pos":2,"ar":"حَامِيَةٌۢ","tr":"hamiyatun","es":"ardiente","estado":"propuesta"}
+ ]
+ }
+}

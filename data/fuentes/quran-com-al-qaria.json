@@ -1,0 +1,11 @@
+{"fuente":"Quran.com API v4 (api.quran.com/api/v4/verses/by_chapter/101?words=true), campo text_uthmani; tokens char_type_name=word","descargado":"2026-11-24","capitulo":101,"aleyas":{"1":[{"pos":1,"ar":"ٱلْقَارِعَةُ","translit":"al-qāriʿatu"}],
+"2":[{"pos":1,"ar":"مَا","translit":"mā"},{"pos":2,"ar":"ٱلْقَارِعَةُ","translit":"l-qāriʿatu"}],
+"3":[{"pos":1,"ar":"وَمَآ","translit":"wamā"},{"pos":2,"ar":"أَدْرَىٰكَ","translit":"adrāka"},{"pos":3,"ar":"مَا","translit":"mā"},{"pos":4,"ar":"ٱلْقَارِعَةُ","translit":"l-qāriʿatu"}],
+"4":[{"pos":1,"ar":"يَوْمَ","translit":"yawma"},{"pos":2,"ar":"يَكُونُ","translit":"yakūnu"},{"pos":3,"ar":"ٱلنَّاسُ","translit":"l-nāsu"},{"pos":4,"ar":"كَٱلْفَرَاشِ","translit":"kal-farāshi"},{"pos":5,"ar":"ٱلْمَبْثُوثِ","translit":"l-mabthūthi"}],
+"5":[{"pos":1,"ar":"وَتَكُونُ","translit":"watakūnu"},{"pos":2,"ar":"ٱلْجِبَالُ","translit":"l-jibālu"},{"pos":3,"ar":"كَٱلْعِهْنِ","translit":"kal-ʿih'ni"},{"pos":4,"ar":"ٱلْمَنفُوشِ","translit":"l-manfūshi"}],
+"6":[{"pos":1,"ar":"فَأَمَّا","translit":"fa-ammā"},{"pos":2,"ar":"مَن","translit":"man"},{"pos":3,"ar":"ثَقُلَتْ","translit":"thaqulat"},{"pos":4,"ar":"مَوَٰزِينُهُۥ","translit":"mawāzīnuhu"}],
+"7":[{"pos":1,"ar":"فَهُوَ","translit":"fahuwa"},{"pos":2,"ar":"فِى","translit":"fī"},{"pos":3,"ar":"عِيشَةٍۢ","translit":"ʿīshatin"},{"pos":4,"ar":"رَّاضِيَةٍۢ","translit":"rāḍiyatin"}],
+"8":[{"pos":1,"ar":"وَأَمَّا","translit":"wa-ammā"},{"pos":2,"ar":"مَنْ","translit":"man"},{"pos":3,"ar":"خَفَّتْ","translit":"khaffat"},{"pos":4,"ar":"مَوَٰزِينُهُۥ","translit":"mawāzīnuhu"}],
+"9":[{"pos":1,"ar":"فَأُمُّهُۥ","translit":"fa-ummuhu"},{"pos":2,"ar":"هَاوِيَةٌۭ","translit":"hāwiyatun"}],
+"10":[{"pos":1,"ar":"وَمَآ","translit":"wamā"},{"pos":2,"ar":"أَدْرَىٰكَ","translit":"adrāka"},{"pos":3,"ar":"مَا","translit":"mā"},{"pos":4,"ar":"هِيَهْ","translit":"hiyah"}],
+"11":[{"pos":1,"ar":"نَارٌ","translit":"nārun"},{"pos":2,"ar":"حَامِيَةٌۢ","translit":"ḥāmiyatun"}]}}
