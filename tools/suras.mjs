@@ -5,4 +5,5 @@
 export const SURAS = {
   2: { slug: 'al-baqarah', nombre: 'Al-Baqarah', aleyas: 286 },
   3: { slug: 'al-imran', nombre: 'Al-Imran', aleyas: 200 },
+  4: { slug: 'an-nisa', nombre: 'An-Nisa', aleyas: 176 },
 };

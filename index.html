@@ -16,7 +16,7 @@ async function openChapter(n,first=0){stop();state.chapter=n;state.i=first;if(hi
 
 
 // Suras con glosario fijo en español (data/<carpeta>/index.json): no usan traducción automática.
-const FIXED_GLOSSES={2:'al-baqarah',3:'al-imran'};
+const FIXED_GLOSSES={2:'al-baqarah',3:'al-imran',4:'an-nisa'};
 async function applyFixedGlosses(chapter){
  const dir=FIXED_GLOSSES[chapter];if(!dir)return;
  const normalize=s=>String(s||'').normalize('NFKC')
