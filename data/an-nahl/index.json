@@ -1,0 +1,25 @@
+{
+ "capitulo": 16,
+ "sura": "An-Nahl",
+ "totalAleyas": 128,
+ "aleyasConGlosas": 128,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "16-001-042.json",
+   "desde": 1,
+   "hasta": 42
+  },
+  {
+   "archivo": "16-043-086.json",
+   "desde": 43,
+   "hasta": 86
+  },
+  {
+   "archivo": "16-087-128.json",
+   "desde": 87,
+   "hasta": 128
+  }
+ ]
+}

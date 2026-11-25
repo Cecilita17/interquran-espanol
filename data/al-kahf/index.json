@@ -1,0 +1,20 @@
+{
+ "capitulo": 18,
+ "sura": "Al-Kahf",
+ "totalAleyas": 110,
+ "aleyasConGlosas": 110,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "18-001-050.json",
+   "desde": 1,
+   "hasta": 50
+  },
+  {
+   "archivo": "18-051-110.json",
+   "desde": 51,
+   "hasta": 110
+  }
+ ]
+}

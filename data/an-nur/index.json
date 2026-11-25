@@ -1,0 +1,20 @@
+{
+ "capitulo": 24,
+ "sura": "An-Nur",
+ "totalAleyas": 64,
+ "aleyasConGlosas": 64,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "24-001-033.json",
+   "desde": 1,
+   "hasta": 33
+  },
+  {
+   "archivo": "24-034-064.json",
+   "desde": 34,
+   "hasta": 64
+  }
+ ]
+}

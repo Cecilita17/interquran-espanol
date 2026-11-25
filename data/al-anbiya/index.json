@@ -1,0 +1,20 @@
+{
+ "capitulo": 21,
+ "sura": "Al-Anbiya",
+ "totalAleyas": 112,
+ "aleyasConGlosas": 112,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "21-001-056.json",
+   "desde": 1,
+   "hasta": 56
+  },
+  {
+   "archivo": "21-057-112.json",
+   "desde": 57,
+   "hasta": 112
+  }
+ ]
+}

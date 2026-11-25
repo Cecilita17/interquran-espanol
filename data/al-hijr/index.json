@@ -1,0 +1,20 @@
+{
+ "capitulo": 15,
+ "sura": "Al-Hijr",
+ "totalAleyas": 99,
+ "aleyasConGlosas": 99,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "15-001-050.json",
+   "desde": 1,
+   "hasta": 50
+  },
+  {
+   "archivo": "15-051-099.json",
+   "desde": 51,
+   "hasta": 99
+  }
+ ]
+}

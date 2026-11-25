@@ -1,0 +1,20 @@
+{
+ "capitulo": 19,
+ "sura": "Maryam",
+ "totalAleyas": 98,
+ "aleyasConGlosas": 98,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "19-001-050.json",
+   "desde": 1,
+   "hasta": 50
+  },
+  {
+   "archivo": "19-051-098.json",
+   "desde": 51,
+   "hasta": 98
+  }
+ ]
+}

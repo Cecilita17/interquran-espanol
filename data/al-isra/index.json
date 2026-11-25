@@ -1,0 +1,20 @@
+{
+ "capitulo": 17,
+ "sura": "Al-Isra",
+ "totalAleyas": 111,
+ "aleyasConGlosas": 111,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "17-001-055.json",
+   "desde": 1,
+   "hasta": 55
+  },
+  {
+   "archivo": "17-056-111.json",
+   "desde": 56,
+   "hasta": 111
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "capitulo": 20,
+ "sura": "Ta-Ha",
+ "totalAleyas": 135,
+ "aleyasConGlosas": 135,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "20-001-048.json",
+   "desde": 1,
+   "hasta": 48
+  },
+  {
+   "archivo": "20-049-098.json",
+   "desde": 49,
+   "hasta": 98
+  },
+  {
+   "archivo": "20-099-135.json",
+   "desde": 99,
+   "hasta": 135
+  }
+ ]
+}
