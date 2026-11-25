@@ -1,0 +1,30 @@
+{
+ "capitulo": 9,
+ "sura": "At-Tawba",
+ "totalAleyas": 129,
+ "aleyasConGlosas": 129,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "9-001-030.json",
+   "desde": 1,
+   "hasta": 30
+  },
+  {
+   "archivo": "9-031-070.json",
+   "desde": 31,
+   "hasta": 70
+  },
+  {
+   "archivo": "9-071-110.json",
+   "desde": 71,
+   "hasta": 110
+  },
+  {
+   "archivo": "9-111-129.json",
+   "desde": 111,
+   "hasta": 129
+  }
+ ]
+}

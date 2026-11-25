@@ -1,0 +1,25 @@
+{
+ "capitulo": 12,
+ "sura": "Yusuf",
+ "totalAleyas": 111,
+ "aleyasConGlosas": 111,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "12-001-040.json",
+   "desde": 1,
+   "hasta": 40
+  },
+  {
+   "archivo": "12-041-080.json",
+   "desde": 41,
+   "hasta": 80
+  },
+  {
+   "archivo": "12-081-111.json",
+   "desde": 81,
+   "hasta": 111
+  }
+ ]
+}

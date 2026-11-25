@@ -1,0 +1,25 @@
+{
+ "capitulo": 11,
+ "sura": "Hud",
+ "totalAleyas": 123,
+ "aleyasConGlosas": 123,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "11-001-042.json",
+   "desde": 1,
+   "hasta": 42
+  },
+  {
+   "archivo": "11-043-084.json",
+   "desde": 43,
+   "hasta": 84
+  },
+  {
+   "archivo": "11-085-123.json",
+   "desde": 85,
+   "hasta": 123
+  }
+ ]
+}

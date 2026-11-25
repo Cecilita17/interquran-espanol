@@ -1,0 +1,20 @@
+{
+ "capitulo": 14,
+ "sura": "Ibrahim",
+ "totalAleyas": 52,
+ "aleyasConGlosas": 52,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "14-001-027.json",
+   "desde": 1,
+   "hasta": 27
+  },
+  {
+   "archivo": "14-028-052.json",
+   "desde": 28,
+   "hasta": 52
+  }
+ ]
+}

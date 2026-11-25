@@ -1,0 +1,40 @@
+{
+ "capitulo": 7,
+ "sura": "Al-A'raf",
+ "totalAleyas": 206,
+ "aleyasConGlosas": 206,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "7-001-035.json",
+   "desde": 1,
+   "hasta": 35
+  },
+  {
+   "archivo": "7-036-070.json",
+   "desde": 36,
+   "hasta": 70
+  },
+  {
+   "archivo": "7-071-105.json",
+   "desde": 71,
+   "hasta": 105
+  },
+  {
+   "archivo": "7-106-140.json",
+   "desde": 106,
+   "hasta": 140
+  },
+  {
+   "archivo": "7-141-175.json",
+   "desde": 141,
+   "hasta": 175
+  },
+  {
+   "archivo": "7-176-206.json",
+   "desde": 176,
+   "hasta": 206
+  }
+ ]
+}

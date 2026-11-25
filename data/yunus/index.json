@@ -1,0 +1,25 @@
+{
+ "capitulo": 10,
+ "sura": "Yunus",
+ "totalAleyas": 109,
+ "aleyasConGlosas": 109,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "10-001-040.json",
+   "desde": 1,
+   "hasta": 40
+  },
+  {
+   "archivo": "10-041-080.json",
+   "desde": 41,
+   "hasta": 80
+  },
+  {
+   "archivo": "10-081-109.json",
+   "desde": 81,
+   "hasta": 109
+  }
+ ]
+}
