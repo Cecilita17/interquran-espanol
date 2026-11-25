@@ -1,0 +1,15 @@
+{
+ "capitulo": 31,
+ "sura": "Luqman",
+ "totalAleyas": 34,
+ "aleyasConGlosas": 34,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "31-001-034.json",
+   "desde": 1,
+   "hasta": 34
+  }
+ ]
+}

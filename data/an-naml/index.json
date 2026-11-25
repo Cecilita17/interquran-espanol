@@ -1,0 +1,20 @@
+{
+ "capitulo": 27,
+ "sura": "An-Naml",
+ "totalAleyas": 93,
+ "aleyasConGlosas": 93,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "27-001-046.json",
+   "desde": 1,
+   "hasta": 46
+  },
+  {
+   "archivo": "27-047-093.json",
+   "desde": 47,
+   "hasta": 93
+  }
+ ]
+}

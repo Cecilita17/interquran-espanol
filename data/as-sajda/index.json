@@ -1,0 +1,15 @@
+{
+ "capitulo": 32,
+ "sura": "As-Sajda",
+ "totalAleyas": 30,
+ "aleyasConGlosas": 30,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "32-001-030.json",
+   "desde": 1,
+   "hasta": 30
+  }
+ ]
+}

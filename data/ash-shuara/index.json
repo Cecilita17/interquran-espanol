@@ -1,0 +1,30 @@
+{
+ "capitulo": 26,
+ "sura": "Ash-Shu'ara",
+ "totalAleyas": 227,
+ "aleyasConGlosas": 227,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "26-001-060.json",
+   "desde": 1,
+   "hasta": 60
+  },
+  {
+   "archivo": "26-061-125.json",
+   "desde": 61,
+   "hasta": 125
+  },
+  {
+   "archivo": "26-126-190.json",
+   "desde": 126,
+   "hasta": 190
+  },
+  {
+   "archivo": "26-191-227.json",
+   "desde": 191,
+   "hasta": 227
+  }
+ ]
+}

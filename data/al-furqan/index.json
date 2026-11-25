@@ -1,0 +1,20 @@
+{
+ "capitulo": 25,
+ "sura": "Al-Furqan",
+ "totalAleyas": 77,
+ "aleyasConGlosas": 77,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "25-001-040.json",
+   "desde": 1,
+   "hasta": 40
+  },
+  {
+   "archivo": "25-041-077.json",
+   "desde": 41,
+   "hasta": 77
+  }
+ ]
+}

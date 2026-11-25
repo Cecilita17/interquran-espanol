@@ -1,0 +1,15 @@
+{
+ "capitulo": 30,
+ "sura": "Ar-Rum",
+ "totalAleyas": 60,
+ "aleyasConGlosas": 60,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "30-001-060.json",
+   "desde": 1,
+   "hasta": 60
+  }
+ ]
+}

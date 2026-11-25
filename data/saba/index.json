@@ -1,0 +1,20 @@
+{
+ "capitulo": 34,
+ "sura": "Saba",
+ "totalAleyas": 54,
+ "aleyasConGlosas": 54,
+ "aleyasRevisadas": 0,
+ "estadoRevision": "propuesta (revisión humana en curso)",
+ "bloques": [
+  {
+   "archivo": "34-001-030.json",
+   "desde": 1,
+   "hasta": 30
+  },
+  {
+   "archivo": "34-031-054.json",
+   "desde": 31,
+   "hasta": 54
+  }
+ ]
+}
