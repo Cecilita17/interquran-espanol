@@ -52,21 +52,26 @@ function conRango(route, cuerpo, tipo = 'audio/wav') {
   return route.fulfill({ status: 200, headers: { 'Content-Type': tipo, 'Accept-Ranges': 'bytes', 'Access-Control-Allow-Origin': '*' }, body: cuerpo });
 }
 
-const peticiones = { tts: [], ttsAr: [], ttsGlosa: [], audio: [], recit: [], retardoAr: 0 };
+const peticiones = { tts: [], ttsAr: [], ttsGlosa: [], audio: [], recit: [], datos: [], trad: [], retardoAr: 0 };
 const PREF_RECIT = () => localStorage.setItem('qescucha-prefs', JSON.stringify({ fuentePalabra: 'recitacion' })); // palabra = fragmento real del recitador
 async function simularRed(ctx) {
   await ctx.route(/fonts\.(googleapis|gstatic)\.com/, r => r.fulfill({ status: 200, contentType: 'text/css', body: '' }));
+  await ctx.route(/api\.alquran\.cloud\/v1\/ayah\/(\d+):(\d+)\/(es\.\w+)/, r => {
+    const [, s, a, ed] = /ayah\/(\d+):(\d+)\/(es\.\w+)/.exec(r.request().url()); peticiones.trad.push(`ayah ${s}:${a}`);
+    r.fulfill({ status: 200, contentType: 'application/json', headers: { 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify({ data: { text: `Traducción de prueba ${s}:${a} (${ed})` } }) });
+  });
   await ctx.route(/api\.alquran\.cloud\/v1\/surah\/(\d+)\/(es\.\w+)/, r => {
+    peticiones.trad.push('sura ' + /surah\/(\d+)/.exec(r.request().url())[1]);
     const [, s, ed] = /surah\/(\d+)\/(es\.\w+)/.exec(r.request().url()); const np = palabras(+s);
     r.fulfill({ status: 200, contentType: 'application/json', headers: { 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify({ data: { ayahs: Object.keys(np).map(n => ({ text: `Traducción de prueba ${s}:${n} (${ed})` })) } }) });
   });
   await ctx.route(/api\.quran\.com\/api\/v4\/recitations\/(\d+)\/by_chapter\/(\d+)/, r => {
     const u = new URL(r.request().url()), [, rec, s] = /recitations\/(\d+)\/by_chapter\/(\d+)/.exec(u.pathname), pag = +(u.searchParams.get('page') || 1);
-    peticiones.recit.push(`${rec}:${s}`);
+    peticiones.recit.push(`${rec}:${s}:${pag}`);
     const np = palabras(+s), todas = Object.keys(np).map(Number), trozo = todas.slice((pag - 1) * 50, pag * 50);
     r.fulfill({ status: 200, contentType: 'application/json', headers: { 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify({
       audio_files: trozo.map(n => ({ verse_key: `${s}:${n}`, url: `${rec === '7' ? 'Alafasy' : 'Shuraym'}/mp3/${String(s).padStart(3, '0')}${String(n).padStart(3, '0')}.mp3`, segments: segPrueba(np[n], +rec, +s, n) })),
-      pagination: { next_page: pag * 50 < todas.length ? pag + 1 : null } }) });
+      pagination: { next_page: pag * 50 < todas.length ? pag + 1 : null, total_pages: Math.ceil(todas.length / 50) } }) });
   });
   await ctx.route(/(audio\.qurancdn\.com|verses\.quran\.com)\/(\w+)\/mp3\/(\d{3})(\d{3})\.mp3/, r => {
     const [, , rec, s, a] = /(audio\.qurancdn\.com|verses\.quran\.com)\/(\w+)\/mp3\/(\d{3})(\d{3})\.mp3/.exec(r.request().url());
@@ -108,6 +113,7 @@ let servidor;
 function servir() {
   servidor = http.createServer((req, res) => {
     let p = decodeURIComponent(new URL(req.url, 'http://x').pathname); if (p === '/') p = '/index.html';
+    if (p.startsWith('/data/') && p !== '/data/suras.json') peticiones.datos.push(p);
     const f = path.join(root, p);
     if (!f.startsWith(root) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) { res.writeHead(404); return res.end(); }
     res.writeHead(200, { 'Content-Type': types[path.extname(f)] || 'application/octet-stream' }); fs.createReadStream(f).pipe(res);
@@ -371,8 +377,8 @@ await prueba('aleya sin segmentación fiable (fragmentos de la recitación): se 
   await p.ctx.close();
 });
 
-await prueba('preferencias y progreso persisten, son independientes del lector y no lo alteran', async () => {
-  const p = await pagina({ preparar: () => { localStorage.setItem('qpositions', '{"2":41}'); localStorage.setItem('qread', '{"2":[0,1,2]}'); localStorage.setItem('qposition', '{"chapter":2,"i":41}'); } });
+await prueba('preferencias y progreso persisten; sólo se escribe en el lector el registro de aleyas leídas', async () => {
+  const p = await pagina({ preparar: () => { if (localStorage.getItem('qpositions')) return; /* sólo la primera carga: no pisar lo guardado al recargar */ localStorage.setItem('qpositions', '{"2":41}'); localStorage.setItem('qread', '{"2":[0,1,2]}'); localStorage.setItem('qposition', '{"chapter":2,"i":41}'); } });
   await p.click('#ajustesBtn'); await p.click('[data-rec="shuraym"]'); await p.click('[data-pref="translit"]'); await p.click('[data-pref="glosas"]'); await p.click('[data-paso="repAleya"][data-d="1"]');
   await p.click('#ajustes [data-cerrar]'); await modo(p, 'recitacion'); await ajustes(p, { autoavance: false });
   await p.click('#play'); await esperarEstado(p, 'terminado'); await p.waitForTimeout(100);
@@ -382,7 +388,8 @@ await prueba('preferencias y progreso persisten, son independientes del lector y
   assert.equal(await p.evaluate(() => getComputedStyle(document.querySelector('.pal .tr')).display), 'none');
   assert.equal(await p.evaluate(() => getComputedStyle(document.querySelector('.pal .es')).display), 'none');
   const ls = await p.evaluate(() => ({ pos: localStorage.getItem('qpositions'), read: localStorage.getItem('qread'), pos1: localStorage.getItem('qposition'), prog: localStorage.getItem('qescucha-progreso'), claves: Object.keys(localStorage).sort() }));
-  assert.equal(ls.pos, '{"2":41}'); assert.equal(ls.read, '{"2":[0,1,2]}'); assert.equal(ls.pos1, '{"chapter":2,"i":41}');
+  assert.equal(ls.pos, '{"2":41}'); assert.equal(ls.pos1, '{"chapter":2,"i":41}');       // posición del lector: intacta
+  assert.deepEqual(JSON.parse(ls.read), { 2: [0, 1, 2], 1: [0] }, 'lo leído antes se conserva y la aleya escuchada se suma');
   assert.ok(JSON.parse(ls.prog).oidas['1'].includes(0), ls.prog);
   assert.deepEqual(ls.claves.filter(k => k.startsWith('qescucha')), ['qescucha-prefs', 'qescucha-progreso']);
   await p.ctx.close();
@@ -436,6 +443,36 @@ await prueba('configuración: fondo decorativo y desenfoque, interruptores indep
   await p.click('[data-pref="resaltado"]'); assert.ok(await p.evaluate(() => document.body.classList.contains('sin-resaltado')));
   await p.click('[data-pref="translit"]'); assert.equal(await p.evaluate(() => document.getElementById('palabras').classList.contains('sin-tr')), true);
   assert.equal(await p.evaluate(() => document.getElementById('palabras').classList.contains('sin-es')), false);
+  await p.ctx.close();
+});
+
+await prueba('Al-Baqara abre pidiendo sólo lo necesario (un bloque de glosas, una página de recitación, una aleya traducida)', async () => {
+  // (2:255 está a 5 aleyas del final de su bloque: se adelanta el siguiente)
+  for (const [url, bloque, paginas] of [['/escucha.html?s=2&a=1', ['2-001-020.json'], ['7:2:1']], ['/escucha.html?s=2&a=255', ['2-241-260.json', '2-261-286.json'], ['7:2:6']]]) {
+    peticiones.datos.length = 0; peticiones.recit.length = 0; peticiones.trad.length = 0;
+    const t0 = Date.now(); const p = await pagina({ url }); const ms = Date.now() - t0;
+    const bloques = peticiones.datos.filter(x => /\/data\/al-baqarah\/\d/.test(x));
+    assert.deepEqual(bloques.map(x => x.split('/').pop()).sort(), bloque, 'sólo el bloque de la aleya (y el siguiente si está cerca del final): ' + bloques);
+    assert.deepEqual(peticiones.recit, paginas, 'una sola página de recitación');
+    assert.ok(peticiones.trad.some(x => x.startsWith('ayah 2:')), 'la aleya se traduce sola: ' + peticiones.trad);
+    assert.ok(ms < 4000, 'abrió en ' + ms + ' ms'); await p.ctx.close();
+  }
+  // Cerca del final de la página 1 se adelanta la 2 (y la sura completa se trae después, en segundo plano)
+  peticiones.recit.length = 0; peticiones.datos.length = 0;
+  const p = await pagina({ url: '/escucha.html?s=2&a=45' }); await p.waitForTimeout(500);
+  assert.deepEqual([...new Set(peticiones.recit)].sort(), ['7:2:1', '7:2:2'], 'adelanta la página siguiente');
+  assert.ok(peticiones.datos.some(x => x.endsWith('2-041-060.json')) , 'bloque de la aleya 45');
+  await p.evaluate(() => window.__escucha.motor.irA(60)); await p.waitForFunction(() => window.__escucha.motor.aleya === 60 && window.__escucha.motor.estado === 'pausado');
+  assert.match(await p.textContent('#traduccion'), /Traducción de prueba 2:61/);
+  await p.ctx.close();
+});
+
+await prueba('las aleyas escuchadas hasta el final cuentan como leídas en el lector (qread), también en palabra por palabra', async () => {
+  const p = await pagina({ url: '/escucha.html?s=112&a=1', preparar: () => { if (!localStorage.getItem('qread')) localStorage.setItem('qread', '{"112":[3]}'); } }); await ajustes(p, { autoavance: true });
+  await modo(p, 'palabra'); await p.click('#play'); await p.waitForFunction(() => window.__escucha.motor.aleya === 1, null, { timeout: 30000 });
+  assert.deepEqual(JSON.parse(await p.evaluate(() => localStorage.getItem('qread'))), { 112: [3, 0] }, 'la primera aleya terminada se añade al registro del lector');
+  await p.click('#play'); await esperarEstado(p, 'pausado');   // se pausa a mitad de la segunda: NO cuenta
+  assert.deepEqual(JSON.parse(await p.evaluate(() => localStorage.getItem('qread'))), { 112: [3, 0] });
   await p.ctx.close();
 });
 

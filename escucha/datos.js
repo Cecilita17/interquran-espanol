@@ -27,46 +27,62 @@ const unico = (clave, fn) => { if (!memo.has(clave)) memo.set(clave, fn().catch(
 
 export const cargarIndice = () => unico('indice', () => json('/data/suras.json'));
 
-// → { [nAleya]: [{ar, tr, es, estado}] } con comprobación de que `pos` es 1..n.
-export function cargarPalabras(slug) {
-  return unico('palabras:' + slug, async () => {
-    const man = await json(`/data/${slug}/index.json`);
-    const bloques = await Promise.all((man.bloques || []).map(b => json(`/data/${slug}/${b.archivo}`)));
-    const out = {};
-    for (const b of bloques) for (const [n, ws] of Object.entries(b.aleyas || {})) {
-      if (Array.isArray(ws) && ws.length && ws.every((w, i) => w && w.ar && w.pos === i + 1)) out[n] = ws;
-    }
+// ---- Carga bajo demanda: para mostrar UNA aleya sólo se descarga lo que ésta necesita; lo siguiente se adelanta en segundo plano.
+// Palabras: sólo el bloque del glosario que contiene la aleya (en Al-Baqara hay 14 bloques de ~40 KB).
+const manifiesto = slug => unico('man:' + slug, () => json(`/data/${slug}/index.json`));
+function cargarBloque(slug, archivo) {
+  return unico(`bloque:${slug}:${archivo}`, async () => {
+    const b = await json(`/data/${slug}/${archivo}`), out = {};
+    for (const [n, ws] of Object.entries(b.aleyas || {})) if (Array.isArray(ws) && ws.length && ws.every((w, i) => w && w.ar && w.pos === i + 1)) out[n] = ws;
     return out;
   });
 }
+export async function palabrasDeAleya(slug, aleya) {
+  const man = await manifiesto(slug), lista = man.bloques || [];
+  const k = lista.findIndex(b => aleya >= b.desde && aleya <= b.hasta);
+  if (k < 0) return null;
+  const datos = await cargarBloque(slug, lista[k].archivo);
+  if (lista[k + 1] && aleya >= lista[k].hasta - 8) cargarBloque(slug, lista[k + 1].archivo).catch(() => {}); // cerca del final del bloque: adelanta el siguiente
+  return datos[String(aleya)] || null;
+}
 
-// → [texto por aleya] (índice 0 = aleya 1); lanza si la fuente no responde.
+// Traducción: la primera aleya se pide sola (~1 KB); la sura completa se trae en segundo plano para las siguientes.
+const traducciones = {}; // 'sura:edición' → [texto por aleya] (cuando ya llegó completa)
 export function cargarTraduccion(sura, clave) {
   const ed = TRADUCCIONES[clave] || TRADUCCIONES.cortes;
   return unico(`trad:${sura}:${ed}`, async () => {
     const d = await json(`${CLOUD}/surah/${sura}/${ed}`);
-    return (d.data?.ayahs || []).map(a => String(a.text || '').trim());
+    const lista = (d.data?.ayahs || []).map(a => String(a.text || '').trim());
+    traducciones[`${sura}:${ed}`] = lista;
+    return lista;
   });
 }
+export async function traduccionDeAleya(sura, indice, clave) {
+  const ed = TRADUCCIONES[clave] || TRADUCCIONES.cortes, lista = traducciones[`${sura}:${ed}`];
+  if (lista) return lista[indice] || '';
+  cargarTraduccion(sura, clave).catch(() => {});
+  const d = await json(`${CLOUD}/ayah/${sura}:${indice + 1}/${ed}`);
+  return String(d.data?.text || '').trim();
+}
 
-// → { [índice base 0]: { url, urlsAlt, segmentos } } con las marcas CRUDAS de Quran.com
-// para ESE recitador; la fiabilidad se evalúa por aleya con evaluarSegmentos().
-export function cargarRecitacion(sura, rec) {
-  return unico(`rec:${sura}:${rec}`, async () => {
-    const out = {};
-    for (let pagina = 1; pagina <= 12; pagina++) {
-      const d = await json(`${QCOM}/recitations/${rec}/by_chapter/${sura}?fields=segments&per_page=50&page=${pagina}`);
-      for (const f of d.audio_files || []) {
-        const i = Number(String(f.verse_key || '').split(':')[1]) - 1;
-        if (!Number.isInteger(i) || i < 0 || !f.url) continue;
-        const ruta = String(f.url).replace(/^\/+/, '');
-        const abs = /^https?:/.test(ruta);
-        out[i] = { url: abs ? ruta : CDN[0] + ruta, urlsAlt: abs ? [] : [CDN[1] + ruta], segmentos: f.segments || [] };
-      }
-      if (!d.pagination?.next_page) break;
+// Recitación: Quran.com la entrega por páginas de 50 aleyas; sólo se pide la página de la aleya (y la siguiente si se acerca al final).
+const PAGINA = 50;
+function cargarPaginaRecitacion(sura, rec, pagina) {
+  return unico(`rec:${sura}:${rec}:${pagina}`, async () => {
+    const d = await json(`${QCOM}/recitations/${rec}/by_chapter/${sura}?fields=segments&per_page=${PAGINA}&page=${pagina}`), out = {};
+    for (const f of d.audio_files || []) {
+      const i = Number(String(f.verse_key || '').split(':')[1]) - 1;
+      if (!Number.isInteger(i) || i < 0 || !f.url) continue;
+      const ruta = String(f.url).replace(/^\/+/, ''), abs = /^https?:/.test(ruta);
+      out[i] = { url: abs ? ruta : CDN[0] + ruta, urlsAlt: abs ? [] : [CDN[1] + ruta], segmentos: f.segments || [] };
     }
-    return out;
+    return { datos: out, total: d.pagination?.total_pages || 1 };
   });
+}
+export async function recitacionDeAleya(sura, rec, indice) {
+  const pagina = Math.floor(indice / PAGINA) + 1, { datos, total } = await cargarPaginaRecitacion(sura, rec, pagina);
+  if (indice % PAGINA >= PAGINA - 15 && pagina < total) cargarPaginaRecitacion(sura, rec, pagina + 1).catch(() => {});
+  return datos[indice] || null;
 }
 
 export function urlVoz(sura, aleya, traduccion, voz) {
@@ -80,16 +96,15 @@ export const urlVozPalabra = (sura, aleya, pos, voz) => `/api/tts-ar?s=${sura}&a
 // Datos listos para el motor (construirPlan / ejecutar) de una aleya.
 export async function datosAleya({ sura, indice, slug, prefs }) {
   const rec = RECITADORES.find(r => r.id === prefs.recitador) || RECITADORES[0];
-  const [palabras, trad, recit] = await Promise.all([
-    cargarPalabras(slug),
-    cargarTraduccion(sura, prefs.edicion).catch(() => null),
-    cargarRecitacion(sura, rec.rec).catch(() => null)
+  let recitacionFalla = false;
+  // Las tres fuentes se piden a la vez y cada una descarga sólo lo necesario para esta aleya.
+  const [ws, texto, r] = await Promise.all([
+    palabrasDeAleya(slug, indice + 1),
+    traduccionDeAleya(sura, indice, prefs.edicion).catch(() => ''),
+    recitacionDeAleya(sura, rec.rec, indice).catch(() => { recitacionFalla = true; return null; })
   ]);
-  const ws = palabras[String(indice + 1)];
   if (!ws) return null;
-  const r = recit?.[indice];
-  const ev = r ? evaluarSegmentos(r.segmentos, ws.length) : { fiable: false, rangos: null, porPalabra: null, motivo: recit ? 'sin audio' : 'recitador no disponible' };
-  const texto = trad?.[indice] || '';
+  const ev = r ? evaluarSegmentos(r.segmentos, ws.length) : { fiable: false, rangos: null, porPalabra: null, motivo: recitacionFalla ? 'recitador no disponible' : 'sin audio' };
   return {
     clave: `${sura}:${indice + 1}`, sura, aleya: indice + 1, nPalabras: ws.length,
     palabras: ws,

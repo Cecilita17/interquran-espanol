@@ -58,6 +58,16 @@ function parametros() {
   return { s: 1, a: 1 };
 }
 
+// Una aleya escuchada hasta el final cuenta también como LEÍDA en el lector tradicional: se añade a su registro `qread`
+// ({sura: [índices base 0]}, el mismo formato del lector). Es lo único del lector que esta pantalla escribe.
+function marcarLeidaEnLector(suraN, i) {
+  try {
+    const r = JSON.parse(localStorage.getItem('qread') || '{}') || {}, a = Array.isArray(r[suraN]) ? r[suraN] : [];
+    if (a.includes(i)) return;
+    a.push(i); r[suraN] = a; localStorage.setItem('qread', JSON.stringify(r));
+  } catch (e) { /* almacenamiento no disponible */ }
+}
+
 // ---- Fondo -------------------------------------------------------------------------------------
 let urlFondoPropio = null;
 async function aplicarFondo() {
@@ -155,6 +165,7 @@ function alEvento(ev) {
     case 'escuchada': {
       const a = progreso.oidas[sura] || (progreso.oidas[sura] = []);
       if (!a.includes(ev.aleya)) { a.push(ev.aleya); guardarProgreso(); }
+      marcarLeidaEnLector(sura, ev.aleya);
       $('progreso').firstElementChild.style.width = '100%';
       break;
     }
@@ -173,6 +184,9 @@ function crearMotorSura(n) {
 }
 async function abrirSura(n, aleya = 1, reproducir = false) {
   crearMotorSura(n);
+  // Respuesta inmediata: el título y el número de aleya aparecen ya, mientras llegan los datos.
+  $('tituloSura').textContent = `${indice[n].nombre} · ${indice[n].es}`; $('subtitulo').textContent = `${n}:${aleya} · Cargando…`;
+  $('palabras').innerHTML = ''; $('traduccion').textContent = '';
   const i = Math.max(0, Math.min(aleya - 1, indice[n].aleyas - 1));
   await (reproducir ? motor.reproducir(i) : motor.cargar(i));
 }
