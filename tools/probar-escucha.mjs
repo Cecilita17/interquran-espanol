@@ -288,7 +288,7 @@ for (const [ancho, alto, nombre] of [[320, 568, 'iPhone SE / 320 px'], [360, 640
     for (const id of ['repetir', 'anterior', 'play', 'siguiente', 'ajustesBtn']) { const b = await p.evaluate(i => { const r = document.getElementById(i).getBoundingClientRect(); return [r.width, r.height]; }, id); assert.ok(b[0] >= 44 && b[1] >= 44, `${id} táctil ${b}`); }
     // La recitación de 2:282 tiene >100 palabras: avanzamos hasta pasar la primera pantalla y comprobamos el desplazamiento automático.
     await p.evaluate(() => window.__escucha.motor.actualizarPrefs({ velocidad: 1 }));
-    await p.click('#play'); await p.waitForFunction(() => window.__escucha.controlador.elemento.currentTime > (alto < 400 ? 16 : 6), null, { timeout: 30000 });
+    await p.click('#play'); await p.waitForFunction(t => window.__escucha.controlador.elemento.currentTime > t, alto < 400 ? 16 : 6, { timeout: 30000 });
     for (let i = 0; i < 6; i++) {
       await p.waitForTimeout(450);
       const v = await p.evaluate(() => { const a = document.querySelector('.pal.activa'); if (!a) return null; const r = a.getBoundingClientRect(), c = document.getElementById('panelPalabras').getBoundingClientRect(); return { dentro: r.top >= c.top - 2 && r.bottom <= c.bottom + 2, top: document.getElementById('panelPalabras').scrollTop }; });
