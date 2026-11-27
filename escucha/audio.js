@@ -6,7 +6,7 @@
 
 const dentroDe = (v, a, b) => Math.min(b, Math.max(a, v));
 
-export function crearControlador({ elemento = new Audio(), sintesis = globalThis.speechSynthesis, lang = 'es-ES', ms = { set: setTimeout, clear: clearTimeout } } = {}) {
+export function crearControlador({ elemento = new Audio(), sintesis = globalThis.speechSynthesis, lang = 'es-ES', ms = { set: (f, t) => setTimeout(f, t), clear: id => clearTimeout(id) } } = {}) {
   const el = elemento;
   el.preload = 'auto';
   let actual = null; // operación en curso: { resolver, tipo, reanudar(), pausar(), limpiar() }
