@@ -15,7 +15,7 @@ const escribir = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); }
 const valorLector = (k, ok, d) => { try { const v = localStorage.getItem(k); return ok(v) ? v : d; } catch (e) { return d; } }; // sólo LEE la voz/traducción que el lector ya usa, como valor inicial
 
 const PREFS_BASE = {
-  modo: MODOS.COMBINADA, recitador: 'alafasy', repPalabra: 1, repAleya: 1, pausaMs: 400, pausaPalabraMs: 150, velocidadPalabras: 1.2, autoavance: true, velocidad: 1,
+  modo: MODOS.COMBINADA, recitador: 'alafasy', repPalabra: 1, repAleya: 1, pausaMs: 150, pausaPalabraMs: 150, velocidadPalabras: 1.2, autoavance: true, velocidad: 1,
   translit: true, glosas: true, traduccion: true, resaltado: true, fondoOn: true,
   fuentePalabra: 'voz', vozArabe: VOCES_AR[0],
   fondo: 'noche', dim: 45, blur: 0,
@@ -23,6 +23,13 @@ const PREFS_BASE = {
   edicion: valorLector('qtrans', v => v === 'es.garcia', 'es.cortes') === 'es.garcia' ? 'garcia' : 'cortes'
 };
 let prefs = leer(CLAVE_PREFS, PREFS_BASE);
+// Migración de valores por defecto anteriores: quien nunca cambió la pausa entre bloques (0,6 s o 0,4 s de versiones previas)
+// pasa al valor nuevo; cualquier otro valor elegido por la persona se respeta.
+const VERSION_PREFS = 2;
+if (prefs.version !== VERSION_PREFS) {
+  if (prefs.pausaMs === 600 || prefs.pausaMs === 400) prefs.pausaMs = PREFS_BASE.pausaMs;
+  prefs.version = VERSION_PREFS; try { localStorage.getItem(CLAVE_PREFS) !== null && localStorage.setItem(CLAVE_PREFS, JSON.stringify(prefs)); } catch (e) {}
+}
 let progreso = leer(CLAVE_PROGRESO, { ultima: null, oidas: {} });
 const guardarPrefs = () => escribir(CLAVE_PREFS, prefs);
 const guardarProgreso = () => escribir(CLAVE_PROGRESO, progreso);

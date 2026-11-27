@@ -19,7 +19,7 @@ export const PREFS_MOTOR = {
   modo: MODOS.COMBINADA,
   repPalabra: 1,      // veces que se repite cada palabra (árabe + significado)
   repAleya: 1,        // veces que se repite la recitación completa (en el modo 2, todo el recorrido)
-  pausaMs: 400,       // silencio entre bloques (traducción → palabras → recitación, repeticiones)
+  pausaMs: 150,       // silencio entre bloques (traducción → palabras → recitación, repeticiones)
   pausaPalabraMs: 150, // silencio dentro del palabra por palabra (entre una palabra y la siguiente)
   velocidadPalabras: 1.2, // ritmo del significado hablado y de la palabra árabe (no de la recitación)
   autoavance: true,

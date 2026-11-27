@@ -252,6 +252,18 @@ await prueba('ritmo: el palabra por palabra no espera a la red (precarga), usa l
   await p.ctx.close();
 });
 
+await prueba('ritmo: pausa entre bloques por defecto 0,15 s; se migra el valor antiguo (0,4 / 0,6 s) y se respeta uno elegido', async () => {
+  let p = await pagina();                                      // instalación nueva
+  assert.equal(await p.evaluate(() => window.__escucha.prefs.pausaMs), 150);
+  assert.equal(await p.evaluate(() => window.__escucha.motor.prefs.pausaMs), 150); await p.ctx.close();
+  for (const [guardado, esperado] of [[400, 150], [600, 150], [900, 900], [0, 0]]) {
+    p = await pagina({ preparar: `localStorage.setItem('qescucha-prefs', JSON.stringify({ pausaMs: ${guardado}, modo: 'recitacion' }))` });
+    assert.equal(await p.evaluate(() => window.__escucha.prefs.pausaMs), esperado, `guardado ${guardado}`);
+    assert.equal(await p.evaluate(() => window.__escucha.prefs.modo), 'recitacion', 'el resto de preferencias se conserva');
+    await p.ctx.close();
+  }
+});
+
 await prueba('ritmo: las pausas se pueden ajustar y 0 s elimina el silencio entre palabras', async () => {
   const p = await pagina({ url: '/escucha.html?s=1&a=7' }); await modo(p, 'palabra'); await ajustes(p, { autoavance: false });
   await p.evaluate(() => window.__escucha.motor.actualizarPrefs({ pausaPalabraMs: 0 }));
