@@ -2,7 +2,7 @@
 // sus preferencias y su progreso se guardan en claves propias (qescucha-*).
 import { crearMotor, MODOS, PREFS_MOTOR } from './motor.js';
 import { crearControlador } from './audio.js';
-import { cargarIndice, datosAleya, RECITADORES, VOCES } from './datos.js';
+import { cargarIndice, datosAleya, RECITADORES, VOCES, VOCES_AR } from './datos.js';
 import { FONDOS, FONDO_PROPIO, guardarFondoPropio, leerFondoPropio, prepararImagen } from './fondos.js';
 
 const $ = id => document.getElementById(id);
@@ -17,6 +17,7 @@ const valorLector = (k, ok, d) => { try { const v = localStorage.getItem(k); ret
 const PREFS_BASE = {
   modo: MODOS.COMBINADA, recitador: 'alafasy', repPalabra: 1, repAleya: 1, pausaMs: 600, autoavance: true, velocidad: 1,
   translit: true, glosas: true, traduccion: true, resaltado: true, fondoOn: true,
+  fuentePalabra: 'voz', vozArabe: VOCES_AR[0],
   fondo: 'noche', dim: 45, blur: 0,
   voz: valorLector('qvoice', v => v && VOCES.includes(v), 'es-ES-ElviraNeural'),
   edicion: valorLector('qtrans', v => v === 'es.garcia', 'es.cortes') === 'es.garcia' ? 'garcia' : 'cortes'
@@ -88,7 +89,7 @@ function pintarSubtitulo(paso) {
 function etiquetaPaso(p, de, n) {
   switch (p.tipo) {
     case 'traduccion': return 'Traducción';
-    case 'palabra': return `Palabra ${p.i + 1}/${n}`;
+    case 'palabra': case 'palabraVoz': return `Palabra ${p.i + 1}/${n}`;
     case 'significado': return `Significado ${p.i + 1}/${n}`;
     case 'recitacion': return p.de > 1 ? `Recitación ${p.rep}/${p.de}` : 'Recitación';
     default: return 'Pausa';
@@ -119,7 +120,7 @@ function pintarPrefsVisibles() {
 }
 
 // ---- Motor ---------------------------------------------------------------------------------------
-function motorPrefs() { const { modo, repPalabra, repAleya, pausaMs, autoavance, traduccion, glosas, velocidad } = prefs; return { modo, repPalabra, repAleya, pausaMs, autoavance, traduccion, glosas, velocidad }; }
+function motorPrefs() { const { modo, repPalabra, repAleya, pausaMs, autoavance, traduccion, glosas, velocidad, fuentePalabra } = prefs; return { modo, repPalabra, repAleya, pausaMs, autoavance, traduccion, glosas, velocidad, fuentePalabra }; }
 
 function alEvento(ev) {
   switch (ev.tipo) {
@@ -213,7 +214,7 @@ function aplicar(cambio) {
   const antes = prefs; prefs = { ...prefs, ...cambio }; guardarPrefs();
   pintarPrefsVisibles(); aplicarFondo(); if (!$('ajustes').hidden) pintarAjustes();
   motor?.actualizarPrefs(motorPrefs());
-  if (cambio.recitador || cambio.edicion || cambio.voz) { if (cambio.recitador) actualizarSesionMultimedia(); motor?.recargarDatos(); }
+  if (cambio.recitador || cambio.edicion || cambio.voz || cambio.vozArabe) { if (cambio.recitador) actualizarSesionMultimedia(); motor?.recargarDatos(); }
   if (cambio.glosas !== undefined || cambio.traduccion !== undefined || cambio.modo) pintarSubtitulo();
   if (cambio.traduccion === false) $('traduccion').textContent = '';
   else if (cambio.traduccion === true && datosActual) $('traduccion').textContent = datosActual.traduccion || 'Traducción no disponible.';
@@ -232,7 +233,9 @@ function pintarAjustes() {
   $('dim').value = prefs.dim; $('dimV').textContent = prefs.dim + ' %'; $('blur').value = prefs.blur; $('blurV').textContent = prefs.blur + ' px';
   $('voz').innerHTML = VOCES.map(v => `<option value="${v}">${v === 'device' ? 'Voz del dispositivo' : v.replace('Neural', '').replace(/^es-([A-Z]{2})-/, '$1 · ')}</option>`).join(''); $('voz').value = prefs.voz;
   $('edicion').value = prefs.edicion;
-  $('notaModo').textContent = datosActual && !datosActual.palabrasFiables && prefs.modo !== MODOS.TRADUCCION_RECITACION && prefs.modo !== MODOS.RECITACION ? 'Esta aleya no tiene segmentación fiable para este recitador: se reproduce sin palabra por palabra.' : '';
+  $('fuentePalabra').value = prefs.fuentePalabra;
+  $('vozArabe').innerHTML = VOCES_AR.map(v => `<option value="${v}">${v.includes('Hamed') ? 'Árabe · Hamed (voz masculina)' : 'Árabe · Zariyah (voz femenina)'}</option>`).join(''); $('vozArabe').value = prefs.vozArabe;
+  $('notaModo').textContent = datosActual && prefs.fuentePalabra === 'recitacion' && !datosActual.palabrasFiables && prefs.modo !== MODOS.TRADUCCION_RECITACION && prefs.modo !== MODOS.RECITACION ? 'Esta aleya no tiene segmentación fiable para este recitador: se reproduce sin palabra por palabra.' : '';
 }
 $('ajustes').addEventListener('click', e => {
   const t = e.target.closest('button'); if (!t) return;
@@ -248,6 +251,8 @@ $('dim').oninput = e => aplicar({ dim: Number(e.target.value) });
 $('blur').oninput = e => aplicar({ blur: Number(e.target.value) });
 $('voz').onchange = e => aplicar({ voz: e.target.value });
 $('edicion').onchange = e => aplicar({ edicion: e.target.value });
+$('fuentePalabra').onchange = e => aplicar({ fuentePalabra: e.target.value });
+$('vozArabe').onchange = e => aplicar({ vozArabe: e.target.value });
 $('fondoArchivo').onchange = async e => {
   const f = e.target.files?.[0]; if (!f) return;
   try { const b = await prepararImagen(f); await guardarFondoPropio(b).catch(() => {}); if (urlFondoPropio) URL.revokeObjectURL(urlFondoPropio); urlFondoPropio = URL.createObjectURL(b); aplicar({ fondo: FONDO_PROPIO, fondoOn: true }); }

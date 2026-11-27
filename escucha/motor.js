@@ -23,12 +23,13 @@ export const PREFS_MOTOR = {
   autoavance: true,
   traduccion: true,   // «traducción natural»: voz y panel
   glosas: true,       // significado en español de cada palabra: voz y texto
+  fuentePalabra: 'voz', // cómo suena cada palabra árabe: 'voz' (voz neuronal) | 'recitacion' (fragmento real del recitador)
   velocidad: 1
 };
 
 // Aleya esperada por construirPlan:
-//   { nPalabras, traduccionDisponible, palabrasFiables (hay clips por palabra),
-//     recitacionDisponible }
+//   { nPalabras, traduccionDisponible, palabrasFiables (hay clips por palabra con marcas reales),
+//     palabrasVoz (hay voz neuronal árabe por palabra), recitacionDisponible }
 export function construirPlan(aleya, prefs) {
   const p = { ...PREFS_MOTOR, ...prefs };
   const avisos = [];
@@ -41,7 +42,11 @@ export function construirPlan(aleya, prefs) {
   let quierePalabras = p.modo === MODOS.PALABRA || p.modo === MODOS.COMBINADA;
   const quiereRecitacion = p.modo !== MODOS.PALABRA;
 
-  if (quierePalabras && !aleya.palabrasFiables) {
+  const conVoz = p.fuentePalabra !== 'recitacion';
+  if (quierePalabras && conVoz && !aleya.palabrasVoz) {
+    quierePalabras = false;
+    avisos.push('Voz árabe no disponible para esta aleya: se desactiva el modo palabra por palabra.');
+  } else if (quierePalabras && !conVoz && !aleya.palabrasFiables) {
     quierePalabras = false;
     avisos.push('Esta aleya no tiene una segmentación fiable para este recitador: se desactiva el modo palabra por palabra.');
   }
@@ -56,9 +61,9 @@ export function construirPlan(aleya, prefs) {
     const pasada = [];
     for (let i = 0; i < aleya.nPalabras; i++) {
       for (let r = 0; r < rep(p.repPalabra); r++) {
-        // Primero el significado en español y después la palabra en árabe (clip real de la recitación).
+        // Primero el significado en español y después la palabra en árabe (voz neuronal o, si se elige, clip real de la recitación).
         if (p.glosas) pasada.push({ tipo: 'significado', i });
-        pasada.push({ tipo: 'palabra', i, rep: r + 1 });
+        pasada.push({ tipo: conVoz ? 'palabraVoz' : 'palabra', i, rep: r + 1 });
         pasada.push({ tipo: 'pausa', ms: p.pausaMs });
       }
     }
@@ -81,7 +86,7 @@ export function construirPlan(aleya, prefs) {
 }
 
 // Parte de las preferencias que cambia el plan (el resto no obliga a reiniciar la aleya).
-const firmaPlan = p => [p.modo, p.repPalabra, p.repAleya, p.pausaMs, p.traduccion, p.glosas].join('|');
+const firmaPlan = p => [p.modo, p.repPalabra, p.repAleya, p.pausaMs, p.traduccion, p.glosas, p.fuentePalabra].join('|');
 
 // opciones:
 //   controlador  { reproducirClip, hablar, hablarLocal, pausar, reanudar, cancelar }  (ver audio.js)
@@ -102,6 +107,7 @@ export function crearMotor({ controlador, obtenerAleya, total, alEvento = () => 
 
   function cancelarPendiente() {
     m.gen++;
+    corriendo = false; // el bucle anterior queda obsoleto (su `finally` ya no lo marca): sin esto, play tras cambiar de modo/aleya en pausa no arrancaba nada
     if (pausaGap) { temporizador.clear(pausaGap.id); const r = pausaGap.resolver; pausaGap = null; r('cancelado'); }
     controlador.cancelar();
     emitir({ tipo: 'palabra', palabra: null });
@@ -122,6 +128,9 @@ export function crearMotor({ controlador, obtenerAleya, total, alEvento = () => 
       case 'traduccion':
         emitir({ tipo: 'palabra', palabra: null });
         return controlador.hablar({ clave: d.clave, texto: d.traduccion, url: d.urlTraduccion });
+      case 'palabraVoz':
+        emitir({ tipo: 'palabra', palabra: { desde: paso.i, hasta: paso.i + 1 } });
+        return controlador.hablar({ clave: d.clave + ':' + (paso.i + 1), texto: d.palabras?.[paso.i]?.ar || '', url: d.urlsPalabra[paso.i], lang: 'ar-SA' });
       case 'palabra': {
         const c = d.clips[paso.i];
         emitir({ tipo: 'palabra', palabra: { desde: paso.i, hasta: paso.i + 1 } });

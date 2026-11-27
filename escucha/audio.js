@@ -90,8 +90,8 @@ export function crearControlador({ elemento = new Audio(), sintesis = globalThis
   }
 
   // Voz de la traducción: mp3 del servidor (voz neuronal) y, si falla, voz del dispositivo.
-  async function hablar({ url, texto }) {
-    if (!url) return hablarLocal({ texto });
+  async function hablar({ url, texto, lang: idioma }) {
+    if (!url) return hablarLocal({ texto, lang: idioma });
     cancelar();
     const r = await new Promise(resolver => {
       const op = { resolver, tipo: 'voz', hecho: false };
@@ -104,20 +104,20 @@ export function crearControlador({ elemento = new Audio(), sintesis = globalThis
       el.setAttribute('data-url', url); el.src = url; el.playbackRate = 1;
       el.play().catch(e => { if (e?.name === 'AbortError') return; /* pausa o cancelación */ terminar(op, e?.name === 'NotAllowedError' ? 'bloqueado' : 'error'); });
     });
-    if (r === 'error' && texto) return hablarLocal({ texto });
+    if (r === 'error' && texto) return hablarLocal({ texto, lang: idioma });
     return r;
   }
 
   // Voz del dispositivo (significado de cada palabra). Con vigilante: si el sistema no llega a
   // empezar (p. ej. en segundo plano en Android) se omite en vez de quedarse colgado.
-  function hablarLocal({ texto }) {
+  function hablarLocal({ texto, lang: idioma = lang }) {
     cancelar();
     return new Promise(resolver => {
       if (!sintesis || typeof SpeechSynthesisUtterance === 'undefined' || !texto) return resolver('omitido');
       const op = { resolver, tipo: 'local', hecho: false, empezo: false };
       actual = op;
-      let u = new SpeechSynthesisUtterance(String(texto).replace(/[—–]/g, ' ')); u.lang = lang; u.rate = .95;
-      const vs = sintesis.getVoices?.() || []; const v = vs.find(x => x.lang?.toLowerCase().startsWith(lang.toLowerCase())) || vs.find(x => /^es/i.test(x.lang)); if (v) u.voice = v;
+      let u = new SpeechSynthesisUtterance(String(texto).replace(/[—–]/g, ' ')); u.lang = idioma; u.rate = .95;
+      const vs = sintesis.getVoices?.() || []; const v = vs.find(x => x.lang?.toLowerCase().startsWith(idioma.toLowerCase())) || vs.find(x => x.lang?.toLowerCase().startsWith(idioma.slice(0, 2).toLowerCase())); if (v) u.voice = v;
       let vigila = ms.set(() => { if (!op.empezo && !op.pausado) terminar(op, 'omitido'); }, 2500);
       let tope = ms.set(() => terminar(op, 'omitido'), 12000);
       u.onstart = () => { op.empezo = true; ms.clear(vigila); };

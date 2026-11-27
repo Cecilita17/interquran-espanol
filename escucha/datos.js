@@ -10,6 +10,7 @@ export const RECITADORES = [
   { id: 'shuraym', nombre: 'Saud Al-Shuraim', rec: 10 }
 ];
 export const TRADUCCIONES = { cortes: 'es.cortes', garcia: 'es.garcia' };
+export const VOCES_AR = ['ar-SA-HamedNeural', 'ar-SA-ZariyahNeural'];
 export const VOCES = ['es-ES-ElviraNeural', 'es-ES-AlvaroNeural', 'es-MX-DaliaNeural', 'es-MX-JorgeNeural', 'es-AR-ElenaNeural', 'es-AR-TomasNeural', 'device'];
 
 const CLOUD = 'https://api.alquran.cloud/v1';
@@ -73,6 +74,8 @@ export function urlVoz(sura, aleya, traduccion, voz) {
   return `/api/tts?s=${sura}&a=${aleya}&t=${traduccion === 'garcia' ? 'garcia' : 'cortes'}&v=${encodeURIComponent(voz)}`;
 }
 
+export const urlVozPalabra = (sura, aleya, pos, voz) => `/api/tts-ar?s=${sura}&a=${aleya}&w=${pos}&v=${encodeURIComponent(voz)}`;
+
 // Datos listos para el motor (construirPlan / ejecutar) de una aleya.
 export async function datosAleya({ sura, indice, slug, prefs }) {
   const rec = RECITADORES.find(r => r.id === prefs.recitador) || RECITADORES[0];
@@ -91,6 +94,8 @@ export async function datosAleya({ sura, indice, slug, prefs }) {
     palabras: ws,
     significados: ws.map(w => (w.es && w.es !== '—') ? w.es : ''),
     traduccion: texto, traduccionDisponible: !!texto, urlTraduccion: urlVoz(sura, indice + 1, prefs.edicion, prefs.voz),
+    // Voz neuronal árabe de cada palabra (pronunciación aislada, no recitación).
+    urlsPalabra: ws.map((_, i) => urlVozPalabra(sura, indice + 1, i + 1, prefs.vozArabe)), palabrasVoz: ws.length > 0,
     urlAudio: r?.url || null, urlsAlt: r?.urlsAlt || [], recitacionDisponible: !!r?.url,
     rangos: ev.rangos, clips: ev.porPalabra, palabrasFiables: !!(ev.fiable && r?.url), motivoSinMarcas: ev.fiable ? '' : ev.motivo,
     revisada: ws.every(w => w.estado === 'revisada')

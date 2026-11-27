@@ -44,7 +44,8 @@ function conRango(route, cuerpo, tipo = 'audio/wav') {
   return route.fulfill({ status: 200, headers: { 'Content-Type': tipo, 'Accept-Ranges': 'bytes', 'Access-Control-Allow-Origin': '*' }, body: cuerpo });
 }
 
-const peticiones = { tts: [], audio: [], recit: [] };
+const peticiones = { tts: [], ttsAr: [], audio: [], recit: [] };
+const PREF_RECIT = () => localStorage.setItem('qescucha-prefs', JSON.stringify({ fuentePalabra: 'recitacion' })); // palabra = fragmento real del recitador
 async function simularRed(ctx) {
   await ctx.route(/fonts\.(googleapis|gstatic)\.com/, r => r.fulfill({ status: 200, contentType: 'text/css', body: '' }));
   await ctx.route(/api\.alquran\.cloud\/v1\/surah\/(\d+)\/(es\.\w+)/, r => {
@@ -64,6 +65,7 @@ async function simularRed(ctx) {
     peticiones.audio.push(`${rec}:${+s}:${+a}`);
     conRango(r, wav(duracionMs(palabras(+s)[+a]), rec === 'Alafasy' ? 440 : 330));
   });
+  await ctx.route(/\/api\/tts-ar\?/, r => { peticiones.ttsAr.push(new URL(r.request().url()).search); conRango(r, wav(250, 600), 'audio/mpeg'); });
   await ctx.route(/\/api\/tts\?/, r => { peticiones.tts.push(new URL(r.request().url()).search); conRango(r, wav(350, 220), 'audio/mpeg'); });
 }
 
@@ -168,8 +170,8 @@ await prueba('modo 4 (sólo recitación): el resaltado sigue el reloj real del a
   assert.deepEqual(p.errores, []); await p.ctx.close();
 });
 
-await prueba('modo 2 (palabra por palabra): cada clip empieza en su marca real, suena el significado y nunca se solapan', async () => {
-  const p = await pagina(); await modo(p, 'palabra'); await ajustes(p, { autoavance: false });
+await prueba('modo 2 con fragmentos de la recitación: cada clip empieza en su marca real, suena el significado y nunca se solapan', async () => {
+  const p = await pagina({ preparar: PREF_RECIT }); await modo(p, 'palabra'); await ajustes(p, { autoavance: false });
   await p.evaluate(() => { window.__escucha.motor.actualizarPrefs({ pausaMs: 100 }); });
   await p.click('#play'); await esperarEstado(p, 'terminado');
   const voz = await p.evaluate(() => window.__voz); assert.equal(voz.length, 4, 'significados hablados: ' + JSON.stringify(voz));
@@ -188,8 +190,8 @@ await prueba('modo 2 (palabra por palabra): cada clip empieza en su marca real, 
   assert.deepEqual(p.errores, []); await p.ctx.close();
 });
 
-for (const m of ['recitacion', 'palabra']) await prueba(`modo ${m}: suena al primer toque en play aunque el primer audio sea un fragmento (política de audio de móviles)`, async () => {
-  const p = await pagina(); await modo(p, m); await ajustes(p, { autoavance: false });
+for (const [m, fuente] of [['recitacion', ''], ['palabra', ''], ['palabra', 'recitacion']]) await prueba(`modo ${m}${fuente ? ' con fragmentos' : ''}: suena al primer toque en play (política de audio de móviles)`, async () => {
+  const p = await pagina({ preparar: fuente ? PREF_RECIT : undefined }); await modo(p, m); await ajustes(p, { autoavance: false });
   await p.click('#play');
   await p.waitForFunction(() => !window.__escucha.controlador.elemento.paused && window.__escucha.motor.estado === 'reproduciendo', null, { timeout: 8000 });
   assert.ok(!(await p.evaluate(() => document.getElementById('aviso').textContent)).includes('bloque'), 'sin aviso de audio bloqueado');
@@ -198,13 +200,16 @@ for (const m of ['recitacion', 'palabra']) await prueba(`modo ${m}: suena al pri
 
 await prueba('modo 3 (combinada): traducción (TTS) → palabras + significados → recitación completa; sin solapes', async () => {
   const p = await pagina(); await modo(p, 'combinada'); await ajustes(p, { autoavance: false });
-  peticiones.tts.length = 0;
+  peticiones.tts.length = 0; peticiones.ttsAr.length = 0;
   await p.evaluate(() => window.__escucha.motor.actualizarPrefs({ pausaMs: 50 }));
   await p.click('#play'); await esperarEstado(p, 'terminado', 30000);
   const m = await muestras(p), sonando = m.filter(s => !s.p);
   const primerTts = sonando.findIndex(s => s.u.includes('/api/tts')), primerAudio = sonando.findIndex(s => /001001/.test(s.u));
   assert.ok(primerTts >= 0 && primerAudio > primerTts, 'la traducción suena antes que el árabe');
   assert.equal(peticiones.tts.length, 1); assert.match(peticiones.tts[0], /s=1&a=1&t=cortes&v=es-ES-ElviraNeural/);
+  assert.deepEqual(peticiones.ttsAr.map(q => /w=(\d+)&v=(\S+)/.exec(q).slice(1).join(':')), ['1:ar-SA-HamedNeural', '2:ar-SA-HamedNeural', '3:ar-SA-HamedNeural', '4:ar-SA-HamedNeural'], 'una voz árabe por palabra, en orden');
+  const orden = [...new Set(sonando.map(x => x.u))].map(u => /tts-ar\?.*w=(\d)/.exec(u)?.[1] ? 'ar' + /w=(\d)/.exec(u)[1] : u.includes('/api/tts?') ? 'trad' : /001001/.test(u) ? 'recit' : u);
+  assert.deepEqual(orden.filter(x => x !== 'silencio'), ['trad', 'ar1', 'ar2', 'ar3', 'ar4', 'recit'], 'traducción → palabras (voz) → recitación completa');
   // la recitación completa pasa por los 4 bloques al final
   const ultimo = sonando.filter(s => /001001/.test(s.u)).slice(-12);
   assert.ok(ultimo.at(-1).t > INI + 3 * SALTO, 'la última pasada llega hasta la última palabra');
@@ -214,14 +219,32 @@ await prueba('modo 3 (combinada): traducción (TTS) → palabras + significados 
   await p.ctx.close();
 });
 
+await prueba('cambiar de modo (en pausa o sonando) y de aleya no deja de funcionar: play siempre suena', async () => {
+  const p = await pagina(); await ajustes(p, { autoavance: false });
+  const sono = async () => { await p.waitForFunction(() => window.__escucha.motor.estado === 'reproduciendo' && !window.__escucha.controlador.elemento.paused || window.__voz.length > 0 || window.__escucha.motor.paso > 0, null, { timeout: 8000 }); };
+  const recorrido = ['recitacion', 'palabra', 'traduccion-recitacion', 'recitacion', 'combinada', 'palabra'];
+  for (const m of recorrido) {
+    await modo(p, m);                                  // cambio de modo con la reproducción en pausa o terminada
+    assert.notEqual(await p.evaluate(() => window.__escucha.motor.estado), 'error');
+    const antes = await p.evaluate(() => ({ voz: window.__voz.length, pl: window.__pl.length }));
+    await p.click('#play');
+    await p.waitForFunction(a => window.__voz.length > a.voz || window.__pl.length > a.pl, antes, { timeout: 8000 }).catch(() => { throw new Error(`modo ${m}: play no produjo ningún audio`); });
+    await p.click('#play'); await esperarEstado(p, 'pausado');   // pausa; el siguiente modo se cambia en pausa
+  }
+  await p.click('#siguiente'); await p.waitForFunction(() => window.__escucha.motor.aleya === 1);   // cambio de aleya en pausa
+  const antes = await p.evaluate(() => ({ voz: window.__voz.length, pl: window.__pl.length })); await p.click('#play');
+  await p.waitForFunction(a => window.__voz.length > a.voz || window.__pl.length > a.pl, antes, { timeout: 8000 });
+  assert.deepEqual(p.errores, []); await p.ctx.close();
+});
+
 await prueba('repeticiones por palabra y por aleya', async () => {
   const p = await pagina(); await modo(p, 'combinada'); await ajustes(p, { autoavance: false, traduccion: false, glosas: false });
   await p.evaluate(() => window.__escucha.motor.actualizarPrefs({ pausaMs: 0, repPalabra: 2, repAleya: 2 }));
   await p.click('#play'); await esperarEstado(p, 'terminado', 30000);
   const pasos = await p.evaluate(() => window.__escucha.motor.plan.map(s => s.tipo + (s.i ?? '')));
-  assert.equal(pasos.filter(x => x.startsWith('palabra')).length, 8); assert.equal(pasos.filter(x => x === 'recitacion').length, 2);
+  assert.equal(pasos.filter(x => x.startsWith('palabraVoz')).length, 8); assert.equal(pasos.filter(x => x === 'recitacion').length, 2);
   const pl = await p.evaluate(() => window.__pl.filter(x => /001001/.test(x.u) && x.t < 100));
-  assert.equal(pl.length, 4, 'inicios de audio cerca de 0 ms: 2 repeticiones de la palabra 1 + 2 recitaciones; vistos ' + JSON.stringify(pl));
+  assert.equal(pl.length, 2, 'la recitación completa suena 2 veces y las palabras no usan fragmentos de ella; vistos ' + JSON.stringify(pl));
   await p.ctx.close();
 });
 
@@ -251,8 +274,8 @@ await prueba('avance automático encadena aleyas y se detiene al final de la sur
   await p.ctx.close();
 });
 
-await prueba('aleya sin segmentación fiable: se desactiva palabra por palabra, se avisa y no se inventa resaltado', async () => {
-  const p = await pagina({ url: '/escucha.html?s=1&a=3' }); await modo(p, 'combinada'); await ajustes(p, { autoavance: false });
+await prueba('aleya sin segmentación fiable (fragmentos de la recitación): se desactiva palabra por palabra, se avisa y no se inventa resaltado', async () => {
+  const p = await pagina({ url: '/escucha.html?s=1&a=3', preparar: PREF_RECIT }); await modo(p, 'combinada'); await ajustes(p, { autoavance: false });
   assert.match(await p.textContent('#aviso'), /segmentación fiable/);
   await p.click('#play'); await esperarEstado(p, 'terminado');
   const m = await muestras(p); assert.ok(m.some(s => !s.p && /001003/.test(s.u)), 'suena la recitación completa auténtica');
