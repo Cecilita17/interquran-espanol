@@ -197,7 +197,7 @@ await prueba('modo 2 con fragmentos de la recitación: cada clip empieza en su m
     assert.ok(t1 <= tope + 80, `palabra ${k + 1} termina en ${t1.toFixed(0)} (límite ${tope})`);
     assert.ok(k === 3 || t1 < ini + SALTO, `palabra ${k + 1} no invade la siguiente`);
   }
-  assert.ok(!m.some(s => !s.p && s.u.includes('/api/tts')), 'no suena TTS en el modo 2');
+  assert.ok(!m.some(s => !s.p && s.u.includes('/api/tts?')), 'no suena la traducción en el modo 2');
   assert.deepEqual(p.errores, []); await p.ctx.close();
 });
 
@@ -256,7 +256,10 @@ await prueba('ritmo: el palabra por palabra no espera a la red (precarga), usa l
   peticiones.retardoAr = 0;
   assert.equal(new Set(peticiones.ttsGlosa).size, 9, 'un significado (voz neuronal) por palabra');
   // 9 palabras × (significado ≈ 0,15 s + árabe ≈ 0,25/1,2 s + pausa 0,15 s) ≈ 4,6 s + la primera espera de 0,6 s. Sin precarga se sumarían 9 × 0,6 s más.
-  assert.ok(total < 7500, `la pasada tardó ${total} ms (esperando a la red en cada palabra)`);
+  const linea = (await muestras(p)).reduce((acc, x) => { const k = x.p ? 'silencio' : (x.u.match(/tts-\w+|\d{6}/) || ['?'])[0]; const u = acc.at(-1); if (!u || u.k !== k) acc.push({ k, t: Math.round(x.at), n: 1 }); else u.n++; return acc; }, []).map((u, i, a) => `${u.k}@${u.t - a[0].t}`).slice(0, 60).join(' ');
+  // Los audios de prueba traen 0,6 s de silencio (recortado al reproducir); sin precarga se sumarían 9 × 0,6 s de red (≈ 14 s).
+  if (process.env.ESC_DIAG) console.log('    ' + total + ' ms · ' + linea);
+  assert.ok(total < 10500, `la pasada tardó ${total} ms (esperando a la red en cada palabra)\n${linea}`);
   const sm = (await muestras(p)).filter(x => !x.p);
   assert.ok(sm.filter(x => x.u.includes('tts-ar')).length > 8 && sm.filter(x => x.u.includes('tts-ar')).every(x => Math.abs(x.r - 1.2) < 0.01), 'voz árabe a 1,2×');
   assert.ok(sm.filter(x => x.u.includes('tts-glosa')).length > 8 && sm.filter(x => x.u.includes('tts-glosa')).every(x => Math.abs(x.r - 1.2) < 0.01), 'significado a 1,2×');

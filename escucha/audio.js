@@ -38,7 +38,7 @@ export function crearControlador({ elemento = new Audio(), sintesis = globalThis
 
   // Reproduce [desdeMs, hastaMs) de una grabación. hastaMs null = hasta el final. Prueba las URL
   // alternativas del MISMO recitador si la primera falla.
-  function reproducirClip({ url, urlsAlt = [], desdeMs = 0, hastaMs = null, velocidad: v, alTiempo = null, origen = null }) {
+  function reproducirClip({ url, urlsAlt = [], desdeMs = 0, hastaMs = null, velocidad: v, alTiempo = null, origen = null, rapido = false }) {
     cancelar();
     if (origen) el.setAttribute('data-origen', origen); else el.removeAttribute('data-origen'); // URL «lógica» (la real puede ser un blob)
     if (v) velocidad = v;
@@ -73,11 +73,20 @@ export function crearControlador({ elemento = new Audio(), sintesis = globalThis
         if (op.hecho) return;
         if (i >= urls.length) return terminar(op, 'error');
         try {
-          await cargar(urls[i]); if (op.hecho) return;
-          el.playbackRate = velocidad; el.defaultPlaybackRate = velocidad;
-          await posicionar(desdeMs / 1000); if (op.hecho) return;
+          if (rapido) {
+            // Voz ya descargada en memoria (blob): se fija fuente y posición inicial sin esperar a los eventos de carga y
+            // búsqueda (ahorra ~100 ms por audio). Si el navegador ignorase la posición, se corrige tras empezar.
+            if (el.getAttribute('data-url') !== urls[i]) { el.setAttribute('data-url', urls[i]); el.src = urls[i]; }
+            el.playbackRate = velocidad; el.defaultPlaybackRate = velocidad;
+            try { el.currentTime = desdeMs / 1000; } catch (e) { /* se corrige abajo */ }
+          } else {
+            await cargar(urls[i]); if (op.hecho) return;
+            el.playbackRate = velocidad; el.defaultPlaybackRate = velocidad;
+            await posicionar(desdeMs / 1000); if (op.hecho) return;
+          }
           if (op.pausado) { op.diferido = () => intentar(i); return; } // pausa durante la carga: arranca al reanudar
           await el.play(); if (op.hecho) return;
+          if (rapido && Math.abs(el.currentTime - desdeMs / 1000) > 0.15) el.currentTime = desdeMs / 1000;
           op.arrancarVigilancia();
         } catch (e) {
           if (op.hecho) return;
@@ -96,7 +105,7 @@ export function crearControlador({ elemento = new Audio(), sintesis = globalThis
     const pre = cache.get(url);
     if (pre?.blob && pre.recorte) {
       // Voz ya descargada y analizada: se reproduce SIN el silencio que los mp3 de voz traen al principio y al final.
-      const r = await reproducirClip({ url: pre.blob, desdeMs: pre.recorte.ini * 1000, hastaMs: pre.recorte.fin * 1000, velocidad: velocidadVoz || 1, origen: url });
+      const r = await reproducirClip({ url: pre.blob, desdeMs: pre.recorte.ini * 1000, hastaMs: pre.recorte.fin * 1000, velocidad: velocidadVoz || 1, origen: url, rapido: true });
       if (r === 'error' && texto) return hablarLocal({ texto, lang: idioma, velocidad: velocidadVoz });
       return r;
     }

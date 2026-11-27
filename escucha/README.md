@@ -24,6 +24,7 @@ añadieron dos enlaces de entrada (portada y cabecera del lector) y un `<script>
 * Traducción natural: Al Quran Cloud `es.cortes` / `es.garcia`, igual que el lector.
 * Audio y marcas por palabra: Quran.com, recitaciones 7 (Mishary Rashid Alafasy) y 10 (Saud Al-Shuraim), como el lector.
 * Voz de la traducción: `/api/tts` (voces neuronales); si falla, voz del dispositivo.
+* Significado de cada palabra: `/api/tts-glosa?s&a&w&v` — la misma voz neuronal española de la traducción, con el texto tomado por el servidor del glosario publicado (origen fijo). Se precarga igual que el resto y, al ser audio normal, también suena con la pantalla apagada. Si se elige «Voz del dispositivo» (o falla), se usa `speechSynthesis`.
 * Voz árabe de cada palabra: `/api/tts-ar?s&a&w&v` — el servidor obtiene la palabra (`text_imlaei`) de Quran.com por sura/aleya/posición y sólo admite las dos voces árabes de la lista, así que no es un TTS de texto libre. Si falla, voz árabe del dispositivo.
 * Significado de cada palabra: voz del dispositivo (el servidor sólo sintetiza traducciones de aleyas completas; no se abrió un TTS de texto libre).
 
@@ -35,7 +36,7 @@ añadieron dos enlaces de entrada (portada y cabecera del lector) y un `<script>
 4. **Sólo recitación** con resaltado sincronizado.
 
 «Repeticiones por palabra» repite el par (significado + árabe). «Repeticiones por aleya» repite la recitación
-completa (en el modo 2, el recorrido palabra por palabra). Las pausas son configurables por separado: entre bloques (traducción → palabras → recitación; 0,15 s por defecto) y entre palabras del palabra por palabra (0,15 s). El significado hablado y la palabra árabe tienen su propia velocidad (1,2× por defecto) sin afectar a la recitación. Las voces de la traducción y de cada palabra se **precargan** (los próximos 8 audios) para que el ritmo no dependa de la red.
+completa (en el modo 2, el recorrido palabra por palabra). Las pausas son configurables por separado: entre bloques (traducción → palabras → recitación; 0,15 s por defecto) y entre palabras del palabra por palabra (0,15 s). El significado hablado y la palabra árabe tienen su propia velocidad (1,2× por defecto) sin afectar a la recitación. Los mp3 de voz traen silencio propio al principio y al final: al precargarlos se **mide** ese silencio (decodificación sin contexto de audio vivo) y se reproducen **recortados** (con un margen de 30 ms al inicio y 90 ms al final), sin tocar jamás la recitación auténtica. Las voces de la traducción, del significado y de cada palabra se **precargan** (los próximos 8 audios) para que el ritmo no dependa de la red.
 
 ## Sincronización: reglas
 
@@ -70,6 +71,7 @@ como valores iniciales). El fondo propio va a IndexedDB (`qescucha`).
 ## Pruebas
 
 ```
+node --test tools/probar-tts-glosa.mjs # /api/tts-glosa (incluye lectura del glosario real)
 node --test tools/probar-tts-ar.mjs     # /api/tts-ar (parámetros, voces permitidas, el texto lo fija el servidor)
 node --test tools/probar-motor.mjs      # máquina de estados, plan por modo, validación de marcas (sin red ni navegador)
 node tools/probar-escucha.mjs           # Chromium: RTL, sincronía contra el reloj del audio, repeticiones, pausas, persistencia,
