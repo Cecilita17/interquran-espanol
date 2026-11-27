@@ -35,7 +35,7 @@ añadieron dos enlaces de entrada (portada y cabecera del lector) y un `<script>
 4. **Sólo recitación** con resaltado sincronizado.
 
 «Repeticiones por palabra» repite el par (significado + árabe). «Repeticiones por aleya» repite la recitación
-completa (en el modo 2, el recorrido palabra por palabra). Las pausas entre audios son configurables.
+completa (en el modo 2, el recorrido palabra por palabra). Las pausas son configurables por separado: entre bloques (traducción → palabras → recitación; 0,4 s por defecto) y entre palabras del palabra por palabra (0,15 s). El significado hablado y la palabra árabe tienen su propia velocidad (1,2× por defecto) sin afectar a la recitación. Las voces de la traducción y de cada palabra se **precargan** (los próximos 8 audios) para que el ritmo no dependa de la red.
 
 ## Sincronización: reglas
 
