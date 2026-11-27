@@ -141,6 +141,8 @@ export function crearMotor({ controlador, obtenerAleya, total, alEvento = () => 
       }
       case 'significado':
         emitir({ tipo: 'palabra', palabra: { desde: paso.i, hasta: paso.i + 1 } });
+        // Voz neuronal precargada (sin esperas ni arranque lento); si no hay, voz del dispositivo.
+        if (d.urlsSignificado?.[paso.i]) return controlador.hablar({ clave: d.clave + ':s' + (paso.i + 1), texto: d.significados[paso.i], url: d.urlsSignificado[paso.i], lang: 'es-ES', velocidad: m.prefs.velocidadPalabras });
         return controlador.hablarLocal({ texto: d.significados[paso.i], velocidad: m.prefs.velocidadPalabras });
       case 'recitacion': {
         const rangos = d.rangos;
@@ -179,12 +181,13 @@ export function crearMotor({ controlador, obtenerAleya, total, alEvento = () => 
   }
   // Pide por adelantado los audios que van a sonar enseguida (traducción y voces árabes de las próximas
   // palabras) para que el ritmo no dependa de la red en cada palabra.
-  function precargar(desde = m.paso + 1, cuantos = 8) {
+  function precargar(desde = m.paso + 1, cuantos = 10) {
     if (!controlador.precargar || !m.plan || !m.datos) return;
     const d = m.datos, urls = [];
     for (let k = desde; k < m.plan.length && urls.length < cuantos; k++) {
       const p = m.plan[k];
       if (p.tipo === 'palabraVoz' && d.urlsPalabra?.[p.i]) urls.push(d.urlsPalabra[p.i]);
+      else if (p.tipo === 'significado' && d.urlsSignificado?.[p.i]) urls.push(d.urlsSignificado[p.i]);
       else if (p.tipo === 'traduccion' && d.urlTraduccion) urls.push(d.urlTraduccion);
     }
     if (urls.length) controlador.precargar(urls);
@@ -196,7 +199,7 @@ export function crearMotor({ controlador, obtenerAleya, total, alEvento = () => 
       const sig = await obtenerAleya(m.aleya + 1);
       if (gen !== m.gen || !sig) return;
       const { pasos } = construirPlan(sig, m.prefs), urls = [];
-      for (const p of pasos) { if (urls.length >= 8) break; if (p.tipo === 'traduccion' && sig.urlTraduccion) urls.push(sig.urlTraduccion); else if (p.tipo === 'palabraVoz' && sig.urlsPalabra?.[p.i]) urls.push(sig.urlsPalabra[p.i]); }
+      for (const p of pasos) { if (urls.length >= 8) break; if (p.tipo === 'traduccion' && sig.urlTraduccion) urls.push(sig.urlTraduccion); else if (p.tipo === 'significado' && sig.urlsSignificado?.[p.i]) urls.push(sig.urlsSignificado[p.i]); else if (p.tipo === 'palabraVoz' && sig.urlsPalabra?.[p.i]) urls.push(sig.urlsPalabra[p.i]); }
       if (urls.length) controlador.precargar(urls);
     } catch (e) { /* adelantar es opcional */ }
   }

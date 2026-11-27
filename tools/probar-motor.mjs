@@ -250,3 +250,13 @@ test('motor: velocidad de las palabras se pasa al significado y a la voz árabe,
   assert.ok(precargas.flat().includes('a1') && precargas.flat().includes('a3'), 'incluye las voces árabes de las próximas palabras');
   e.restaurar();
 });
+
+test('motor: el significado usa la voz neuronal precargada si hay URL y la del dispositivo si no', async () => {
+  const e = entorno({ prefs: { modo: MODOS.PALABRA, autoavance: false }, datos: () => ale({ urlsSignificado: ['g1', null, 'g3'] }) });
+  const pre = []; e.controlador.precargar = u => pre.push(...u);
+  await e.motor.reproducir(0); await e.asentar();
+  for (let k = 0; k < 6; k++) { e.terminar(); await e.asentar(); }
+  assert.deepEqual(e.log.filter(x => !x.startsWith('cancelar')), ['traduccion', 'arabe:a1', 'significado:b', 'arabe:a2', 'traduccion', 'arabe:a3'], 'palabras 1 y 3: voz neuronal (hablar); palabra 2: dispositivo');
+  assert.ok(pre.includes('g1') && pre.includes('g3') && pre.includes('a1'), 'se precargan significados y voces árabes');
+  e.restaurar();
+});

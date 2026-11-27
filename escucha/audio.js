@@ -38,8 +38,9 @@ export function crearControlador({ elemento = new Audio(), sintesis = globalThis
 
   // Reproduce [desdeMs, hastaMs) de una grabación. hastaMs null = hasta el final. Prueba las URL
   // alternativas del MISMO recitador si la primera falla.
-  function reproducirClip({ url, urlsAlt = [], desdeMs = 0, hastaMs = null, velocidad: v, alTiempo = null }) {
+  function reproducirClip({ url, urlsAlt = [], desdeMs = 0, hastaMs = null, velocidad: v, alTiempo = null, origen = null }) {
     cancelar();
+    if (origen) el.setAttribute('data-origen', origen); else el.removeAttribute('data-origen'); // URL «lógica» (la real puede ser un blob)
     if (v) velocidad = v;
     return new Promise(resolver => {
       const op = { resolver, tipo: 'clip', hecho: false, pausado: false, temporizador: null, raf: 0 };
@@ -92,7 +93,14 @@ export function crearControlador({ elemento = new Audio(), sintesis = globalThis
   // Voz de la traducción: mp3 del servidor (voz neuronal) y, si falla, voz del dispositivo.
   async function hablar({ url, texto, lang: idioma, velocidad: velocidadVoz }) {
     if (!url) return hablarLocal({ texto, lang: idioma, velocidad: velocidadVoz });
-    cancelar();
+    const pre = cache.get(url);
+    if (pre?.blob && pre.recorte) {
+      // Voz ya descargada y analizada: se reproduce SIN el silencio que los mp3 de voz traen al principio y al final.
+      const r = await reproducirClip({ url: pre.blob, desdeMs: pre.recorte.ini * 1000, hastaMs: pre.recorte.fin * 1000, velocidad: velocidadVoz || 1, origen: url });
+      if (r === 'error' && texto) return hablarLocal({ texto, lang: idioma, velocidad: velocidadVoz });
+      return r;
+    }
+    cancelar(); el.removeAttribute('data-origen');
     const r = await new Promise(resolver => {
       const op = { resolver, tipo: 'voz', hecho: false };
       actual = op;
@@ -144,6 +152,22 @@ export function crearControlador({ elemento = new Audio(), sintesis = globalThis
       r?.catch(() => { desbloqueado = false; });
     } catch (e) { /* sin audio: se informará al reproducir */ }
   }
+  // Mide el silencio inicial y final de un mp3 de voz (decodificación sin contexto de audio «vivo»: no exige gesto).
+  // Devuelve { ini, fin } en segundos con un pequeño margen para no comerse el ataque ni la cola de las palabras.
+  let decodificador = null;
+  async function medirSilencios(blob) {
+    const Ctx = globalThis.OfflineAudioContext || globalThis.webkitOfflineAudioContext;
+    if (!Ctx) return null;
+    decodificador ||= new Ctx(1, 1, 44100);
+    const buf = await decodificador.decodeAudioData(await blob.arrayBuffer());
+    const x = buf.getChannelData(0), sr = buf.sampleRate, umbral = 0.012;
+    let a = 0, z = x.length - 1;
+    while (a < x.length && Math.abs(x[a]) < umbral) a++;
+    while (z > a && Math.abs(x[z]) < umbral) z--;
+    if (a >= z) return null; // todo silencio o ruido bajo: no se recorta
+    const ini = Math.max(0, a / sr - 0.03), fin = Math.min(buf.duration, z / sr + 0.09);
+    return fin - ini > 0.08 ? { ini, fin } : null;
+  }
   // Descarga por adelantado audios de voz (mp3 pequeños) a memoria; hablar() los usa al instante.
   const cache = new Map(); // url → { blob?: objectURL }
   function precargar(urls) {
@@ -151,7 +175,7 @@ export function crearControlador({ elemento = new Audio(), sintesis = globalThis
       if (!url || cache.has(url)) continue;
       const entrada = {}; cache.set(url, entrada);
       fetch(url).then(r => r.ok ? r.blob() : Promise.reject(new Error('HTTP ' + r.status)))
-        .then(b => { entrada.blob = URL.createObjectURL(b); }).catch(() => cache.delete(url));
+        .then(async b => { entrada.recorte = await medirSilencios(b).catch(() => null); entrada.blob = URL.createObjectURL(b); }).catch(() => cache.delete(url));
     }
     while (cache.size > 60) { const k = cache.keys().next().value, e = cache.get(k); if (e?.blob && el.src !== e.blob) URL.revokeObjectURL(e.blob); cache.delete(k); }
   }

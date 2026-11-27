@@ -74,6 +74,7 @@ export function urlVoz(sura, aleya, traduccion, voz) {
   return `/api/tts?s=${sura}&a=${aleya}&t=${traduccion === 'garcia' ? 'garcia' : 'cortes'}&v=${encodeURIComponent(voz)}`;
 }
 
+export const urlVozSignificado = (sura, aleya, pos, voz) => voz === 'device' ? null : `/api/tts-glosa?s=${sura}&a=${aleya}&w=${pos}&v=${encodeURIComponent(voz)}`;
 export const urlVozPalabra = (sura, aleya, pos, voz) => `/api/tts-ar?s=${sura}&a=${aleya}&w=${pos}&v=${encodeURIComponent(voz)}`;
 
 // Datos listos para el motor (construirPlan / ejecutar) de una aleya.
@@ -94,6 +95,8 @@ export async function datosAleya({ sura, indice, slug, prefs }) {
     palabras: ws,
     significados: ws.map(w => (w.es && w.es !== '—') ? w.es : ''),
     traduccion: texto, traduccionDisponible: !!texto, urlTraduccion: urlVoz(sura, indice + 1, prefs.edicion, prefs.voz),
+    // Voz neuronal del significado en español de cada palabra (null si no hay glosa o se eligió la voz del dispositivo).
+    urlsSignificado: ws.map((w, i) => (w.es && w.es !== '—') ? urlVozSignificado(sura, indice + 1, i + 1, prefs.voz) : null),
     // Voz neuronal árabe de cada palabra (pronunciación aislada, no recitación).
     urlsPalabra: ws.map((_, i) => urlVozPalabra(sura, indice + 1, i + 1, prefs.vozArabe)), palabrasVoz: ws.length > 0,
     urlAudio: r?.url || null, urlsAlt: r?.urlsAlt || [], recitacionDisponible: !!r?.url,

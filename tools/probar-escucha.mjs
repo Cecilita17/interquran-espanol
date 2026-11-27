@@ -38,13 +38,21 @@ function wav(ms, hz = 440) {
   for (let i = 0; i < n; i++) b.writeInt16LE(Math.round(Math.sin(2 * Math.PI * hz * i / sr) * 3000), 44 + i * 2);
   return b;
 }
+// Voz sintética de prueba con silencio al principio y al final (como los mp3 de las voces neuronales reales).
+function wavVoz(toneMs, hz = 440, cabezaMs = 300, colaMs = 300) {
+  const sr = 8000, n = ms => Math.round(sr * ms / 1000), a = n(cabezaMs), t = n(toneMs), z = n(colaMs), b = Buffer.alloc(44 + (a + t + z) * 2);
+  b.write('RIFF', 0); b.writeUInt32LE(36 + (a + t + z) * 2, 4); b.write('WAVEfmt ', 8); b.writeUInt32LE(16, 16); b.writeUInt16LE(1, 20); b.writeUInt16LE(1, 22);
+  b.writeUInt32LE(sr, 24); b.writeUInt32LE(sr * 2, 28); b.writeUInt16LE(2, 32); b.writeUInt16LE(16, 34); b.write('data', 36); b.writeUInt32LE((a + t + z) * 2, 40);
+  for (let i = 0; i < t; i++) b.writeInt16LE(Math.round(Math.sin(2 * Math.PI * hz * i / sr) * 9000), 44 + (a + i) * 2);
+  return b;
+}
 function conRango(route, cuerpo, tipo = 'audio/wav') {
   const r = route.request().headers().range;
   if (r) { const m = /bytes=(\d+)-(\d*)/.exec(r), a = +m[1], z = m[2] ? +m[2] : cuerpo.length - 1; return route.fulfill({ status: 206, headers: { 'Content-Type': tipo, 'Accept-Ranges': 'bytes', 'Content-Range': `bytes ${a}-${z}/${cuerpo.length}`, 'Access-Control-Allow-Origin': '*' }, body: cuerpo.subarray(a, z + 1) }); }
   return route.fulfill({ status: 200, headers: { 'Content-Type': tipo, 'Accept-Ranges': 'bytes', 'Access-Control-Allow-Origin': '*' }, body: cuerpo });
 }
 
-const peticiones = { tts: [], ttsAr: [], audio: [], recit: [], retardoAr: 0 };
+const peticiones = { tts: [], ttsAr: [], ttsGlosa: [], audio: [], recit: [], retardoAr: 0 };
 const PREF_RECIT = () => localStorage.setItem('qescucha-prefs', JSON.stringify({ fuentePalabra: 'recitacion' })); // palabra = fragmento real del recitador
 async function simularRed(ctx) {
   await ctx.route(/fonts\.(googleapis|gstatic)\.com/, r => r.fulfill({ status: 200, contentType: 'text/css', body: '' }));
@@ -65,8 +73,9 @@ async function simularRed(ctx) {
     peticiones.audio.push(`${rec}:${+s}:${+a}`);
     conRango(r, wav(duracionMs(palabras(+s)[+a]), rec === 'Alafasy' ? 440 : 330));
   });
-  await ctx.route(/\/api\/tts-ar\?/, async r => { peticiones.ttsAr.push(new URL(r.request().url()).search); if (peticiones.retardoAr) await new Promise(ok => setTimeout(ok, peticiones.retardoAr)); conRango(r, wav(250, 600), 'audio/mpeg'); });
-  await ctx.route(/\/api\/tts\?/, r => { peticiones.tts.push(new URL(r.request().url()).search); conRango(r, wav(350, 220), 'audio/mpeg'); });
+  await ctx.route(/\/api\/tts-ar\?/, async r => { peticiones.ttsAr.push(new URL(r.request().url()).search); if (peticiones.retardoAr) await new Promise(ok => setTimeout(ok, peticiones.retardoAr)); conRango(r, wavVoz(250, 600), 'audio/mpeg'); });
+  await ctx.route(/\/api\/tts-glosa\?/, r => { peticiones.ttsGlosa.push(new URL(r.request().url()).search); conRango(r, wavVoz(150, 300), 'audio/mpeg'); });
+  await ctx.route(/\/api\/tts\?/, r => { peticiones.tts.push(new URL(r.request().url()).search); conRango(r, wavVoz(350, 220), 'audio/mpeg'); });
 }
 
 // Voz del dispositivo simulada (el Chromium sin cabeza no tiene voces): registra lo que «dice».
@@ -92,7 +101,7 @@ const INIT = () => {
 };
 const MUESTREO = () => {
   window.__m = []; window.__pl = []; const a = window.__escucha.controlador.elemento; a.addEventListener('playing', () => window.__pl.push({ t: a.currentTime * 1000, u: a.getAttribute('data-url') || '' }));
-  setInterval(() => { const act = [...document.querySelectorAll('.pal')].findIndex(e => e.classList.contains('activa')); window.__m.push({ t: a.currentTime * 1000, r: a.playbackRate, p: a.paused, u: a.getAttribute('data-url') || '', act, n: document.querySelectorAll('.pal.activa').length, st: window.__escucha.motor.estado, at: performance.now() }); }, 20);
+  setInterval(() => { const act = [...document.querySelectorAll('.pal')].findIndex(e => e.classList.contains('activa')); window.__m.push({ t: a.currentTime * 1000, r: a.playbackRate, p: a.paused, u: a.getAttribute('data-origen') || a.getAttribute('data-url') || '', act, n: document.querySelectorAll('.pal.activa').length, st: window.__escucha.motor.estado, at: performance.now() }); }, 20);
 };
 
 let servidor;
@@ -171,10 +180,11 @@ await prueba('modo 4 (sólo recitación): el resaltado sigue el reloj real del a
 });
 
 await prueba('modo 2 con fragmentos de la recitación: cada clip empieza en su marca real, suena el significado y nunca se solapan', async () => {
+  peticiones.ttsGlosa.length = 0;
   const p = await pagina({ preparar: PREF_RECIT }); await modo(p, 'palabra'); await ajustes(p, { autoavance: false });
   await p.evaluate(() => { window.__escucha.motor.actualizarPrefs({ pausaMs: 100 }); });
   await p.click('#play'); await esperarEstado(p, 'terminado');
-  const voz = await p.evaluate(() => window.__voz); assert.equal(voz.length, 4, 'significados hablados: ' + JSON.stringify(voz));
+  assert.equal(new Set(peticiones.ttsGlosa).size, 4, 'un significado por palabra con la voz neuronal');
   const m = await muestras(p);
   // Para cada palabra k: hubo una muestra con el audio sonando dentro de [ini_k, fin_k+cola] y ninguna fuera de ese hueco mientras sonaba una palabra.
   for (let k = 0; k < 4; k++) {
@@ -200,7 +210,7 @@ for (const [m, fuente] of [['recitacion', ''], ['palabra', ''], ['palabra', 'rec
 });
 
 await prueba('modo 3 (combinada): traducción (TTS) → palabras + significados → recitación completa; sin solapes', async () => {
-  peticiones.tts.length = 0; peticiones.ttsAr.length = 0;   // la precarga pide estos audios al abrir la aleya
+  peticiones.tts.length = 0; peticiones.ttsAr.length = 0; peticiones.ttsGlosa.length = 0;   // la precarga pide estos audios al abrir la aleya
   const p = await pagina(); await modo(p, 'combinada'); await ajustes(p, { autoavance: false });
   await p.evaluate(() => window.__escucha.motor.actualizarPrefs({ pausaMs: 50 }));
   await p.click('#play'); await esperarEstado(p, 'terminado', 30000);
@@ -209,14 +219,15 @@ await prueba('modo 3 (combinada): traducción (TTS) → palabras + significados 
   assert.ok(primerTts >= 0 && primerAudio > primerTts, 'la traducción suena antes que el árabe');
   assert.equal(peticiones.tts.length, 1); assert.match(peticiones.tts[0], /s=1&a=1&t=cortes&v=es-ES-ElviraNeural/);
   assert.deepEqual(peticiones.ttsAr.map(q => /w=(\d+)&v=(\S+)/.exec(q).slice(1).join(':')), ['1:ar-SA-HamedNeural', '2:ar-SA-HamedNeural', '3:ar-SA-HamedNeural', '4:ar-SA-HamedNeural'], 'una voz árabe por palabra, en orden');
-  const orden = [...new Set(sonando.map(x => x.u))].map(u => /tts-ar\?.*w=(\d)/.exec(u)?.[1] ? 'ar' + /w=(\d)/.exec(u)[1] : u.includes('/api/tts?') ? 'trad' : /001001/.test(u) ? 'recit' : u);
-  assert.deepEqual(orden.filter(x => x !== 'silencio'), ['trad', 'ar1', 'ar2', 'ar3', 'ar4', 'recit'], 'traducción → palabras (voz) → recitación completa');
+  const orden = [...new Set(sonando.map(x => x.u))].map(u => /tts-ar\?.*w=(\d)/.exec(u)?.[1] ? 'ar' + /w=(\d)/.exec(u)[1] : /tts-glosa\?.*w=(\d)/.exec(u)?.[1] ? 's' + /w=(\d)/.exec(u)[1] : u.includes('/api/tts?') ? 'trad' : /001001/.test(u) ? 'recit' : u);
+  assert.deepEqual(orden.filter(x => x !== 'silencio'), ['trad', 's1', 'ar1', 's2', 'ar2', 's3', 'ar3', 's4', 'ar4', 'recit'], 'traducción → (significado → palabra árabe) × n → recitación completa');
   // la recitación completa pasa por los 4 bloques al final
   const ultimo = sonando.filter(s => /001001/.test(s.u)).slice(-12);
   assert.ok(ultimo.at(-1).t > INI + 3 * SALTO, 'la última pasada llega hasta la última palabra');
   // Un solo elemento de audio y estados coherentes: nunca dos fuentes a la vez
   assert.equal(await p.evaluate(() => document.querySelectorAll('audio').length), 0, 'el audio es un solo objeto Audio fuera del DOM');
-  assert.equal((await p.evaluate(() => window.__voz)).length, 4);
+  assert.equal(new Set(peticiones.ttsGlosa).size, 4, 'significados con voz neuronal');
+  assert.equal((await p.evaluate(() => window.__voz)).length, 0, 'ya no se usa la voz del dispositivo');
   await p.ctx.close();
 });
 
@@ -239,15 +250,16 @@ await prueba('cambiar de modo (en pausa o sonando) y de aleya no deja de funcion
 });
 
 await prueba('ritmo: el palabra por palabra no espera a la red (precarga), usa la velocidad de palabras y casi no deja silencios', async () => {
-  peticiones.retardoAr = 600; peticiones.ttsAr.length = 0;                // el servidor de voz tarda 0,6 s por palabra
+  peticiones.retardoAr = 600; peticiones.ttsAr.length = 0; peticiones.ttsGlosa.length = 0;                // el servidor de voz tarda 0,6 s por palabra
   const p = await pagina({ url: '/escucha.html?s=1&a=7' }); await modo(p, 'palabra'); await ajustes(p, { autoavance: false });
   const t0 = Date.now(); await p.click('#play'); await esperarEstado(p, 'terminado', 30000); const total = Date.now() - t0;
   peticiones.retardoAr = 0;
-  const voz = await p.evaluate(() => window.__voz.length); assert.equal(voz, 9, 'un significado por palabra');
-  // 9 palabras × (significado 0,15 s + árabe 0,25/1,2 s + pausa 0,15 s) ≈ 4,6 s + la primera espera de 0,6 s. Sin precarga se sumarían 9 × 0,6 s más.
+  assert.equal(new Set(peticiones.ttsGlosa).size, 9, 'un significado (voz neuronal) por palabra');
+  // 9 palabras × (significado ≈ 0,15 s + árabe ≈ 0,25/1,2 s + pausa 0,15 s) ≈ 4,6 s + la primera espera de 0,6 s. Sin precarga se sumarían 9 × 0,6 s más.
   assert.ok(total < 7500, `la pasada tardó ${total} ms (esperando a la red en cada palabra)`);
-  const rates = await p.evaluate(() => window.__rate); assert.ok(rates.every(x => Math.abs(x - 0.95 * 1.2) < 0.01), 'velocidad del significado hablado: ' + rates);
-  const m = (await muestras(p)).filter(s => !s.p && s.u.includes('tts-ar')); assert.ok(m.length > 10 && m.every(s => Math.abs(s.r - 1.2) < 0.01), 'velocidad de la voz árabe 1,2×');
+  const sm = (await muestras(p)).filter(x => !x.p);
+  assert.ok(sm.filter(x => x.u.includes('tts-ar')).length > 8 && sm.filter(x => x.u.includes('tts-ar')).every(x => Math.abs(x.r - 1.2) < 0.01), 'voz árabe a 1,2×');
+  assert.ok(sm.filter(x => x.u.includes('tts-glosa')).length > 8 && sm.filter(x => x.u.includes('tts-glosa')).every(x => Math.abs(x.r - 1.2) < 0.01), 'significado a 1,2×');
   assert.equal(new Set(peticiones.ttsAr).size, 9);
   await p.ctx.close();
 });
@@ -262,6 +274,34 @@ await prueba('ritmo: pausa entre bloques por defecto 0,15 s; se migra el valor a
     assert.equal(await p.evaluate(() => window.__escucha.prefs.modo), 'recitacion', 'el resto de preferencias se conserva');
     await p.ctx.close();
   }
+});
+
+await prueba('sin silencios: las voces se reproducen recortadas (sin el silencio inicial/final del mp3) y con pausa 0 no hay hueco entre bloques', async () => {
+  const p = await pagina({ url: '/escucha.html?s=1&a=2' }); await modo(p, 'combinada'); await ajustes(p, { autoavance: false });
+  await p.evaluate(() => window.__escucha.motor.actualizarPrefs({ pausaMs: 0, pausaPalabraMs: 0, velocidadPalabras: 1 }));
+  await p.waitForTimeout(800);                                   // deja terminar la precarga y el análisis de silencios
+  await p.click('#play'); await esperarEstado(p, 'terminado', 30000);
+  const m = (await muestras(p)).filter(x => !x.p);
+  for (const tipo of ['tts-ar', 'tts-glosa']) {
+    const v = m.filter(x => x.u.includes(tipo)); assert.ok(v.length > 6, tipo + ': sin muestras');
+    const ini = Math.min(...v.map(x => x.t)), fin = Math.max(...v.map(x => x.t));
+    const cabeza = 300, tono = tipo === 'tts-ar' ? 250 : 150;
+    assert.ok(ini >= cabeza - 90, `${tipo}: empieza en ${ini.toFixed(0)} ms (el silencio inicial de ${cabeza} ms debe saltarse)`);
+    assert.ok(fin <= cabeza + tono + 160, `${tipo}: termina en ${fin.toFixed(0)} ms (la cola de silencio no debe sonar)`);
+  }
+  // Hueco entre el final de un audio y el inicio del siguiente (muestras consecutivas sin sonido) — con pausas 0 debe ser pequeño.
+  const todas = await muestras(p); let hueco = 0, maxHueco = 0, dentro = false;
+  for (const x of todas) { if (!dentro && !x.p) dentro = true; if (dentro && x.st === 'terminado') break; if (dentro) { if (x.p) { hueco += 20; maxHueco = Math.max(maxHueco, hueco); } else hueco = 0; } }
+  assert.ok(maxHueco <= 260, 'hueco máximo entre audios: ' + maxHueco + ' ms');
+  await p.ctx.close();
+});
+
+await prueba('voz del dispositivo elegida: el significado usa speechSynthesis y no /api/tts-glosa', async () => {
+  peticiones.ttsGlosa.length = 0;
+  const p = await pagina({ preparar: () => localStorage.setItem('qescucha-prefs', JSON.stringify({ voz: 'device', modo: 'palabra', autoavance: false })) });
+  await p.click('#play'); await esperarEstado(p, 'terminado', 30000);
+  assert.equal((await p.evaluate(() => window.__voz)).length, 4); assert.equal(peticiones.ttsGlosa.length, 0);
+  await p.ctx.close();
 });
 
 await prueba('ritmo: las pausas se pueden ajustar y 0 s elimina el silencio entre palabras', async () => {
@@ -314,12 +354,13 @@ await prueba('avance automático encadena aleyas y se detiene al final de la sur
 });
 
 await prueba('aleya sin segmentación fiable (fragmentos de la recitación): se desactiva palabra por palabra, se avisa y no se inventa resaltado', async () => {
+  peticiones.ttsGlosa.length = 0;
   const p = await pagina({ url: '/escucha.html?s=1&a=3', preparar: PREF_RECIT }); await modo(p, 'combinada'); await ajustes(p, { autoavance: false });
   assert.match(await p.textContent('#aviso'), /segmentación fiable/);
   await p.click('#play'); await esperarEstado(p, 'terminado');
   const m = await muestras(p); assert.ok(m.some(s => !s.p && /001003/.test(s.u)), 'suena la recitación completa auténtica');
   assert.ok(m.filter(s => !s.p && s.act >= 0).every(s => s.n === 2), 'sólo se resalta el rango real de dos palabras que traen las marcas, nunca una palabra suelta');
-  assert.equal((await p.evaluate(() => window.__voz)).length, 0, 'no se hablan significados palabra por palabra');
+  assert.equal(peticiones.ttsGlosa.length, 0, 'no se hablan significados palabra por palabra');
   // con el otro recitador sí hay segmentación
   await p.click('#ajustesBtn'); await p.click('[data-rec="shuraym"]'); await p.click('#ajustes [data-cerrar]');
   await p.waitForFunction(() => window.__escucha.motor.estado === 'pausado' && window.__escucha.motor.datos !== null, null, { timeout: 5000 }).catch(() => {});
