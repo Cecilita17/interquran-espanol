@@ -4,6 +4,10 @@
 // en segundo plano. Cada operación devuelve una promesa que se resuelve con
 // 'ok' | 'cancelado' | 'error' | 'bloqueado' (autoplay denegado) | 'omitido'.
 
+// 0,1 s de silencio (WAV mono 8 kHz) para desbloquear el audio dentro de un gesto.
+const SILENCIO = (() => { const n = 800, b = new Uint8Array(44 + n * 2), v = new DataView(b.buffer), t = (o, x) => { for (let i = 0; i < x.length; i++) b[o + i] = x.charCodeAt(i); };
+  t(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); t(8, 'WAVEfmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true); v.setUint32(24, 8000, true); v.setUint32(28, 16000, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); t(36, 'data'); v.setUint32(40, n * 2, true);
+  let s = ''; b.forEach(x => { s += String.fromCharCode(x); }); return 'data:audio/wav;base64,' + btoa(s); })();
 const dentroDe = (v, a, b) => Math.min(b, Math.max(a, v));
 
 export function crearControlador({ elemento = new Audio(), sintesis = globalThis.speechSynthesis, lang = 'es-ES', ms = { set: (f, t) => setTimeout(f, t), clear: id => clearTimeout(id) } } = {}) {
@@ -17,8 +21,9 @@ export function crearControlador({ elemento = new Audio(), sintesis = globalThis
   function cargar(url) {
     return new Promise((ok, fallo) => {
       if (el.getAttribute('data-url') === url && el.readyState >= 1) return ok();
-      const fin = () => { el.removeEventListener('loadedmetadata', bien); el.removeEventListener('error', mal); };
+      const fin = () => { ms.clear(limite); el.removeEventListener('loadedmetadata', bien); el.removeEventListener('error', mal); };
       const bien = () => { fin(); ok(); }, mal = () => { fin(); fallo(new Error('audio')); };
+      const limite = ms.set(mal, 12000); // sin metadatos en 12 s: se prueba la URL alternativa o se informa el error
       el.addEventListener('loadedmetadata', bien); el.addEventListener('error', mal);
       el.setAttribute('data-url', url); el.src = url; el.load();
     });
@@ -125,6 +130,19 @@ export function crearControlador({ elemento = new Audio(), sintesis = globalThis
     });
   }
 
+  // Los móviles (y Safari) sólo dejan iniciar el audio dentro del gesto del usuario: si el primer sonido
+  // es un fragmento que antes espera a cargar, play() llega tarde y se rechaza. Llamar a esto SÍNCRONO dentro
+  // del toque «activa» el elemento (con 0,1 s de silencio, no con voz ni recitación) y los play() posteriores
+  // —aunque cambien de src— se admiten.
+  let desbloqueado = false;
+  function desbloquear() {
+    if (desbloqueado || actual) return;
+    try {
+      el.setAttribute('data-url', 'silencio'); el.src = SILENCIO;
+      const r = el.play(); desbloqueado = true;
+      r?.catch(() => { desbloqueado = false; });
+    } catch (e) { /* sin audio: se informará al reproducir */ }
+  }
   function pausar() { actual?.pausar?.(); }
   function reanudar() { actual?.reanudar?.(); }
   function cancelar() {
@@ -132,5 +150,5 @@ export function crearControlador({ elemento = new Audio(), sintesis = globalThis
     try { if (op.tipo === 'local') sintesis?.cancel(); else el.pause(); } catch (e) {}
     terminar(op, 'cancelado');
   }
-  return { reproducirClip, hablar, hablarLocal, pausar, reanudar, cancelar, velocidad(v) { velocidad = v; el.playbackRate = v; }, elemento: el };
+  return { desbloquear, reproducirClip, hablar, hablarLocal, pausar, reanudar, cancelar, velocidad(v) { velocidad = v; el.playbackRate = v; }, elemento: el };
 }

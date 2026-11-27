@@ -183,14 +183,16 @@ function actualizarSesionMultimedia() {
 function registrarSesionMultimedia() {
   if (!('mediaSession' in navigator)) return;
   const h = (a, f) => { try { navigator.mediaSession.setActionHandler(a, f); } catch (e) { /* acción no soportada */ } };
-  h('play', () => motor?.alternar()); h('pause', () => motor?.pausar());
+  h('play', () => { if (motor?.estado !== 'reproduciendo') controlador.desbloquear(); motor?.alternar(); }); h('pause', () => motor?.pausar());
   h('previoustrack', () => motor?.anterior()); h('nexttrack', () => motor?.siguiente());
   h('seekbackward', () => motor?.anterior()); h('seekforward', () => motor?.siguiente());
   h('stop', () => motor?.pausar());
 }
 
 // ---- Controles -----------------------------------------------------------------------------------------
-$('play').onclick = () => motor?.alternar();
+// Todo inicio de reproducción nace de un gesto: se activa el audio dentro de él (ver controlador.desbloquear).
+const alternarGesto = () => { if (motor?.estado !== 'reproduciendo') controlador.desbloquear(); motor?.alternar(); };
+$('play').onclick = alternarGesto;
 $('anterior').onclick = () => motor?.anterior();
 $('siguiente').onclick = () => motor?.siguiente();
 $('repetir').onclick = () => { const ciclo = [1, 2, 3, 5, 10]; aplicar({ repAleya: ciclo[(ciclo.indexOf(prefs.repAleya) + 1) % ciclo.length] }); };
@@ -199,7 +201,7 @@ $('modoBtn').onclick = () => { const i = MODOS_INFO.findIndex(m => m[0] === pref
 $('ajustesBtn').onclick = () => abrirHoja('ajustes');
 document.addEventListener('keydown', e => {
   if (e.target.closest('input,select,textarea')) return;
-  if (e.code === 'Space') { e.preventDefault(); motor?.alternar(); } else if (e.key === 'ArrowRight') motor?.siguiente(); else if (e.key === 'ArrowLeft') motor?.anterior(); else if (e.key === 'Escape') cerrarHojas();
+  if (e.code === 'Space') { e.preventDefault(); alternarGesto(); } else if (e.key === 'ArrowRight') motor?.siguiente(); else if (e.key === 'ArrowLeft') motor?.anterior(); else if (e.key === 'Escape') cerrarHojas();
 });
 
 function abrirHoja(id) { cerrarHojas(); $(id).hidden = false; if (id === 'selector') { $('buscar').value = ''; filtrarSuras(); $('aleyaIr').max = indice[sura].aleyas; $('aleyaIr').value = (motor?.aleya ?? 0) + 1; } if (id === 'ajustes') pintarAjustes(); $(id).querySelector('button,input')?.focus?.(); }

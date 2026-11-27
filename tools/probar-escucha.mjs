@@ -69,6 +69,17 @@ async function simularRed(ctx) {
 
 // Voz del dispositivo simulada (el Chromium sin cabeza no tiene voces): registra lo que «dice».
 const INIT = () => {
+  // Política de audio estricta, como en móviles: play() sólo se admite dentro del gesto del usuario
+  // (o en un elemento que ya sonó gracias a un gesto). Antes de esto, las pruebas lo ocultaban.
+  { const orig = HTMLMediaElement.prototype.play, desbloqueados = new WeakSet(); let gesto = false;
+    const marca = () => { gesto = true; setTimeout(() => { gesto = false; }, 0); };
+    for (const t of ['pointerdown', 'pointerup', 'click', 'keydown', 'touchend']) addEventListener(t, marca, true);
+    window.__conGesto = f => { gesto = true; try { return f(); } finally { setTimeout(() => { gesto = false; }, 0); } };
+    HTMLMediaElement.prototype.play = function () {
+      if (!gesto && !desbloqueados.has(this)) return Promise.reject(new DOMException('play() bloqueado por la política de audio', 'NotAllowedError'));
+      if (gesto) desbloqueados.add(this);
+      return orig.call(this);
+    }; }
   window.__voz = [];
   const sint = { getVoices: () => [], speaking: false, cancel() { this._t && clearTimeout(this._t); this.speaking = false; }, speak(u) { this.speaking = true; this._t = setTimeout(() => { u.onstart?.(); window.__voz.push(u.text); this._t = setTimeout(() => { this.speaking = false; u.onend?.(); }, 120); }, 30); }, pause() {}, resume() {} };
   Object.defineProperty(window, 'speechSynthesis', { value: sint, configurable: true });
@@ -98,7 +109,7 @@ const FILTRO = process.argv[2];
 async function prueba(nombre, fn) { if (FILTRO && !nombre.includes(FILTRO)) return; const t = Date.now(); try { await fn(); ok++; console.log(`  ✓ ${nombre} (${Date.now() - t} ms)`); } catch (e) { fallos.push(nombre); console.log(`  ✗ ${nombre}\n    ${String(e.message).split('\n').join('\n    ')}`); } }
 
 const base = servir();
-const browser = await chromium.launch({ args: ['--autoplay-policy=no-user-gesture-required'] });
+const browser = await chromium.launch();
 async function pagina({ ancho = 360, alto = 640, preparar, url = '/escucha.html?s=1&a=1', movil = true } = {}) {
   const ctx = await browser.newContext({ viewport: { width: ancho, height: alto }, hasTouch: movil, isMobile: movil, deviceScaleFactor: 2, serviceWorkers: 'block' });
   await simularRed(ctx);
@@ -175,6 +186,14 @@ await prueba('modo 2 (palabra por palabra): cada clip empieza en su marca real, 
   }
   assert.ok(!m.some(s => !s.p && s.u.includes('/api/tts')), 'no suena TTS en el modo 2');
   assert.deepEqual(p.errores, []); await p.ctx.close();
+});
+
+for (const m of ['recitacion', 'palabra']) await prueba(`modo ${m}: suena al primer toque en play aunque el primer audio sea un fragmento (política de audio de móviles)`, async () => {
+  const p = await pagina(); await modo(p, m); await ajustes(p, { autoavance: false });
+  await p.click('#play');
+  await p.waitForFunction(() => !window.__escucha.controlador.elemento.paused && window.__escucha.motor.estado === 'reproduciendo', null, { timeout: 8000 });
+  assert.ok(!(await p.evaluate(() => document.getElementById('aviso').textContent)).includes('bloque'), 'sin aviso de audio bloqueado');
+  await esperarEstado(p, 'terminado'); assert.deepEqual(p.errores, []); await p.ctx.close();
 });
 
 await prueba('modo 3 (combinada): traducción (TTS) → palabras + significados → recitación completa; sin solapes', async () => {
@@ -268,7 +287,7 @@ await prueba('Media Session: metadatos, estado y acciones (play, pausa, anterior
   const md = await p.evaluate(() => ({ t: navigator.mediaSession.metadata?.title, a: navigator.mediaSession.metadata?.artist, h: Object.keys(window.__ms.handlers) }));
   assert.match(md.t, /Al-Fatiha · aleya 2/); assert.match(md.a, /Alafasy/);
   for (const a of ['play', 'pause', 'previoustrack', 'nexttrack', 'stop']) assert.ok(md.h.includes(a), 'falta acción ' + a);
-  await p.evaluate(() => window.__ms.handlers.play()); await esperarEstado(p, 'reproduciendo');
+  await p.evaluate(() => window.__conGesto(() => window.__ms.handlers.play())); await esperarEstado(p, 'reproduciendo');
   assert.equal(await p.evaluate(() => navigator.mediaSession.playbackState), 'playing');
   await p.evaluate(() => window.__ms.handlers.pause()); await esperarEstado(p, 'pausado');
   assert.equal(await p.evaluate(() => navigator.mediaSession.playbackState), 'paused');
