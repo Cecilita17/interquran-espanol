@@ -29,11 +29,11 @@ añadieron dos enlaces de entrada (portada y cabecera del lector) y un `<script>
 ### Modos
 
 1. **Traducción + recitación**: traducción hablada → recitación completa.
-2. **Palabra por palabra**: clip árabe de cada palabra (marcas reales) + su significado hablado.
-3. **Combinada**: traducción → palabra por palabra → recitación completa.
+2. **Palabra por palabra**: para cada palabra, primero su significado en español (voz) y después la palabra en árabe (clip real de la recitación, marcas reales).
+3. **Combinada**: traducción completa → palabra por palabra (significado, luego árabe) → recitación completa.
 4. **Sólo recitación** con resaltado sincronizado.
 
-«Repeticiones por palabra» repite el par (árabe + significado). «Repeticiones por aleya» repite la recitación
+«Repeticiones por palabra» repite el par (significado + árabe). «Repeticiones por aleya» repite la recitación
 completa (en el modo 2, el recorrido palabra por palabra). Las pausas entre audios son configurables.
 
 ## Sincronización: reglas

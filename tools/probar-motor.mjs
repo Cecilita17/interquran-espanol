@@ -16,8 +16,8 @@ const tipos = plan => plan.pasos.map(p => p.tipo === 'palabra' ? 'P' + p.i : p.t
 test('plan: los cuatro modos', () => {
   const base = { pausaMs: 0 };
   assert.equal(tipos(construirPlan(ale(), { ...base, modo: MODOS.TRADUCCION_RECITACION })), 'T R');
-  assert.equal(tipos(construirPlan(ale(), { ...base, modo: MODOS.PALABRA })), 'P0 S0 P1 S1 P2 S2');
-  assert.equal(tipos(construirPlan(ale(), { ...base, modo: MODOS.COMBINADA })), 'T P0 S0 P1 S1 P2 S2 R');
+  assert.equal(tipos(construirPlan(ale(), { ...base, modo: MODOS.PALABRA })), 'S0 P0 S1 P1 S2 P2');
+  assert.equal(tipos(construirPlan(ale(), { ...base, modo: MODOS.COMBINADA })), 'T S0 P0 S1 P1 S2 P2 R');
   assert.equal(tipos(construirPlan(ale(), { ...base, modo: MODOS.RECITACION })), 'R');
 });
 test('plan: pausas entre audios y ninguna al final', () => {
@@ -104,7 +104,7 @@ test('motor: ejecuta el plan paso a paso sin solapes', async () => {
   const e = entorno({ prefs: { modo: MODOS.COMBINADA, autoavance: false } });
   await e.motor.reproducir(0); await e.asentar();
   for (let k = 0; k < 8; k++) { await e.terminar(); await e.asentar(); }
-  assert.deepEqual(e.log.filter(x => !x.startsWith('cancelar')), ['traduccion', 'clip:0-500', 'significado:a', 'clip:510-900', 'significado:b', 'clip:910-1500', 'significado:c', 'clip:0-null']);
+  assert.deepEqual(e.log.filter(x => !x.startsWith('cancelar')), ['traduccion', 'significado:a', 'clip:0-500', 'significado:b', 'clip:510-900', 'significado:c', 'clip:910-1500', 'clip:0-null']);
   assert.equal(e.motor.estado, 'terminado'); assert.ok(!e.log.some(x => x.startsWith('SOLAPE')));
   e.restaurar();
 });
@@ -169,9 +169,9 @@ test('motor: cambiar de modo reinicia la aleya con el plan nuevo', async () => {
   const e = entorno({ prefs: { modo: MODOS.RECITACION, autoavance: false } });
   await e.motor.reproducir(0); await e.asentar();
   e.motor.actualizarPrefs({ modo: MODOS.PALABRA }); await e.asentar();
-  assert.deepEqual(e.log.slice(-2), ['cancelar:clip:0-null', 'clip:0-500']);
+  assert.deepEqual(e.log.slice(-2), ['cancelar:clip:0-null', 'significado:a']);
   e.motor.actualizarPrefs({ autoavance: true }); await e.asentar(); // no cambia el plan: no reinicia
-  assert.equal(e.log.at(-1), 'clip:0-500');
+  assert.equal(e.log.at(-1), 'significado:a');
   e.restaurar();
 });
 test('motor: resaltado sólo con tiempos reales de la grabación', async () => {

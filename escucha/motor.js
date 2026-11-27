@@ -56,8 +56,9 @@ export function construirPlan(aleya, prefs) {
     const pasada = [];
     for (let i = 0; i < aleya.nPalabras; i++) {
       for (let r = 0; r < rep(p.repPalabra); r++) {
-        pasada.push({ tipo: 'palabra', i, rep: r + 1 });
+        // Primero el significado en español y después la palabra en árabe (clip real de la recitación).
         if (p.glosas) pasada.push({ tipo: 'significado', i });
+        pasada.push({ tipo: 'palabra', i, rep: r + 1 });
         pasada.push({ tipo: 'pausa', ms: p.pausaMs });
       }
     }
