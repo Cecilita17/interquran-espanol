@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07061c">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
+<title>Escucha inmersiva · InterQuran Español</title>
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&family=DM+Sans:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="/escucha/escucha.css">
+</head><body>
+<div id="fondo" aria-hidden="true"><div id="fondoImg"></div><div id="fondoVelo"></div></div>
+
+<div id="app">
+  <header class="barra glass">
+    <a id="volver" class="redondo" href="/" aria-label="Volver al lector">‹</a>
+    <button id="suraBtn" class="titulo" aria-haspopup="dialog"><span id="tituloSura">Cargando…</span><small id="subtitulo">&nbsp;</small></button>
+    <button id="modoBtn" class="redondo" aria-label="Modo de escucha" title="Modo de escucha">🎧</button>
+  </header>
+
+  <section id="panelTrad" class="glass panel" aria-label="Traducción al español"><p id="traduccion" lang="es"></p></section>
+
+  <section id="panelPalabras" class="glass panel" aria-label="Palabras de la aleya">
+    <div id="palabras" dir="rtl" lang="ar"></div>
+  </section>
+
+  <div id="aviso" role="status" aria-live="polite" hidden></div>
+  <div id="progreso" aria-hidden="true"><i></i></div>
+
+  <nav id="controles" class="glass" aria-label="Controles de reproducción">
+    <button id="repetir" class="ctl" aria-label="Repeticiones por aleya"><span>↻</span><b id="repetirN">1×</b></button>
+    <button id="anterior" class="ctl" aria-label="Aleya anterior">⏮</button>
+    <button id="play" class="ctl grande" aria-label="Reproducir"><span id="playIcono">▶</span></button>
+    <button id="siguiente" class="ctl" aria-label="Aleya siguiente">⏭</button>
+    <button id="ajustesBtn" class="ctl" aria-label="Configuración">⚙</button>
+  </nav>
+</div>
+
+<!-- Selector de sura y aleya -->
+<div id="selector" class="hoja" role="dialog" aria-modal="true" aria-label="Elegir sura y aleya" hidden>
+  <div class="hoja-caja glass fuerte">
+    <div class="hoja-cab"><b>Elegir sura</b><button class="redondo" data-cerrar aria-label="Cerrar">✕</button></div>
+    <div class="fila"><input id="buscar" type="search" placeholder="Buscar sura: nombre o número" autocomplete="off"><label class="aleyaIr">Aleya <input id="aleyaIr" type="number" min="1" inputmode="numeric" value="1"></label></div>
+    <div id="listaSuras" class="lista"></div>
+  </div>
+</div>
+
+<!-- Configuración -->
+<div id="ajustes" class="hoja" role="dialog" aria-modal="true" aria-label="Configuración" hidden>
+  <div class="hoja-caja glass fuerte">
+    <div class="hoja-cab"><b>Escucha inmersiva</b><button class="redondo" data-cerrar aria-label="Cerrar">✕</button></div>
+    <div class="hoja-cuerpo">
+      <h3>Modo</h3>
+      <div id="modos" class="modos" role="radiogroup" aria-label="Modo de escucha"></div>
+      <p class="nota" id="notaModo"></p>
+
+      <h3>Recitador</h3>
+      <div id="recitadores" class="chips" role="radiogroup" aria-label="Recitador"></div>
+
+      <h3>Repeticiones y pausas</h3>
+      <div class="ajuste"><span>Repeticiones por palabra</span><div class="paso"><button data-paso="repPalabra" data-d="-1" aria-label="Menos">−</button><output id="repPalabraV">1</output><button data-paso="repPalabra" data-d="1" aria-label="Más">+</button></div></div>
+      <div class="ajuste"><span>Repeticiones por aleya</span><div class="paso"><button data-paso="repAleya" data-d="-1" aria-label="Menos">−</button><output id="repAleyaV">1</output><button data-paso="repAleya" data-d="1" aria-label="Más">+</button></div></div>
+      <div class="ajuste col"><span>Pausa entre audios: <output id="pausaV">0,6 s</output></span><input id="pausa" type="range" min="0" max="3000" step="100"></div>
+      <div class="ajuste col"><span>Velocidad de la recitación: <output id="velV">1×</output></span><input id="vel" type="range" min="0.75" max="1.25" step="0.25"></div>
+
+      <h3>Mostrar y reproducir</h3>
+      <label class="ajuste"><span>Transliteración</span><input type="checkbox" data-pref="translit"></label>
+      <label class="ajuste"><span>Glosas en español (texto y voz)</span><input type="checkbox" data-pref="glosas"></label>
+      <label class="ajuste"><span>Traducción natural (texto y voz)</span><input type="checkbox" data-pref="traduccion"></label>
+      <label class="ajuste"><span>Resaltado automático</span><input type="checkbox" data-pref="resaltado"></label>
+      <label class="ajuste"><span>Fondo decorativo</span><input type="checkbox" data-pref="fondoOn"></label>
+      <label class="ajuste"><span>Avance automático</span><input type="checkbox" data-pref="autoavance"></label>
+
+      <h3>Fondo</h3>
+      <div id="fondos" class="fondos" role="radiogroup" aria-label="Fondo"></div>
+      <div class="ajuste"><span>Imagen propia</span><span><label class="boton" for="fondoArchivo">Elegir…</label><input id="fondoArchivo" type="file" accept="image/*" hidden></span></div>
+      <div class="ajuste col"><span>Oscurecer: <output id="dimV">45 %</output></span><input id="dim" type="range" min="0" max="85" step="5"></div>
+      <div class="ajuste col"><span>Desenfoque: <output id="blurV">0 px</output></span><input id="blur" type="range" min="0" max="16" step="1"></div>
+
+      <h3>Voz de la traducción</h3>
+      <div class="ajuste col"><select id="voz" aria-label="Voz de la traducción"></select></div>
+      <div class="ajuste col"><select id="edicion" aria-label="Traducción"><option value="cortes">Español · Julio Cortés</option><option value="garcia">Español · Muhammad Isa García</option></select></div>
+      <p class="nota">Las recitaciones del Corán son siempre grabaciones auténticas del recitador; la voz sintética sólo se usa para la traducción y el significado de las palabras. Las glosas están en estado de <i>propuesta</i> (sin revisión humana).</p>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/escucha/app.js"></script>
+</body></html>
