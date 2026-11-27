@@ -104,7 +104,11 @@ function resaltar(rango) {
 // Desplazamiento automático si la palabra activa queda fuera (o pegada al borde) del área visible.
 function asegurarVisible(el) {
   const c = $('panelPalabras'), r = el.getBoundingClientRect(), v = c.getBoundingClientRect(), m = 14;
-  if (r.top < v.top + m || r.bottom > v.bottom - m) c.scrollTo({ top: c.scrollTop + (r.top - v.top) - (v.height - r.height) / 2, behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'auto' : 'smooth' });
+  if (r.top >= v.top + m && r.bottom <= v.bottom - m) return;
+  const delta = (r.top - v.top) - (v.height - r.height) / 2;
+  // Animado sólo en saltos cortos: en saltos largos (o con movimiento reducido) se coloca de inmediato para que la palabra nunca quede fuera.
+  const suave = Math.abs(delta) < v.height * .8 && !matchMedia('(prefers-reduced-motion:reduce)').matches;
+  c.scrollTo({ top: c.scrollTop + delta, behavior: suave ? 'smooth' : 'auto' });
 }
 function pintarPrefsVisibles() {
   document.body.classList.toggle('sin-trad', !prefs.traduccion);

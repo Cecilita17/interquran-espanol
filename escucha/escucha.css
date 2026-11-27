@@ -27,7 +27,7 @@ body.sin-fondo #fondoImg{background-image:none!important}
 .panel{padding:14px 16px;overflow:auto;-webkit-overflow-scrolling:touch}
 #panelTrad{flex:none;max-height:28%;-webkit-user-select:text;user-select:text}
 #traduccion{margin:0;font-size:17px;line-height:1.55;text-align:center;text-wrap:balance}
-#panelPalabras{flex:1;min-height:0;position:relative;scroll-behavior:smooth;padding:14px 10px}
+#panelPalabras{flex:1;min-height:0;position:relative;padding:14px 10px}
 body.sin-trad #panelTrad{display:none}
 
 /* Palabras: el contenedor es RTL → la primera palabra queda a la derecha y las filas fluyen hacia la izquierda */

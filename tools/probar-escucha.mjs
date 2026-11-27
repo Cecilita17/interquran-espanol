@@ -291,7 +291,8 @@ for (const [ancho, alto, nombre] of [[320, 568, 'iPhone SE / 320 px'], [360, 640
     await p.click('#play'); await p.waitForFunction(t => window.__escucha.controlador.elemento.currentTime > t, alto < 400 ? 16 : 6, { timeout: 30000 });
     for (let i = 0; i < 6; i++) {
       await p.waitForTimeout(450);
-      const v = await p.evaluate(() => { const a = document.querySelector('.pal.activa'); if (!a) return null; const r = a.getBoundingClientRect(), c = document.getElementById('panelPalabras').getBoundingClientRect(); return { dentro: r.top >= c.top - 2 && r.bottom <= c.bottom + 2, top: document.getElementById('panelPalabras').scrollTop }; });
+      const v = await p.evaluate(async () => { const visible = () => { const a = document.querySelector('.pal.activa'); if (!a) return true; const r = a.getBoundingClientRect(), c = document.getElementById('panelPalabras').getBoundingClientRect(); return r.top >= c.top - 2 && r.bottom <= c.bottom + 2; }; for (let k = 0; k < 14 && !visible(); k++) await new Promise(ok => setTimeout(ok, 50)); // margen para que termine el desplazamiento animado
+        return (() => { const a = document.querySelector('.pal.activa'); if (!a) return null; const r = a.getBoundingClientRect(), c = document.getElementById('panelPalabras').getBoundingClientRect(); return { dentro: r.top >= c.top - 2 && r.bottom <= c.bottom + 2, top: document.getElementById('panelPalabras').scrollTop }; })(); });
       assert.ok(v === null || v.dentro, 'la palabra activa quedó fuera del área visible: ' + JSON.stringify(v));
     }
     assert.ok(await p.evaluate(() => document.getElementById('panelPalabras').scrollTop) > 0, 'el panel se desplazó solo');
