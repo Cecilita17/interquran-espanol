@@ -20,6 +20,9 @@ añadieron dos enlaces de entrada (portada y cabecera del lector) y un `<script>
 
 ### Fuentes de datos (nada se duplica)
 
+Carga **bajo demanda** (importa en suras largas como Al-Baqara): para abrir una aleya sólo se pide el bloque de glosas que la contiene, la página de 50 aleyas de la recitación que la contiene y esa aleya traducida; lo siguiente (bloque/página contiguos y la sura traducida completa) se adelanta en segundo plano.
+
+
 * Palabras (árabe con tashkīl, transliteración, significado): `data/<sura>/` — las mismas glosas del lector (estado *propuesta*).
 * Traducción natural: Al Quran Cloud `es.cortes` / `es.garcia`, igual que el lector.
 * Audio y marcas por palabra: Quran.com, recitaciones 7 (Mishary Rashid Alafasy) y 10 (Saud Al-Shuraim), como el lector.
@@ -55,8 +58,9 @@ Cobertura medida con `node tools/verificar-segmentos.mjs` (noviembre de 2026): A
 ## Preferencias y progreso
 
 `localStorage`: `qescucha-prefs` y `qescucha-progreso` (última aleya y aleyas escuchadas por sura). Son independientes de
-`qpositions`, `qposition`, `qread`, etc. del lector, que la escucha inmersiva nunca escribe (sólo lee `qvoice` y `qtrans`
-como valores iniciales). El fondo propio va a IndexedDB (`qescucha`).
+la posición del lector (`qpositions`, `qposition`), que esta pantalla nunca toca (sólo lee `qvoice` y `qtrans` como valores
+iniciales). **Única excepción, a propósito:** una aleya escuchada hasta el final (terminó su plan) se añade también a `qread`
+(`{sura: [índices base 0]}`, el mismo formato del lector) para que cuente como leída en el contador del lector. El fondo propio va a IndexedDB (`qescucha`).
 
 ## Segundo plano y Android
 
