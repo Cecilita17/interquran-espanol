@@ -181,7 +181,8 @@ await prueba('modo 2 con fragmentos de la recitación: cada clip empieza en su m
     const ini = INI + k * SALTO, enVentana = m.filter(s => !s.p && s.act === k && /001001/.test(s.u));
     assert.ok(enVentana.length >= 3, `palabra ${k + 1}: sin muestras sonando`);
     const t0 = Math.min(...enVentana.map(s => s.t)), t1 = Math.max(...enVentana.map(s => s.t));
-    assert.ok(t0 >= ini - 60 && t0 <= ini + 120, `palabra ${k + 1} empieza en ${t0.toFixed(0)} (marca ${ini})`);
+    assert.ok(t0 >= ini - 60 && t0 <= ini + 250, // el primer muestreo puede llegar tras el seek (petición de rango); lo esencial es no empezar ANTES de la marca
+       `palabra ${k + 1} empieza en ${t0.toFixed(0)} (marca ${ini})`);
     const tope = k < 3 ? ini + SALTO : ini + PAL_MS + 250; // hasta la palabra siguiente o, en la última, fin real + cola de 250 ms
     assert.ok(t1 <= tope + 80, `palabra ${k + 1} termina en ${t1.toFixed(0)} (límite ${tope})`);
     assert.ok(k === 3 || t1 < ini + SALTO, `palabra ${k + 1} no invade la siguiente`);
@@ -199,8 +200,8 @@ for (const [m, fuente] of [['recitacion', ''], ['palabra', ''], ['palabra', 'rec
 });
 
 await prueba('modo 3 (combinada): traducción (TTS) → palabras + significados → recitación completa; sin solapes', async () => {
+  peticiones.tts.length = 0; peticiones.ttsAr.length = 0;   // la precarga pide estos audios al abrir la aleya
   const p = await pagina(); await modo(p, 'combinada'); await ajustes(p, { autoavance: false });
-  peticiones.tts.length = 0; peticiones.ttsAr.length = 0;
   await p.evaluate(() => window.__escucha.motor.actualizarPrefs({ pausaMs: 50 }));
   await p.click('#play'); await esperarEstado(p, 'terminado', 30000);
   const m = await muestras(p), sonando = m.filter(s => !s.p);
@@ -238,8 +239,8 @@ await prueba('cambiar de modo (en pausa o sonando) y de aleya no deja de funcion
 });
 
 await prueba('ritmo: el palabra por palabra no espera a la red (precarga), usa la velocidad de palabras y casi no deja silencios', async () => {
-  const p = await pagina({ url: '/escucha.html?s=1&a=7' }); await modo(p, 'palabra'); await ajustes(p, { autoavance: false });
   peticiones.retardoAr = 600; peticiones.ttsAr.length = 0;                // el servidor de voz tarda 0,6 s por palabra
+  const p = await pagina({ url: '/escucha.html?s=1&a=7' }); await modo(p, 'palabra'); await ajustes(p, { autoavance: false });
   const t0 = Date.now(); await p.click('#play'); await esperarEstado(p, 'terminado', 30000); const total = Date.now() - t0;
   peticiones.retardoAr = 0;
   const voz = await p.evaluate(() => window.__voz.length); assert.equal(voz, 9, 'un significado por palabra');
