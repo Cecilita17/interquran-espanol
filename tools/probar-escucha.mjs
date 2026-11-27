@@ -78,8 +78,8 @@ const INIT = () => {
   ms.setActionHandler = (a, f) => { window.__ms.handlers[a] = f; try { orig(a, f); } catch (e) {} };
 };
 const MUESTREO = () => {
-  window.__m = []; const a = window.__escucha.controlador.elemento;
-  setInterval(() => { const act = [...document.querySelectorAll('.pal')].findIndex(e => e.classList.contains('activa')); window.__m.push({ t: a.currentTime * 1000, p: a.paused, u: a.getAttribute('data-url') || '', act, st: window.__escucha.motor.estado, at: performance.now() }); }, 20);
+  window.__m = []; window.__pl = []; const a = window.__escucha.controlador.elemento; a.addEventListener('playing', () => window.__pl.push({ t: a.currentTime * 1000, u: a.getAttribute('data-url') || '' }));
+  setInterval(() => { const act = [...document.querySelectorAll('.pal')].findIndex(e => e.classList.contains('activa')); window.__m.push({ t: a.currentTime * 1000, p: a.paused, u: a.getAttribute('data-url') || '', act, n: document.querySelectorAll('.pal.activa').length, st: window.__escucha.motor.estado, at: performance.now() }); }, 20);
 };
 
 let servidor;
@@ -94,7 +94,8 @@ function servir() {
 }
 
 let ok = 0, fallos = [];
-async function prueba(nombre, fn) { const t = Date.now(); try { await fn(); ok++; console.log(`  ✓ ${nombre} (${Date.now() - t} ms)`); } catch (e) { fallos.push(nombre); console.log(`  ✗ ${nombre}\n    ${String(e.message).split('\n').join('\n    ')}`); } }
+const FILTRO = process.argv[2];
+async function prueba(nombre, fn) { if (FILTRO && !nombre.includes(FILTRO)) return; const t = Date.now(); try { await fn(); ok++; console.log(`  ✓ ${nombre} (${Date.now() - t} ms)`); } catch (e) { fallos.push(nombre); console.log(`  ✗ ${nombre}\n    ${String(e.message).split('\n').join('\n    ')}`); } }
 
 const base = servir();
 const browser = await chromium.launch({ args: ['--autoplay-policy=no-user-gesture-required'] });
@@ -168,7 +169,9 @@ await prueba('modo 2 (palabra por palabra): cada clip empieza en su marca real, 
     assert.ok(enVentana.length >= 3, `palabra ${k + 1}: sin muestras sonando`);
     const t0 = Math.min(...enVentana.map(s => s.t)), t1 = Math.max(...enVentana.map(s => s.t));
     assert.ok(t0 >= ini - 60 && t0 <= ini + 120, `palabra ${k + 1} empieza en ${t0.toFixed(0)} (marca ${ini})`);
-    assert.ok(t1 <= ini + PAL_MS + 80, `palabra ${k + 1} termina en ${t1.toFixed(0)} (marca fin ${ini + PAL_MS})`);
+    const tope = k < 3 ? ini + SALTO : ini + PAL_MS + 250; // hasta la palabra siguiente o, en la última, fin real + cola de 250 ms
+    assert.ok(t1 <= tope + 80, `palabra ${k + 1} termina en ${t1.toFixed(0)} (límite ${tope})`);
+    assert.ok(k === 3 || t1 < ini + SALTO, `palabra ${k + 1} no invade la siguiente`);
   }
   assert.ok(!m.some(s => !s.p && s.u.includes('/api/tts')), 'no suena TTS en el modo 2');
   assert.deepEqual(p.errores, []); await p.ctx.close();
@@ -198,10 +201,8 @@ await prueba('repeticiones por palabra y por aleya', async () => {
   await p.click('#play'); await esperarEstado(p, 'terminado', 30000);
   const pasos = await p.evaluate(() => window.__escucha.motor.plan.map(s => s.tipo + (s.i ?? '')));
   assert.equal(pasos.filter(x => x.startsWith('palabra')).length, 8); assert.equal(pasos.filter(x => x === 'recitacion').length, 2);
-  const m = (await muestras(p)).filter(s => !s.p && s.act >= 0);
-  // la palabra 1 se recorre 2 veces en la fase de palabras: cuenta entradas (transiciones) a act=0 con t≈ini
-  let entradas = 0, prev = -1; for (const s of m) { if (s.act === 0 && prev !== 0) entradas++; prev = s.act; }
-  assert.ok(entradas >= 4, 'palabra 1: 2 en palabras + 2 en recitación = 4 entradas; vistas ' + entradas);
+  const pl = await p.evaluate(() => window.__pl.filter(x => /001001/.test(x.u) && x.t < 100));
+  assert.equal(pl.length, 4, 'inicios de audio cerca de 0 ms: 2 repeticiones de la palabra 1 + 2 recitaciones; vistos ' + JSON.stringify(pl));
   await p.ctx.close();
 });
 
@@ -236,7 +237,7 @@ await prueba('aleya sin segmentación fiable: se desactiva palabra por palabra, 
   assert.match(await p.textContent('#aviso'), /segmentación fiable/);
   await p.click('#play'); await esperarEstado(p, 'terminado');
   const m = await muestras(p); assert.ok(m.some(s => !s.p && /001003/.test(s.u)), 'suena la recitación completa auténtica');
-  assert.ok(m.every(s => s.act < 0 || s.p), 'no se resalta nada sin marcas fiables… (sólo rangos)');
+  assert.ok(m.filter(s => !s.p && s.act >= 0).every(s => s.n === 2), 'sólo se resalta el rango real de dos palabras que traen las marcas, nunca una palabra suelta');
   assert.equal((await p.evaluate(() => window.__voz)).length, 0, 'no se hablan significados palabra por palabra');
   // con el otro recitador sí hay segmentación
   await p.click('#ajustesBtn'); await p.click('[data-rec="shuraym"]'); await p.click('#ajustes [data-cerrar]');
@@ -287,7 +288,7 @@ for (const [ancho, alto, nombre] of [[320, 568, 'iPhone SE / 320 px'], [360, 640
     for (const id of ['repetir', 'anterior', 'play', 'siguiente', 'ajustesBtn']) { const b = await p.evaluate(i => { const r = document.getElementById(i).getBoundingClientRect(); return [r.width, r.height]; }, id); assert.ok(b[0] >= 44 && b[1] >= 44, `${id} táctil ${b}`); }
     // La recitación de 2:282 tiene >100 palabras: avanzamos hasta pasar la primera pantalla y comprobamos el desplazamiento automático.
     await p.evaluate(() => window.__escucha.motor.actualizarPrefs({ velocidad: 1 }));
-    await p.click('#play'); await p.waitForFunction(() => window.__escucha.controlador.elemento.currentTime > 6, null, { timeout: 20000 });
+    await p.click('#play'); await p.waitForFunction(() => window.__escucha.controlador.elemento.currentTime > (alto < 400 ? 16 : 6), null, { timeout: 30000 });
     for (let i = 0; i < 6; i++) {
       await p.waitForTimeout(450);
       const v = await p.evaluate(() => { const a = document.querySelector('.pal.activa'); if (!a) return null; const r = a.getBoundingClientRect(), c = document.getElementById('panelPalabras').getBoundingClientRect(); return { dentro: r.top >= c.top - 2 && r.bottom <= c.bottom + 2, top: document.getElementById('panelPalabras').scrollTop }; });
