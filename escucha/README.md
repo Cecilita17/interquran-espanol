@@ -12,7 +12,7 @@ añadieron dos enlaces de entrada (portada y cabecera del lector) y un `<script>
 | `escucha.html`, `escucha/escucha.css` | Estructura y estilos (glassmorphism, móvil primero, PWA). |
 | `escucha/app.js` | Interfaz: preferencias, hojas de configuración, resaltado, Media Session, progreso. |
 | `escucha/motor.js` | **Máquina de estados** (`inactivo → cargando → reproduciendo ⇄ pausado → terminado/error`) y construcción del plan de pasos por aleya. Sin DOM: se prueba con un controlador simulado. |
-| `escucha/audio.js` | Controlador de audio: **un solo `Audio`**; clips con marcas reales, voz de la traducción y voz del dispositivo. Cada operación se resuelve con `ok / cancelado / error / bloqueado / omitido`. |
+| `escucha/audio.js` | Controlador de audio: **un solo `Audio`** (se «desbloquea» dentro del toque del usuario, como exigen los móviles); clips con marcas reales, voz de la traducción y voz del dispositivo. Cada operación se resuelve con `ok / cancelado / error / bloqueado / omitido`. |
 | `escucha/segmentos.js` | Validación estricta de las marcas de tiempo de Quran.com y cálculo de la palabra activa. Nunca inventa tiempos. |
 | `escucha/datos.js` | Carga de datos reutilizando las fuentes existentes. |
 | `escucha/fondos.js` | Fondos SVG de temática islámica + imagen propia (IndexedDB, sólo en el dispositivo). |
@@ -24,12 +24,13 @@ añadieron dos enlaces de entrada (portada y cabecera del lector) y un `<script>
 * Traducción natural: Al Quran Cloud `es.cortes` / `es.garcia`, igual que el lector.
 * Audio y marcas por palabra: Quran.com, recitaciones 7 (Mishary Rashid Alafasy) y 10 (Saud Al-Shuraim), como el lector.
 * Voz de la traducción: `/api/tts` (voces neuronales); si falla, voz del dispositivo.
+* Voz árabe de cada palabra: `/api/tts-ar?s&a&w&v` — el servidor obtiene la palabra (`text_imlaei`) de Quran.com por sura/aleya/posición y sólo admite las dos voces árabes de la lista, así que no es un TTS de texto libre. Si falla, voz árabe del dispositivo.
 * Significado de cada palabra: voz del dispositivo (el servidor sólo sintetiza traducciones de aleyas completas; no se abrió un TTS de texto libre).
 
 ### Modos
 
 1. **Traducción + recitación**: traducción hablada → recitación completa.
-2. **Palabra por palabra**: para cada palabra, primero su significado en español (voz) y después la palabra en árabe (clip real de la recitación, marcas reales).
+2. **Palabra por palabra**: para cada palabra, primero su significado en español (voz) y después la palabra en árabe con **voz neuronal de Microsoft** (`/api/tts-ar`). En Configuración se puede cambiar a «fragmento de la recitación» (clip real con marcas de tiempo; ver más abajo).
 3. **Combinada**: traducción completa → palabra por palabra (significado, luego árabe) → recitación completa.
 4. **Sólo recitación** con resaltado sincronizado.
 
@@ -45,7 +46,7 @@ completa (en el modo 2, el recorrido palabra por palabra). Las pausas entre audi
   reproduce la recitación completa auténtica (con resaltado por rangos si las marcas cubren todo en orden).
 * Cada clip termina en el inicio de la palabra siguiente o, como mucho, `COLA_MS` (250 ms) después de su fin real, para no
   cortar la pronunciación. La última palabra incluye esa misma cola.
-* El texto coránico sólo se oye en grabaciones auténticas; nunca TTS.
+* La **recitación completa** de la aleya sólo se oye en grabaciones auténticas; nunca TTS. Por pedido expreso, la palabra árabe suelta del palabra por palabra usa por defecto una voz neuronal árabe (`ar-SA-HamedNeural` / `ar-SA-ZariyahNeural`): es una pronunciación didáctica del árabe estándar, **no sigue el tajwīd**, y por eso sólo se usa para palabras aisladas. Con esa voz el palabra por palabra funciona en todas las aleyas (no depende de marcas de tiempo).
 
 Cobertura medida con `node tools/verificar-segmentos.mjs` (noviembre de 2026): Alafasy 6.187/6.236 aleyas fiables
 (99,2 %); Shuraym 6.180/6.236 (99,1 %). El resto cae en el comportamiento descrito arriba.
@@ -69,6 +70,7 @@ como valores iniciales). El fondo propio va a IndexedDB (`qescucha`).
 ## Pruebas
 
 ```
+node --test tools/probar-tts-ar.mjs     # /api/tts-ar (parámetros, voces permitidas, el texto lo fija el servidor)
 node --test tools/probar-motor.mjs      # máquina de estados, plan por modo, validación de marcas (sin red ni navegador)
 node tools/probar-escucha.mjs           # Chromium: RTL, sincronía contra el reloj del audio, repeticiones, pausas, persistencia,
                                         # Media Session, aislamiento del lector, pantallas pequeñas (red simulada)
