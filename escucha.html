@@ -62,7 +62,9 @@
       <h3>Repeticiones y pausas</h3>
       <div class="ajuste"><span>Repeticiones por palabra</span><div class="paso"><button data-paso="repPalabra" data-d="-1" aria-label="Menos">−</button><output id="repPalabraV">1</output><button data-paso="repPalabra" data-d="1" aria-label="Más">+</button></div></div>
       <div class="ajuste"><span>Repeticiones por aleya</span><div class="paso"><button data-paso="repAleya" data-d="-1" aria-label="Menos">−</button><output id="repAleyaV">1</output><button data-paso="repAleya" data-d="1" aria-label="Más">+</button></div></div>
-      <div class="ajuste col"><span>Pausa entre audios: <output id="pausaV">0,6 s</output></span><input id="pausa" type="range" min="0" max="3000" step="100"></div>
+      <div class="ajuste col"><span>Pausa entre bloques (traducción, palabras, recitación): <output id="pausaV">0,40 s</output></span><input id="pausa" type="range" min="0" max="3000" step="50"></div>
+      <div class="ajuste col"><span>Pausa entre palabras (palabra por palabra): <output id="pausaPalV">0,15 s</output></span><input id="pausaPal" type="range" min="0" max="1500" step="25"></div>
+      <div class="ajuste col"><span>Velocidad del significado y de la palabra árabe: <output id="velPalV">1,2×</output></span><input id="velPal" type="range" min="0.8" max="1.6" step="0.1"></div>
       <div class="ajuste col"><span>Velocidad de la recitación: <output id="velV">1×</output></span><input id="vel" type="range" min="0.75" max="1.25" step="0.25"></div>
 
       <h3>Mostrar y reproducir</h3>

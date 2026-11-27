@@ -44,7 +44,7 @@ function conRango(route, cuerpo, tipo = 'audio/wav') {
   return route.fulfill({ status: 200, headers: { 'Content-Type': tipo, 'Accept-Ranges': 'bytes', 'Access-Control-Allow-Origin': '*' }, body: cuerpo });
 }
 
-const peticiones = { tts: [], ttsAr: [], audio: [], recit: [] };
+const peticiones = { tts: [], ttsAr: [], audio: [], recit: [], retardoAr: 0 };
 const PREF_RECIT = () => localStorage.setItem('qescucha-prefs', JSON.stringify({ fuentePalabra: 'recitacion' })); // palabra = fragmento real del recitador
 async function simularRed(ctx) {
   await ctx.route(/fonts\.(googleapis|gstatic)\.com/, r => r.fulfill({ status: 200, contentType: 'text/css', body: '' }));
@@ -65,7 +65,7 @@ async function simularRed(ctx) {
     peticiones.audio.push(`${rec}:${+s}:${+a}`);
     conRango(r, wav(duracionMs(palabras(+s)[+a]), rec === 'Alafasy' ? 440 : 330));
   });
-  await ctx.route(/\/api\/tts-ar\?/, r => { peticiones.ttsAr.push(new URL(r.request().url()).search); conRango(r, wav(250, 600), 'audio/mpeg'); });
+  await ctx.route(/\/api\/tts-ar\?/, async r => { peticiones.ttsAr.push(new URL(r.request().url()).search); if (peticiones.retardoAr) await new Promise(ok => setTimeout(ok, peticiones.retardoAr)); conRango(r, wav(250, 600), 'audio/mpeg'); });
   await ctx.route(/\/api\/tts\?/, r => { peticiones.tts.push(new URL(r.request().url()).search); conRango(r, wav(350, 220), 'audio/mpeg'); });
 }
 
@@ -82,8 +82,8 @@ const INIT = () => {
       if (gesto) desbloqueados.add(this);
       return orig.call(this);
     }; }
-  window.__voz = [];
-  const sint = { getVoices: () => [], speaking: false, cancel() { this._t && clearTimeout(this._t); this.speaking = false; }, speak(u) { this.speaking = true; this._t = setTimeout(() => { u.onstart?.(); window.__voz.push(u.text); this._t = setTimeout(() => { this.speaking = false; u.onend?.(); }, 120); }, 30); }, pause() {}, resume() {} };
+  window.__voz = []; window.__rate = [];
+  const sint = { getVoices: () => [], speaking: false, cancel() { this._t && clearTimeout(this._t); this.speaking = false; }, speak(u) { this.speaking = true; this._t = setTimeout(() => { u.onstart?.(); window.__voz.push(u.text); window.__rate.push(u.rate); this._t = setTimeout(() => { this.speaking = false; u.onend?.(); }, 120); }, 30); }, pause() {}, resume() {} };
   Object.defineProperty(window, 'speechSynthesis', { value: sint, configurable: true });
   window.SpeechSynthesisUtterance = function (t) { this.text = t; };
   window.__ms = { handlers: {}, estado: '' };
@@ -92,7 +92,7 @@ const INIT = () => {
 };
 const MUESTREO = () => {
   window.__m = []; window.__pl = []; const a = window.__escucha.controlador.elemento; a.addEventListener('playing', () => window.__pl.push({ t: a.currentTime * 1000, u: a.getAttribute('data-url') || '' }));
-  setInterval(() => { const act = [...document.querySelectorAll('.pal')].findIndex(e => e.classList.contains('activa')); window.__m.push({ t: a.currentTime * 1000, p: a.paused, u: a.getAttribute('data-url') || '', act, n: document.querySelectorAll('.pal.activa').length, st: window.__escucha.motor.estado, at: performance.now() }); }, 20);
+  setInterval(() => { const act = [...document.querySelectorAll('.pal')].findIndex(e => e.classList.contains('activa')); window.__m.push({ t: a.currentTime * 1000, r: a.playbackRate, p: a.paused, u: a.getAttribute('data-url') || '', act, n: document.querySelectorAll('.pal.activa').length, st: window.__escucha.motor.estado, at: performance.now() }); }, 20);
 };
 
 let servidor;
@@ -235,6 +235,32 @@ await prueba('cambiar de modo (en pausa o sonando) y de aleya no deja de funcion
   const antes = await p.evaluate(() => ({ voz: window.__voz.length, pl: window.__pl.length })); await p.click('#play');
   await p.waitForFunction(a => window.__voz.length > a.voz || window.__pl.length > a.pl, antes, { timeout: 8000 });
   assert.deepEqual(p.errores, []); await p.ctx.close();
+});
+
+await prueba('ritmo: el palabra por palabra no espera a la red (precarga), usa la velocidad de palabras y casi no deja silencios', async () => {
+  const p = await pagina({ url: '/escucha.html?s=1&a=7' }); await modo(p, 'palabra'); await ajustes(p, { autoavance: false });
+  peticiones.retardoAr = 600; peticiones.ttsAr.length = 0;                // el servidor de voz tarda 0,6 s por palabra
+  const t0 = Date.now(); await p.click('#play'); await esperarEstado(p, 'terminado', 30000); const total = Date.now() - t0;
+  peticiones.retardoAr = 0;
+  const voz = await p.evaluate(() => window.__voz.length); assert.equal(voz, 9, 'un significado por palabra');
+  // 9 palabras × (significado 0,15 s + árabe 0,25/1,2 s + pausa 0,15 s) ≈ 4,6 s + la primera espera de 0,6 s. Sin precarga se sumarían 9 × 0,6 s más.
+  assert.ok(total < 7500, `la pasada tardó ${total} ms (esperando a la red en cada palabra)`);
+  const rates = await p.evaluate(() => window.__rate); assert.ok(rates.every(x => Math.abs(x - 0.95 * 1.2) < 0.01), 'velocidad del significado hablado: ' + rates);
+  const m = (await muestras(p)).filter(s => !s.p && s.u.includes('tts-ar')); assert.ok(m.length > 10 && m.every(s => Math.abs(s.r - 1.2) < 0.01), 'velocidad de la voz árabe 1,2×');
+  assert.equal(new Set(peticiones.ttsAr).size, 9);
+  await p.ctx.close();
+});
+
+await prueba('ritmo: las pausas se pueden ajustar y 0 s elimina el silencio entre palabras', async () => {
+  const p = await pagina({ url: '/escucha.html?s=1&a=7' }); await modo(p, 'palabra'); await ajustes(p, { autoavance: false });
+  await p.evaluate(() => window.__escucha.motor.actualizarPrefs({ pausaPalabraMs: 0 }));
+  const plan = await p.evaluate(() => window.__escucha.motor.plan.map(x => x.tipo)); assert.ok(!plan.includes('pausa'), 'sin pausas dentro del palabra por palabra');
+  await p.click('#ajustesBtn'); await p.evaluate(() => { const r = document.getElementById('pausaPal'); r.value = 300; r.dispatchEvent(new Event('change')); });
+  assert.equal(await p.evaluate(() => window.__escucha.prefs.pausaPalabraMs), 300);
+  assert.equal(await p.evaluate(() => window.__escucha.motor.plan.filter(x => x.tipo === 'pausa').length), 8, '9 palabras → 8 pausas entre ellas (ninguna al final)');
+  await p.evaluate(() => { const r = document.getElementById('velPal'); r.value = 1.5; r.dispatchEvent(new Event('change')); });
+  assert.equal(await p.evaluate(() => window.__escucha.prefs.velocidadPalabras), 1.5);
+  await p.ctx.close();
 });
 
 await prueba('repeticiones por palabra y por aleya', async () => {

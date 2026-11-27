@@ -90,8 +90,8 @@ export function crearControlador({ elemento = new Audio(), sintesis = globalThis
   }
 
   // Voz de la traducción: mp3 del servidor (voz neuronal) y, si falla, voz del dispositivo.
-  async function hablar({ url, texto, lang: idioma }) {
-    if (!url) return hablarLocal({ texto, lang: idioma });
+  async function hablar({ url, texto, lang: idioma, velocidad: velocidadVoz }) {
+    if (!url) return hablarLocal({ texto, lang: idioma, velocidad: velocidadVoz });
     cancelar();
     const r = await new Promise(resolver => {
       const op = { resolver, tipo: 'voz', hecho: false };
@@ -101,22 +101,23 @@ export function crearControlador({ elemento = new Audio(), sintesis = globalThis
       op.pausar = () => { op.pausado = true; el.pause(); };
       op.reanudar = () => { op.pausado = false; el.play().catch(e => { if (e?.name !== 'AbortError') terminar(op, e?.name === 'NotAllowedError' ? 'bloqueado' : 'error'); }); };
       el.addEventListener('ended', alFinal); el.addEventListener('error', alError);
-      el.setAttribute('data-url', url); el.src = url; el.playbackRate = 1;
+      const lista = cache.get(url)?.blob; // ya descargado por precargar(): sin esperar a la red
+      el.setAttribute('data-url', url); el.src = lista || url; el.defaultPlaybackRate = el.playbackRate = velocidadVoz || 1;
       el.play().catch(e => { if (e?.name === 'AbortError') return; /* pausa o cancelación */ terminar(op, e?.name === 'NotAllowedError' ? 'bloqueado' : 'error'); });
     });
-    if (r === 'error' && texto) return hablarLocal({ texto, lang: idioma });
+    if (r === 'error' && texto) return hablarLocal({ texto, lang: idioma, velocidad: velocidadVoz });
     return r;
   }
 
   // Voz del dispositivo (significado de cada palabra). Con vigilante: si el sistema no llega a
   // empezar (p. ej. en segundo plano en Android) se omite en vez de quedarse colgado.
-  function hablarLocal({ texto, lang: idioma = lang }) {
+  function hablarLocal({ texto, lang: idioma = lang, velocidad: velocidadVoz = 1 }) {
     cancelar();
     return new Promise(resolver => {
       if (!sintesis || typeof SpeechSynthesisUtterance === 'undefined' || !texto) return resolver('omitido');
       const op = { resolver, tipo: 'local', hecho: false, empezo: false };
       actual = op;
-      let u = new SpeechSynthesisUtterance(String(texto).replace(/[—–]/g, ' ')); u.lang = idioma; u.rate = .95;
+      let u = new SpeechSynthesisUtterance(String(texto).replace(/[—–]/g, ' ')); u.lang = idioma; u.rate = Math.min(2, Math.max(.5, .95 * velocidadVoz));
       const vs = sintesis.getVoices?.() || []; const v = vs.find(x => x.lang?.toLowerCase().startsWith(idioma.toLowerCase())) || vs.find(x => x.lang?.toLowerCase().startsWith(idioma.slice(0, 2).toLowerCase())); if (v) u.voice = v;
       let vigila = ms.set(() => { if (!op.empezo && !op.pausado) terminar(op, 'omitido'); }, 2500);
       let tope = ms.set(() => terminar(op, 'omitido'), 12000);
@@ -143,6 +144,17 @@ export function crearControlador({ elemento = new Audio(), sintesis = globalThis
       r?.catch(() => { desbloqueado = false; });
     } catch (e) { /* sin audio: se informará al reproducir */ }
   }
+  // Descarga por adelantado audios de voz (mp3 pequeños) a memoria; hablar() los usa al instante.
+  const cache = new Map(); // url → { blob?: objectURL }
+  function precargar(urls) {
+    for (const url of urls) {
+      if (!url || cache.has(url)) continue;
+      const entrada = {}; cache.set(url, entrada);
+      fetch(url).then(r => r.ok ? r.blob() : Promise.reject(new Error('HTTP ' + r.status)))
+        .then(b => { entrada.blob = URL.createObjectURL(b); }).catch(() => cache.delete(url));
+    }
+    while (cache.size > 60) { const k = cache.keys().next().value, e = cache.get(k); if (e?.blob && el.src !== e.blob) URL.revokeObjectURL(e.blob); cache.delete(k); }
+  }
   function pausar() { actual?.pausar?.(); }
   function reanudar() { actual?.reanudar?.(); }
   function cancelar() {
@@ -150,5 +162,5 @@ export function crearControlador({ elemento = new Audio(), sintesis = globalThis
     try { if (op.tipo === 'local') sintesis?.cancel(); else el.pause(); } catch (e) {}
     terminar(op, 'cancelado');
   }
-  return { desbloquear, reproducirClip, hablar, hablarLocal, pausar, reanudar, cancelar, velocidad(v) { velocidad = v; el.playbackRate = v; }, elemento: el };
+  return { desbloquear, precargar, reproducirClip, hablar, hablarLocal, pausar, reanudar, cancelar, velocidad(v) { velocidad = v; el.playbackRate = v; }, elemento: el };
 }

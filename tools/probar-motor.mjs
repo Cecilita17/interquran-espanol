@@ -14,7 +14,7 @@ const ale = (o = {}) => ({ clave: '1:1', nPalabras: 3, traduccionDisponible: tru
 const tipos = plan => plan.pasos.map(p => p.tipo === 'palabra' ? 'P' + p.i : p.tipo === 'palabraVoz' ? 'A' + p.i : p.tipo === 'significado' ? 'S' + p.i : p.tipo === 'recitacion' ? 'R' : p.tipo === 'traduccion' ? 'T' : '_').join(' ');
 
 test('plan: los cuatro modos', () => {
-  const base = { pausaMs: 0 };
+  const base = { pausaMs: 0, pausaPalabraMs: 0 };
   assert.equal(tipos(construirPlan(ale(), { ...base, modo: MODOS.TRADUCCION_RECITACION })), 'T R');
   assert.equal(tipos(construirPlan(ale(), { ...base, modo: MODOS.PALABRA })), 'S0 A0 S1 A1 S2 A2');
   assert.equal(tipos(construirPlan(ale(), { ...base, modo: MODOS.COMBINADA })), 'T S0 A0 S1 A1 S2 A2 R');
@@ -27,31 +27,31 @@ test('plan: pausas entre audios y ninguna al final', () => {
   assert.ok(!tipos(construirPlan(ale(), { modo: MODOS.COMBINADA, pausaMs: 300 })).endsWith('_'));
 });
 test('plan: repeticiones por palabra y por aleya', () => {
-  const p = construirPlan(ale(), { modo: MODOS.COMBINADA, pausaMs: 0, repPalabra: 2, repAleya: 3 });
+  const p = construirPlan(ale(), { modo: MODOS.COMBINADA, pausaMs: 0, pausaPalabraMs: 0, repPalabra: 2, repAleya: 3 });
   assert.equal(p.pasos.filter(s => s.tipo === 'palabraVoz').length, 6);
   assert.equal(p.pasos.filter(s => s.tipo === 'recitacion').length, 3);
   assert.equal(p.pasos.filter(s => s.tipo === 'traduccion').length, 1);
-  const q = construirPlan(ale(), { modo: MODOS.PALABRA, pausaMs: 0, repAleya: 2 });
+  const q = construirPlan(ale(), { modo: MODOS.PALABRA, pausaMs: 0, pausaPalabraMs: 0, repAleya: 2 });
   assert.equal(q.pasos.filter(s => s.tipo === 'palabraVoz').length, 6); // el recorrido completo se repite
 });
 test('plan: interruptores de traducción y glosas', () => {
-  assert.equal(tipos(construirPlan(ale(), { modo: MODOS.COMBINADA, pausaMs: 0, traduccion: false, glosas: false })), 'A0 A1 A2 R');
+  assert.equal(tipos(construirPlan(ale(), { modo: MODOS.COMBINADA, pausaMs: 0, pausaPalabraMs: 0, traduccion: false, glosas: false })), 'A0 A1 A2 R');
 });
 test('plan: con voz neuronal no hace falta segmentación; con fragmentos de la recitación sí (y se avisa)', () => {
   const sinMarcas = ale({ palabrasFiables: false });
-  assert.equal(tipos(construirPlan(sinMarcas, { modo: MODOS.COMBINADA, pausaMs: 0 })), 'T S0 A0 S1 A1 S2 A2 R'); // voz: funciona en toda aleya
-  const c = construirPlan(sinMarcas, { modo: MODOS.COMBINADA, pausaMs: 0, fuentePalabra: 'recitacion' });
+  assert.equal(tipos(construirPlan(sinMarcas, { modo: MODOS.COMBINADA, pausaMs: 0, pausaPalabraMs: 0 })), 'T S0 A0 S1 A1 S2 A2 R'); // voz: funciona en toda aleya
+  const c = construirPlan(sinMarcas, { modo: MODOS.COMBINADA, pausaMs: 0, pausaPalabraMs: 0, fuentePalabra: 'recitacion' });
   assert.equal(tipos(c), 'T R'); assert.equal(c.avisos.length, 1);
-  const p = construirPlan(sinMarcas, { modo: MODOS.PALABRA, pausaMs: 0, fuentePalabra: 'recitacion' });
+  const p = construirPlan(sinMarcas, { modo: MODOS.PALABRA, pausaMs: 0, pausaPalabraMs: 0, fuentePalabra: 'recitacion' });
   assert.equal(tipos(p), 'R'); assert.match(p.avisos[0], /segmentación fiable/);
-  assert.equal(tipos(construirPlan(ale(), { modo: MODOS.PALABRA, pausaMs: 0, fuentePalabra: 'recitacion' })), 'S0 P0 S1 P1 S2 P2');
+  assert.equal(tipos(construirPlan(ale(), { modo: MODOS.PALABRA, pausaMs: 0, pausaPalabraMs: 0, fuentePalabra: 'recitacion' })), 'S0 P0 S1 P1 S2 P2');
 });
 test('plan: sin voz árabe disponible se desactiva palabra por palabra y se avisa', () => {
-  const p = construirPlan(ale({ palabrasVoz: false }), { modo: MODOS.COMBINADA, pausaMs: 0 });
+  const p = construirPlan(ale({ palabrasVoz: false }), { modo: MODOS.COMBINADA, pausaMs: 0, pausaPalabraMs: 0 });
   assert.equal(tipos(p), 'T R'); assert.match(p.avisos[0], /Voz árabe no disponible/);
 });
 test('plan: sin audio de recitación no se inventa nada', () => {
-  const p = construirPlan(ale({ recitacionDisponible: false }), { modo: MODOS.RECITACION, pausaMs: 0 });
+  const p = construirPlan(ale({ recitacionDisponible: false }), { modo: MODOS.RECITACION, pausaMs: 0, pausaPalabraMs: 0 });
   assert.equal(p.pasos.length, 0); assert.equal(p.avisos.length, 1);
 });
 
@@ -95,16 +95,17 @@ function entorno({ total = 3, datos = i => ale({ clave: '1:' + (i + 1) }), prefs
     const o = { nombre, d, res }; activa = o; log.push(nombre); maxSimultaneas = Math.max(maxSimultaneas, 1);
     if (d.alTiempo) o.alTiempo = d.alTiempo;
   });
+  const velocidades = [];
   const controlador = {
     reproducirClip: d => op(`clip:${d.desdeMs}-${d.hastaMs}`, d),
-    hablar: d => op(d.lang === 'ar-SA' ? 'arabe:' + d.url : 'traduccion', d), hablarLocal: d => op('significado:' + d.texto, d),
+    hablar: d => { velocidades.push(d.velocidad); return op(d.lang === 'ar-SA' ? 'arabe:' + d.url : 'traduccion', d); }, hablarLocal: d => { velocidades.push(d.velocidad); return op('significado:' + d.texto, d); },
     pausar() { pausado = true; log.push('pausar'); }, reanudar() { pausado = false; log.push('reanudar'); },
     cancelar() { if (activa) { const a = activa; activa = null; log.push('cancelar:' + a.nombre); a.res('cancelado'); } }
   };
   const terminar = (r = 'ok') => { const a = activa; assert.ok(a, 'no hay audio activo'); activa = null; a.res(r); };
   const asentar = async () => { for (let i = 0; i < 20; i++) await Promise.resolve(); };
-  const motor = crearMotor({ controlador, total, obtenerAleya: async i => datos(i), alEvento: e => eventos.push(e), temporizador, prefs: { pausaMs: 0, ...prefs } });
-  return { motor, log, eventos, terminar, asentar, adelantar, get activa() { return activa; }, get pausado() { return pausado; }, restaurar: () => { Date.now = orig; } };
+  const motor = crearMotor({ controlador, total, obtenerAleya: async i => datos(i), alEvento: e => eventos.push(e), temporizador, prefs: { pausaMs: 0, pausaPalabraMs: 0, ...prefs } });
+  return { motor, log, eventos, controlador, velocidades, terminar, asentar, adelantar, get activa() { return activa; }, get pausado() { return pausado; }, restaurar: () => { Date.now = orig; } };
 }
 
 test('motor: ejecuta el plan paso a paso sin solapes', async () => {
@@ -229,5 +230,23 @@ test('motor: palabra por palabra con voz neuronal: significado → voz árabe de
   for (let k = 0; k < 8; k++) { e.terminar(); await e.asentar(); }
   assert.deepEqual(e.log.filter(x => !x.startsWith('cancelar')), ['traduccion', 'significado:a', 'arabe:a1', 'significado:b', 'arabe:a2', 'significado:c', 'arabe:a3', 'clip:0-null']);
   assert.ok(!e.log.some(x => x.startsWith('clip:') && x !== 'clip:0-null'), 'ningún fragmento de recitación suelto');
+  e.restaurar();
+});
+
+test('plan: pausa corta entre palabras y pausa de bloque entre traducción / palabras / recitación', () => {
+  const p = construirPlan(ale({ nPalabras: 2, clips: [1, 2], urlsPalabra: ['a1', 'a2'], significados: ['a', 'b'] }), { modo: MODOS.COMBINADA, pausaMs: 500, pausaPalabraMs: 100 });
+  assert.equal(tipos(p), 'T _ S0 A0 _ S1 A1 _ R');
+  assert.deepEqual(p.pasos.filter(s => s.tipo === 'pausa').map(s => s.ms), [500, 100, 500]); // bloque, entre palabras, bloque
+  const q = construirPlan(ale({ nPalabras: 2, clips: [1, 2], urlsPalabra: ['a1', 'a2'], significados: ['a', 'b'] }), { modo: MODOS.COMBINADA, pausaMs: 500, pausaPalabraMs: 0 });
+  assert.equal(tipos(q), 'T _ S0 A0 S1 A1 _ R');
+});
+test('motor: velocidad de las palabras se pasa al significado y a la voz árabe, y se precargan los próximos audios', async () => {
+  const e = entorno({ prefs: { modo: MODOS.COMBINADA, autoavance: false, velocidadPalabras: 1.3 } });
+  const precargas = []; e.controlador.precargar = urls => precargas.push([...urls]);
+  await e.motor.reproducir(0); await e.asentar();
+  for (let k = 0; k < 4; k++) { e.terminar(); await e.asentar(); }
+  assert.ok(e.velocidades.filter(v => v === 1.3).length >= 3, 'significado y voz árabe usan la velocidad de palabras: ' + e.velocidades);
+  assert.ok(precargas.length > 0 && precargas[0].length > 0, 'se precargan los próximos audios desde el inicio');
+  assert.ok(precargas.flat().includes('a1') && precargas.flat().includes('a3'), 'incluye las voces árabes de las próximas palabras');
   e.restaurar();
 });

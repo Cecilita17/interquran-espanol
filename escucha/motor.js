@@ -19,7 +19,9 @@ export const PREFS_MOTOR = {
   modo: MODOS.COMBINADA,
   repPalabra: 1,      // veces que se repite cada palabra (árabe + significado)
   repAleya: 1,        // veces que se repite la recitación completa (en el modo 2, todo el recorrido)
-  pausaMs: 600,       // silencio entre audios
+  pausaMs: 400,       // silencio entre bloques (traducción → palabras → recitación, repeticiones)
+  pausaPalabraMs: 150, // silencio dentro del palabra por palabra (entre una palabra y la siguiente)
+  velocidadPalabras: 1.2, // ritmo del significado hablado y de la palabra árabe (no de la recitación)
   autoavance: true,
   traduccion: true,   // «traducción natural»: voz y panel
   glosas: true,       // significado en español de cada palabra: voz y texto
@@ -64,13 +66,14 @@ export function construirPlan(aleya, prefs) {
         // Primero el significado en español y después la palabra en árabe (voz neuronal o, si se elige, clip real de la recitación).
         if (p.glosas) pasada.push({ tipo: 'significado', i });
         pasada.push({ tipo: conVoz ? 'palabraVoz' : 'palabra', i, rep: r + 1 });
-        pasada.push({ tipo: 'pausa', ms: p.pausaMs });
+        if (p.pausaPalabraMs > 0) pasada.push({ tipo: 'pausa', ms: p.pausaPalabraMs });
       }
     }
     // En el modo 2, «repeticiones por aleya» repite el recorrido completo.
     const vueltas = p.modo === MODOS.PALABRA ? rep(p.repAleya) : 1;
     for (let v = 0; v < vueltas; v++) {
-      for (const s of pasada) if (s.tipo !== 'pausa' || p.pausaMs > 0) pasos.push({ ...s });
+      for (const s of pasada) pasos.push({ ...s });
+      quitarPausaFinal(); // la pausa corta entre palabras no se arrastra al cambio de bloque
       if (v < vueltas - 1 || p.modo === MODOS.COMBINADA) pausa();
     }
   }
@@ -86,7 +89,7 @@ export function construirPlan(aleya, prefs) {
 }
 
 // Parte de las preferencias que cambia el plan (el resto no obliga a reiniciar la aleya).
-const firmaPlan = p => [p.modo, p.repPalabra, p.repAleya, p.pausaMs, p.traduccion, p.glosas, p.fuentePalabra].join('|');
+const firmaPlan = p => [p.modo, p.repPalabra, p.repAleya, p.pausaMs, p.pausaPalabraMs, p.traduccion, p.glosas, p.fuentePalabra].join('|');
 
 // opciones:
 //   controlador  { reproducirClip, hablar, hablarLocal, pausar, reanudar, cancelar }  (ver audio.js)
@@ -130,7 +133,7 @@ export function crearMotor({ controlador, obtenerAleya, total, alEvento = () => 
         return controlador.hablar({ clave: d.clave, texto: d.traduccion, url: d.urlTraduccion });
       case 'palabraVoz':
         emitir({ tipo: 'palabra', palabra: { desde: paso.i, hasta: paso.i + 1 } });
-        return controlador.hablar({ clave: d.clave + ':' + (paso.i + 1), texto: d.palabras?.[paso.i]?.ar || '', url: d.urlsPalabra[paso.i], lang: 'ar-SA' });
+        return controlador.hablar({ clave: d.clave + ':' + (paso.i + 1), texto: d.palabras?.[paso.i]?.ar || '', url: d.urlsPalabra[paso.i], lang: 'ar-SA', velocidad: m.prefs.velocidadPalabras });
       case 'palabra': {
         const c = d.clips[paso.i];
         emitir({ tipo: 'palabra', palabra: { desde: paso.i, hasta: paso.i + 1 } });
@@ -138,7 +141,7 @@ export function crearMotor({ controlador, obtenerAleya, total, alEvento = () => 
       }
       case 'significado':
         emitir({ tipo: 'palabra', palabra: { desde: paso.i, hasta: paso.i + 1 } });
-        return controlador.hablarLocal({ texto: d.significados[paso.i] });
+        return controlador.hablarLocal({ texto: d.significados[paso.i], velocidad: m.prefs.velocidadPalabras });
       case 'recitacion': {
         const rangos = d.rangos;
         let ultima = '';
@@ -166,12 +169,36 @@ export function crearMotor({ controlador, obtenerAleya, total, alEvento = () => 
     const { pasos, avisos } = construirPlan(datos, m.prefs);
     m.plan = pasos;
     emitir({ tipo: 'aleya', aleya: i, datos, avisos, plan: pasos });
+    precargar(0);
     return true;
   }
 
   async function bucle(gen) {
     corriendo = true;
     try { await bucleInterno(gen); } finally { if (gen === m.gen) corriendo = false; }
+  }
+  // Pide por adelantado los audios que van a sonar enseguida (traducción y voces árabes de las próximas
+  // palabras) para que el ritmo no dependa de la red en cada palabra.
+  function precargar(desde = m.paso + 1, cuantos = 8) {
+    if (!controlador.precargar || !m.plan || !m.datos) return;
+    const d = m.datos, urls = [];
+    for (let k = desde; k < m.plan.length && urls.length < cuantos; k++) {
+      const p = m.plan[k];
+      if (p.tipo === 'palabraVoz' && d.urlsPalabra?.[p.i]) urls.push(d.urlsPalabra[p.i]);
+      else if (p.tipo === 'traduccion' && d.urlTraduccion) urls.push(d.urlTraduccion);
+    }
+    if (urls.length) controlador.precargar(urls);
+  }
+  // Con avance automático, cuando empieza la recitación final se adelanta la traducción y las primeras palabras de la aleya siguiente.
+  async function precargarSiguiente(gen) {
+    if (!controlador.precargar || !m.prefs.autoavance || m.aleya >= m.total - 1) return;
+    try {
+      const sig = await obtenerAleya(m.aleya + 1);
+      if (gen !== m.gen || !sig) return;
+      const { pasos } = construirPlan(sig, m.prefs), urls = [];
+      for (const p of pasos) { if (urls.length >= 8) break; if (p.tipo === 'traduccion' && sig.urlTraduccion) urls.push(sig.urlTraduccion); else if (p.tipo === 'palabraVoz' && sig.urlsPalabra?.[p.i]) urls.push(sig.urlsPalabra[p.i]); }
+      if (urls.length) controlador.precargar(urls);
+    } catch (e) { /* adelantar es opcional */ }
   }
   async function bucleInterno(gen) {
     cambiarEstado('reproduciendo');
@@ -190,6 +217,8 @@ export function crearMotor({ controlador, obtenerAleya, total, alEvento = () => 
       }
       const paso = m.plan[m.paso];
       emitir({ tipo: 'paso', paso, indice: m.paso, de: m.plan.length });
+      precargar();
+      if (paso.tipo === 'recitacion' && paso.rep === 1) precargarSiguiente(gen);
       const r = await ejecutar(paso, gen);
       if (gen !== m.gen) return; // cancelado o reemplazado: este bucle ya no manda
       if (r === 'bloqueado') {

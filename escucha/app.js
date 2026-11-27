@@ -15,7 +15,7 @@ const escribir = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); }
 const valorLector = (k, ok, d) => { try { const v = localStorage.getItem(k); return ok(v) ? v : d; } catch (e) { return d; } }; // sólo LEE la voz/traducción que el lector ya usa, como valor inicial
 
 const PREFS_BASE = {
-  modo: MODOS.COMBINADA, recitador: 'alafasy', repPalabra: 1, repAleya: 1, pausaMs: 600, autoavance: true, velocidad: 1,
+  modo: MODOS.COMBINADA, recitador: 'alafasy', repPalabra: 1, repAleya: 1, pausaMs: 400, pausaPalabraMs: 150, velocidadPalabras: 1.2, autoavance: true, velocidad: 1,
   translit: true, glosas: true, traduccion: true, resaltado: true, fondoOn: true,
   fuentePalabra: 'voz', vozArabe: VOCES_AR[0],
   fondo: 'noche', dim: 45, blur: 0,
@@ -120,7 +120,7 @@ function pintarPrefsVisibles() {
 }
 
 // ---- Motor ---------------------------------------------------------------------------------------
-function motorPrefs() { const { modo, repPalabra, repAleya, pausaMs, autoavance, traduccion, glosas, velocidad, fuentePalabra } = prefs; return { modo, repPalabra, repAleya, pausaMs, autoavance, traduccion, glosas, velocidad, fuentePalabra }; }
+function motorPrefs() { const { modo, repPalabra, repAleya, pausaMs, pausaPalabraMs, velocidadPalabras, autoavance, traduccion, glosas, velocidad, fuentePalabra } = prefs; return { modo, repPalabra, repAleya, pausaMs, pausaPalabraMs, velocidadPalabras, autoavance, traduccion, glosas, velocidad, fuentePalabra }; }
 
 function alEvento(ev) {
   switch (ev.tipo) {
@@ -225,7 +225,10 @@ function pintarAjustes() {
   $('modos').innerHTML = MODOS_INFO.map(([id, n, d]) => `<button class="modo" role="radio" aria-checked="${prefs.modo === id}" data-modo="${id}"><b>${n}</b><small>${d}</small></button>`).join('');
   $('recitadores').innerHTML = RECITADORES.map(r => `<button class="chip" role="radio" aria-checked="${prefs.recitador === r.id}" data-rec="${r.id}">${esc(r.nombre)}</button>`).join('');
   $('repPalabraV').textContent = prefs.repPalabra; $('repAleyaV').textContent = prefs.repAleya;
-  $('pausa').value = prefs.pausaMs; $('pausaV').textContent = (prefs.pausaMs / 1000).toLocaleString('es', { minimumFractionDigits: 1 }) + ' s';
+  const seg = ms => (ms / 1000).toLocaleString('es', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' s';
+  $('pausa').value = prefs.pausaMs; $('pausaV').textContent = seg(prefs.pausaMs);
+  $('pausaPal').value = prefs.pausaPalabraMs; $('pausaPalV').textContent = seg(prefs.pausaPalabraMs);
+  $('velPal').value = prefs.velocidadPalabras; $('velPalV').textContent = prefs.velocidadPalabras.toLocaleString('es', { minimumFractionDigits: 1 }) + '×';
   $('vel').value = prefs.velocidad; $('velV').textContent = prefs.velocidad + '×';
   document.querySelectorAll('[data-pref]').forEach(c => c.checked = !!prefs[c.dataset.pref]);
   $('fondos').innerHTML = FONDOS.map(f => `<button class="fondo-op" role="radio" aria-checked="${prefs.fondo === f.id}" data-fondo="${f.id}" style="background-image:${f.css().replace(/"/g, '&quot;')}"><span>${f.nombre}</span></button>`).join('')
@@ -245,7 +248,11 @@ $('ajustes').addEventListener('click', e => {
   else if (t.dataset.paso) { const k = t.dataset.paso, max = k === 'repPalabra' ? 5 : 10; aplicar({ [k]: Math.max(1, Math.min(max, prefs[k] + Number(t.dataset.d))) }); }
 });
 document.querySelectorAll('[data-pref]').forEach(c => c.addEventListener('change', () => aplicar({ [c.dataset.pref]: c.checked })));
-$('pausa').oninput = e => aplicar({ pausaMs: Number(e.target.value) });
+// Las pausas cambian el plan (reinician la aleya): se aplican al soltar el control, no en cada paso del arrastre.
+const segTxt = ms => (ms / 1000).toLocaleString('es', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' s';
+$('pausa').oninput = e => { $('pausaV').textContent = segTxt(e.target.value); }; $('pausa').onchange = e => aplicar({ pausaMs: Number(e.target.value) });
+$('pausaPal').oninput = e => { $('pausaPalV').textContent = segTxt(e.target.value); }; $('pausaPal').onchange = e => aplicar({ pausaPalabraMs: Number(e.target.value) });
+$('velPal').oninput = e => { $('velPalV').textContent = Number(e.target.value).toLocaleString('es', { minimumFractionDigits: 1 }) + '×'; }; $('velPal').onchange = e => aplicar({ velocidadPalabras: Number(e.target.value) });
 $('vel').oninput = e => aplicar({ velocidad: Number(e.target.value) });
 $('dim').oninput = e => aplicar({ dim: Number(e.target.value) });
 $('blur').oninput = e => aplicar({ blur: Number(e.target.value) });
